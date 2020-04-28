@@ -50,10 +50,13 @@
     "last 2 versions"
   ],
   "dependencies": {
+    "kind-of": "6.0.3",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
     "pug": "^2.0.3",
     "request": "^2.88.0",
+    "serialize-javascript": "2.1.1",
+    "set-value": "2.0.1",
     "signale": "^1.4.0",
     "vue": "^2.6.7",
     "vue-router": "^3.0.2"
