@@ -9,7 +9,58 @@ html(lang="en")
     title Portfolio | main page
   body
     .wrapper
+      section.fullscreen-section.main
+        .container
+          header.header
+            div.header__logo
+            .menu
+              ul.menu__list
+                - var menuLinkContent = ["Main", "About Me", "My Skills", "Portfolio", "Reviews", "Contacts"]
+                each item in menuLinkContent
+                  li.menu__item
+                    a(href="#").menu__link= item
+            .socials
+              ul.socials__list
+                - var socialsListContent = ["insta", "vk", "github"]
+                each item in socialsListContent
+                  li.socials__item
+                    a(href="#").socials__link
+                      +icon(item, 'socials__icon')
+
+          .scroll 
+            .scroll__name scroll
+            +icon('scroll', 'scroll__icon') 
+
+      section.fullscreen-section.aboutme
+        .container.aboutme__container
+          .aboutme__content
+            .aboutme__profile.profile
+              .profile__image
+                .profile__avatar
+                  +image('content/user.jpg', 'profile__photo')
+              .profile__info
+                .profile__line 
+                  .profile__line-name My Address
+                  .profile__line-info Adelaide, SA
+                .profile__line
+                  .profile__line-name Occupation
+                  .profile__line-info Front-End Developer
+                .profile__line
+                  .profile__line-name Education
+                  .profile__line-info Saint-Petersburg State Engeniering University, 2002, Diploma Economics and Managment
+            .aboutme__description
+              .aboutme__intro.intro
+                .intro__greeting Hey, My name is
+                .intro__name Evgenii Konkov
+                .intro__text I do like to create an up-to-date web-sites and apps. It's a huge joy for me to work with something new.
+                
+              .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
+            
+
+
       .maincontent
+      //
         +image('content/user.jpg', 'user-pic')
+        .text Just a line of text
         +icon('link', 'link-class')
         .icon-bg
