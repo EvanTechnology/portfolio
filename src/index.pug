@@ -9,11 +9,11 @@ html(lang="en")
     title Portfolio | main page
   body
     .wrapper
-      section.fullscreen-section.main
+      section.fullscreen-section.main-section
         .container
           header.header
             div.header__logo
-            .menu
+            nav.menu
               ul.menu__list
                 - var menuLinkContent = ["Main", "About Me", "My Skills", "Portfolio", "Reviews", "Contacts"]
                 each item in menuLinkContent
@@ -31,7 +31,7 @@ html(lang="en")
             .scroll__name scroll
             +icon('scroll', 'scroll__icon') 
 
-      section.fullscreen-section.aboutme
+      section.fullscreen-section.aboutme-section
         .container.aboutme__container
           .aboutme__content
             .aboutme__profile.profile
@@ -56,7 +56,52 @@ html(lang="en")
                 
               .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
             
+      section.fullscreen-section.skills-section
+        .skills__container.skills.container
+          h2.skills__title What can I do for you
+          .skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
+          .skills__content
+            .skills__content-title Front-End
+            ul.skills__visual
+              - var visualContent = ["HTML5", "CSS3", "Javascript", "Jquery and Vue.js"]
+                each item in visualContent
+                  li.skills__visual-item
+                    .skills__visual-name= item
+            .skills__content-title Workflow
+            ul.skills__visual
+              - var visualContent = ["GIT", "Terminal", "Gulp", "Webpack"]
+                each item in visualContent
+                  li.skills__visual-item
+                    .skills__visual-name= item
+        .skills__image
+          +image('content/hands_skills_page.png', 'skills__image-pic')
+      
+      section.fullscreen-section.portfolio-section
+        .container.portfolio_section__container.portfolio
+          h2.portfolio__title Portfolio
+          .portfolio__content
+            .portfolio__slider
+              .slider__container
+                ul.slider__list
+                  - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
+                  each item in sliderContent
+                    li.slider__item
+                      +image(item, 'slider__item-photo')
+                .slider__control
+                  button.slider__btn
+                    +icon('arrow-right', 'arrow')
+                  button.slider__btn
+                    +icon('arrow-left', 'arrow')
+            .portfolio__description
+              ul.portfolio__description-tags.tags
+                 - var tagsContent = ["HTML", "CSS", "Lavasript"]
+                  each item in tagsContent
+                    li.tags__item= item
+              .portfolio__description-title
+              .portfolio__description-text
+              .portfolio__description-link
 
+      footer.footer allalalla
 
       .maincontent
       //
