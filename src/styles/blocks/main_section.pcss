@@ -1,15 +1,42 @@
 .main-section {
-    background: url('../images/content/bg_main_page.jpg') top / cover no-repeat;
-    height: 125vh;
+    //background: url('../images/content/bg_main_page.jpg') center center / cover;
 }
+.main-section__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.main-section__content {
+    width: 50%;
+}
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.welcome__title {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 60px;
+    color:#fff;
+}
+.welcome__text {
+    font-size: 18px;
+    font-weight: semibold;
+    line-height: 30px;
+    color:#817c75;
+    padding-right: 50px;
+    text-align: right;
+}
+
 
 .scroll {
     color: #ffffff;
     display: flex;
     align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 75vh;
+    margin-bottom: 100px;
 }
 
 .scroll__icon {

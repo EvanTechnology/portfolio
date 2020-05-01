@@ -9,53 +9,58 @@ html(lang="en")
     title Portfolio | main page
   body
     .wrapper
-      section.fullscreen-section.main-section
-        .container
-          header.header
-            div.header__logo
-            nav.menu
-              ul.menu__list
-                - var menuLinkContent = ["Main", "About Me", "My Skills", "Portfolio", "Reviews", "Contacts"]
-                each item in menuLinkContent
-                  li.menu__item
-                    a(href="#").menu__link= item
-            .socials
-              ul.socials__list
-                - var socialsListContent = ["insta", "vk", "github"]
-                each item in socialsListContent
-                  li.socials__item
-                    a(href="#").socials__link
-                      +icon(item, 'socials__icon')
-
-          .scroll 
-            .scroll__name scroll
-            +icon('scroll', 'scroll__icon') 
-
-      section.fullscreen-section.aboutme-section
-        .container.aboutme__container
-          .aboutme__content
-            .aboutme__profile.profile
-              .profile__image
-                .profile__avatar
-                  +image('content/user.jpg', 'profile__photo')
-              .profile__info
-                .profile__line 
-                  .profile__line-name My Address
-                  .profile__line-info Adelaide, SA
-                .profile__line
-                  .profile__line-name Occupation
-                  .profile__line-info Front-End Developer
-                .profile__line
-                  .profile__line-name Education
-                  .profile__line-info Saint-Petersburg State Engeniering University, 2002, Diploma Economics and Managment
-            .aboutme__description
+      .welcome-box
+        section.fullscreen-section.main-section
+          .container.main-section__container
+            header.header
+              div.header__logo
+                .logo EK
+              nav.menu
+                ul.menu__list
+                  - var menuContent = ["Main", "About Me", "My Skills", "Portfolio", "Reviews", "Contacts"]
+                  each item in menuContent
+                    li.menu__item
+                      a(href="#").menu__link #{item}
+              div.socials
+                ul.socials__list
+                  - var socialsListContent = ["insta", "vk", "github"]
+                  each item in socialsListContent
+                    li.socials__item
+                      a(href="#").socials__link
+                        +icon(`${item}`, 'socials__icon')
+            .main-section__content.welcome
+              .welcome__text This is the personal website of the developer
+              h1.welcome__title Evgenii Konkov
+            .scroll 
+              .scroll__name scroll
+              +icon('scroll', 'scroll__icon') 
+        section.fullscreen-section.aboutme-section
+          .container.aboutme-container
+            .aboutme__content
+              .aboutme__profile.profile
+                .profile__image
+                  .avatar
+                    +image('content/user.jpg', 'avatar__photo')
+                .profile__info
+                  ul.profile__info-list
+                    -
+                      var profileData = [
+                        ['My Address', 'Adelaide, SA'],
+                        ['Occupation', 'Front-End Developer'],
+                        ['Edication', 'Saint-Petersburg State Engeniering University, 2002, Diploma Economics and Managmen'],
+                      ]
+                    each item in profileData
+                      li.profile__line
+                        .profile__line-name #{item[0]}
+                        .profile__line-info #{item[1]}  
               .aboutme__intro.intro
                 .intro__greeting Hey, My name is
                 .intro__name Evgenii Konkov
                 .intro__text I do like to create an up-to-date web-sites and apps. It's a huge joy for me to work with something new.
-                
-              .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
-            
+                  
+                .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
+         
+        |      
       section.fullscreen-section.skills-section
         .skills__container.skills.container
           h2.skills__title What can I do for you
@@ -67,12 +72,16 @@ html(lang="en")
                 each item in visualContent
                   li.skills__visual-item
                     .skills__visual-name= item
+                    svg.skills__visual-line(viewBox="0 0 100 100" preserveAspectRatio="none")
+                      circle(cx="50" cy="50" r="45")
             .skills__content-title Workflow
             ul.skills__visual
               - var visualContent = ["GIT", "Terminal", "Gulp", "Webpack"]
                 each item in visualContent
                   li.skills__visual-item
                     .skills__visual-name= item
+                    svg.skills__visual-line(viewBox="0 0 100 100" preserveAspectRatio="none")
+                      circle(cx="50" cy="50" r="45")
         .skills__image
           +image('content/hands_skills_page.png', 'skills__image-pic')
       
@@ -92,14 +101,23 @@ html(lang="en")
                     +icon('arrow-right', 'arrow')
                   button.slider__btn
                     +icon('arrow-left', 'arrow')
+                .slider__number 2
             .portfolio__description
               ul.portfolio__description-tags.tags
                  - var tagsContent = ["HTML", "CSS", "Lavasript"]
                   each item in tagsContent
                     li.tags__item= item
-              .portfolio__description-title
-              .portfolio__description-text
+              .portfolio__description-title Website of Lostschool Academy
+              .portfolio__description-text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
               .portfolio__description-link
+                a(href="#") Visit the website
+
+      .testimonials-box
+        .testimonials-box__decor
+        section.review-section
+          .container.review
+        section.contacts-section
+          .container.contacts
 
       footer.footer allalalla
 
