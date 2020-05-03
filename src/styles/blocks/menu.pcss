@@ -3,19 +3,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
-    width: 60%;
-    margin: auto;
 }
 .menu__item {
     height: 100%;
-    padding-top: 3%;
-    width: 17%;
-    text-align: center;
+    padding-bottom: 10px;
     border-bottom: solid 1px transparent;
     &--active {
         border-bottom: solid 1px $orange;
         color: $orange;
+    }
+    &:hover {
+        border-bottom: solid 1px $orange;
     }
 }
 .menu__link {
@@ -23,4 +21,8 @@
     &:hover {
         font-weight: 600
     }
+}
+.menu {
+    width: 100%;
+    max-width: 750px;
 }

@@ -19,19 +19,9 @@ html(lang="en")
             header.header
               div.header__logo
                 //.logo EK
-              nav.menu
-                ul.menu__list
-                  - var menuContent = ["Main", "About Me", "My Skills", "Portfolio", "Reviews", "Contacts"]
-                  each item in menuContent
-                    li.menu__item
-                      a(href="#").menu__link #{item}
-              div.socials
-                ul.socials__list
-                  - var socialsListContent = ["insta", "vk", "github"]
-                  each item in socialsListContent
-                    li.socials__item
-                      a(href="#").socials__link
-                        +icon(`${item}`, 'socials__icon')
+              .header__menu
+                include ./sections/menu.pug
+              include ./sections/socials.pug         
             .main-section__content.welcome
               .welcome__text This is the personal website of the developer
               h1.welcome__title Evgenii Konkov
@@ -67,7 +57,7 @@ html(lang="en")
         |      
       section.fullscreen-section.skills-section
         .skills__container.skills.container
-          h2.skills__title What can I do for you
+          h2.title.skills__title What can I do for you
           .skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
           .skills__content
             .skills__content-title Front-End
@@ -107,7 +97,7 @@ html(lang="en")
       
       section.fullscreen-section.portfolio-section
         .container.portfolio_section__container.portfolio
-          h2.portfolio__title Portfolio
+          h2.title.portfolio__title Portfolio
           .portfolio__content
             .portfolio__slider.portfolio-slider
               .portfolio-slider__container
@@ -136,23 +126,21 @@ html(lang="en")
         .testimonials-box__decor
         section.reviews-section
           .container.reviews
-            .reviews__title
-              .reviews__title-text Reviews
+            .reviews__title-box
+              h2.title.reviews__title Reviews
               .reviews__title-btn
                 .reviews__title-controls.slider__control.reviews-slider__control
                   button.slider__btn-left.reviews-slider__btn <
-                    //+icon('arrow-left-new', 'arrow')
                   button.slider__btn-right.reviews-slider__btn >
-                    //+icon('arrow-right-new', 'arrow')
             .reviews__container
               .reviews__slider.reviews-slider
                 ul.slider__list.reviews-slider__list
                   -
                     var reviews= [
-                      {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/user.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                      {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/user.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                      {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/user.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                      {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/user.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                      {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                      {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                      {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                      {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
                     ]
                   each item in reviews
                     li.slider__item.review
@@ -160,15 +148,47 @@ html(lang="en")
                       .review__author
                         .review__avatar
                           .avatar
-                            +image('content/user.jpg', 'avatar__photo')
+                            +image(`${item.image}`, 'avatar__photo')
                         .review__author-desc
                           .review__author-name #{item.name}
                           .review__author-occupation #{item.occupation}
                  
         section.contacts-section
           .container.contacts
+            h2.title.contacts__title Send a query
+            form.form
+              .form__column
+                .form__row
+                  label.form-block.form-block--name
+                    .form-block__title Write your name here
+                    input(type="text" name="name" placeholder="Evgenii Konkov" required).form-block__input
+                  label.form-block.form-block--mail
+                    .form-block__title Write your email
+                    input(type="text" name="name" placeholder="Evgeniikonkov1@gmail.com" required).form-block__input
+                .form__row
+                  label.form-block.form-block--message
+                    .form-block__title Your message
+                    textarea(name="comment" placeholder="Write your query here, please" required).form-block__input.form-block__input--comment
+                .form__row
+                  button(type="submit").btn Send
 
-      footer.footer allalalla
+      footer.footer
+        .container.footer-container
+          .footer__year
+            .year 2020
+          .footer__name
+            .footer__name-owner Evgenii Konkov
+            .footer__name-info This is the personal website of the developer
+          .footer__main
+            include ./sections/menu.pug
+            .footer__content
+              .footer__content-column
+                .footer__content-text I created this web-site as a graduation project in a Loftschool.
+                include ./sections/socials.pug
+              .footer__content-column
+                .footer__quote-text Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+                .footer__quote-author Martin Golding
+
 
       .maincontent
       //
