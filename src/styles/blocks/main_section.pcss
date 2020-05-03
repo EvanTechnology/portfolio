@@ -12,6 +12,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include tablets {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }
 .welcome__title {
     font-size: 72px;
@@ -26,6 +31,9 @@
     color:#817c75;
     padding-right: 50px;
     text-align: right;
+    @include tablets {
+        text-align: center;
+    }
 }
 
 

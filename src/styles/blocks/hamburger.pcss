@@ -1,6 +1,6 @@
 .hamburger__menu {
     position: fixed;
-    top: 4%;
+    top: 55px;
     right: 2%;
     border: none;
     height: 25px;
@@ -9,7 +9,7 @@
 
 
     display: none;
-    z-index: 100;
+    z-index: 1100;
 
     @include tablets {
         display: flex;
@@ -23,11 +23,15 @@
         height: 0;
         &::after {
             transform: rotate(-45deg);
-        };
+            background-color: #636363;
+        }
         &::before {
             transform: rotate(45deg);
-        };
-        &::before,
+            background-color: #636363;
+        }
+        &::before {
+            top:50%;
+        }
         &::after {
             top: 50%;
         }

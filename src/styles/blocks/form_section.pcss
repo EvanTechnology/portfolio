@@ -66,6 +66,7 @@
     position: relative;
     &:focus {
         outline-color: transparent;
+        border-bottom: $orange;
     }
     &--comment {
         resize: none;
@@ -79,5 +80,8 @@
     padding: 30px 115px;
     font-weight: bold;
     font-size: 18px;
+    &:hover {
+        background:  linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+    }
 }
 
