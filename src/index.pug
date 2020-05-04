@@ -17,7 +17,7 @@ html(lang="en")
         section.fullscreen-section.main-section
           .container.main-section__container
             header.header
-              div.header__logo
+              div.logo
                 //.logo EK
               .header__menu
                 include ./sections/menu.pug
@@ -28,7 +28,7 @@ html(lang="en")
             .scroll 
               .scroll__name scroll
               +icon('scroll', 'scroll__icon') 
-        section.fullscreen-section.aboutme-section
+        section.fullscreen-section.aboutme
           .container.aboutme-container
             .aboutme__content
               .aboutme__profile.profile
@@ -49,18 +49,16 @@ html(lang="en")
                         .profile__line-info #{item[1]}  
               .aboutme__intro.intro
                 .intro__greeting Hey, My name is
-                .intro__name Evgenii Konkov
+                h2.intro__name Evgenii Konkov
                 .intro__text I do like to create an up-to-date web-sites and apps. It's a huge joy for me to work with something new.
                   
                 .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
-         
-        |      
-      section.fullscreen-section.skills-section
-        .skills__container.skills.container
+      section.fullscreen-section.skills
+        .skills__container.container
           h2.title.skills__title What can I do for you
           .skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
           .skills__content
-            .skills__content-title Front-End
+            h3.skills__content-title Front-End
             ul.skills__visual
               -
                 var visualContent = [
@@ -71,14 +69,14 @@ html(lang="en")
                 ]
               each item in visualContent
                   li.skills__visual-item
-                    .skills__visual-name #{item.title}
+                    h4.skills__visual-name #{item.title}
                     svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
                       circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
                          defs
                           linearGradient(id="gradient")
                             stop(offset="0%" stop-color="#d47e1e")
                             stop(offset="100%" stop-color="#dc9322")
-            .skills__content-title Workflow
+            h3.skills__content-title Workflow
             ul.skills__visual
               -
                 var visualContent = [
@@ -89,18 +87,19 @@ html(lang="en")
                 ]
               each item in visualContent
                   li.skills__visual-item
-                    .skills__visual-name #{item.title}
+                    h4.skills__visual-name #{item.title}
                     svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
                       circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
         .skills__image
           +image('content/hands_skills_page.png', 'skills__image-pic')
       
       section.fullscreen-section.portfolio-section
-        .container.portfolio_section__container.portfolio
+        .container.portfolio
           h2.title.portfolio__title Portfolio
           .portfolio__content
             .portfolio__slider.portfolio-slider
               .portfolio-slider__container
+                +image('content/preview_1.jpg', 'portfolio-slider__preview')
                 ul.slider__list.portfolio-slider__list
                   - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
                   each item in sliderContent
@@ -117,7 +116,7 @@ html(lang="en")
                  - var tagsContent = ["HTML", "CSS", "Lavasript"]
                   each item in tagsContent
                     li.tags__item= item
-              .portfolio__description-title Website of Lostschool Academy
+              h3.portfolio__description-title Website of Lostschool Academy
               .portfolio__description-text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
               .portfolio__description-link
                 a(href="#") Visit the website
@@ -190,7 +189,6 @@ html(lang="en")
                 .footer__quote-author Martin Golding
 
 
-      .maincontent
       //
         +image('content/user.jpg', 'user-pic')
         .text Just a line of text
