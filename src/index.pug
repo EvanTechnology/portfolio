@@ -10,166 +10,172 @@ html(lang="en")
   body
     .wrapper
       .hamburger
-        button(type="button").hamburger__menu
-          span.hamburger__item
-
-      .welcome-box
-        section.fullscreen-section.main-section
-          .container.main-section__container
-            header.header
-              div.logo
-                //.logo EK
-              .header__menu
-                include ./sections/menu.pug
-              include ./sections/socials.pug         
-            .main-section__content.welcome
-              .welcome__text This is the personal website of the developer
-              h1.welcome__title Evgenii Konkov
-            .scroll 
-              .scroll__name scroll
-              +icon('scroll', 'scroll__icon') 
-        section.fullscreen-section.aboutme
-          .container.aboutme-container
-            .aboutme__content
-              .aboutme__profile.profile
-                .profile__image
-                  .avatar
-                    +image('content/user.jpg', 'avatar__photo')
-                .profile__info
-                  ul.profile__info-list
-                    -
-                      var profileData = [
-                        ['My Address', 'Adelaide, SA'],
-                        ['Occupation', 'Front-End Developer'],
-                        ['Edication', 'Saint-Petersburg State Engeniering University, 2002, Diploma Economics and Managmen'],
-                      ]
-                    each item in profileData
-                      li.profile__line
-                        .profile__line-name #{item[0]}
-                        .profile__line-info #{item[1]}  
-              .aboutme__intro.intro
-                .intro__greeting Hey, My name is
-                h2.intro__name Evgenii Konkov
-                .intro__text I do like to create an up-to-date web-sites and apps. It's a huge joy for me to work with something new.
-                  
-                .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
+          button(type="button").hamburger__menu
+            span.hamburger__item
+  
+      .parallax
+          section.fullscreen-section.main-section
+            .container.main-section__container
+              header.header
+                div.logo
+                  //.logo EK
+                .header__menu
+                  include ./sections/menu.pug
+                include ./sections/socials.pug         
+              .main-section__content.welcome
+                .welcome__text This is the personal website of the developer
+                h1.welcome__title Evgenii Konkov
+              .scroll 
+                .scroll__name scroll
+                +icon('scroll', 'scroll__icon') 
+          section.fullscreen-section.aboutme
+            .container.aboutme-container
+              .aboutme__content
+                .aboutme__profile.profile
+                  .profile__image
+                    .avatar
+                      +image('content/user.jpg', 'avatar__photo')
+                  .profile__info
+                    ul.profile__info-list
+                      -
+                        var profileData = [
+                          ['My Address', 'Adelaide, SA'],
+                          ['Occupation', 'Front-End Developer'],
+                          ['Edication', 'Saint-Petersburg State Engeniering University, 2002, Diploma Economics and Managmen'],
+                        ]
+                      each item in profileData
+                        li.profile__line
+                          .profile__line-name #{item[0]}
+                          .profile__line-info #{item[1]}  
+                .aboutme__intro.intro
+                  .intro__greeting Hey, My name is
+                  h2.intro__name Evgenii Konkov
+                  .intro__text I do like to create an up-to-date web-sites and apps. It's a huge joy for me to work with something new.
+                    
+                  .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
       section.fullscreen-section.skills
-        .skills__container.container
-          h2.title.skills__title What can I do for you
-          .skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
-          .skills__content
-            h3.skills__content-title Front-End
-            ul.skills__visual
-              -
-                var visualContent = [
-                  {title: "HTML5", level: "80"},
-                  {title: "CSS3", level: "75"},
-                  {title: "Javascript", level: "30"},
-                  {title: "JQuery and Vue.js", level: "15"}
-                ]
-              each item in visualContent
-                  li.skills__visual-item
-                    h4.skills__visual-name #{item.title}
-                    svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
-                      circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
-                         defs
-                          linearGradient(id="gradient")
-                            stop(offset="0%" stop-color="#d47e1e")
-                            stop(offset="100%" stop-color="#dc9322")
-            h3.skills__content-title Workflow
-            ul.skills__visual
-              -
-                var visualContent = [
-                  {title: "GIT", level: "50"},
-                  {title: "Terminal", level: "60"},
-                  {title: "Gulp", level: "30"},
-                  {title: "Webpack", level: "45"},
-                ]
-              each item in visualContent
-                  li.skills__visual-item
-                    h4.skills__visual-name #{item.title}
-                    svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
-                      circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
-        .skills__image
-          +image('content/hands_skills_page.png', 'skills__image-pic')
-      
-      section.fullscreen-section.portfolio-section
-        .container.portfolio
-          h2.title.portfolio__title Portfolio
-          .portfolio__content
-            .portfolio__slider.portfolio-slider
-              .portfolio-slider__container
-                +image('content/preview_1.jpg', 'portfolio-slider__preview')
-                ul.slider__list.portfolio-slider__list
-                  - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
-                  each item in sliderContent
-                    li.slider__item.portfolio-slider__item
-                      +image(item, 'slider__item-photo')
-                .slider__control.portfolio-slider__control
-                  button.slider__btn-right.portfolio-slider__btn >
-                    //+icon('arrow-right-new', 'arrow')
-                  button.slider__btn-left.portfolio-slider__btn <
-                    //+icon('arrow-left-new', 'arrow')
-                .portfolio-slider__number 2
-            .portfolio__description
-              ul.portfolio__description-tags.tags
-                 - var tagsContent = ["HTML", "CSS", "Lavasript"]
-                  each item in tagsContent
-                    li.tags__item= item
-              h3.portfolio__description-title Website of Lostschool Academy
-              .portfolio__description-text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-              .portfolio__description-link
-                a(href="#") Visit the website
-
-      .testimonials-box
-        .testimonials-box__decor
-        section.reviews-section
-          .container.reviews
-            .reviews__title-box
-              h2.title.reviews__title Reviews
-              .reviews__title-btn
-                .reviews__title-controls.slider__control.reviews-slider__control
-                  button.slider__btn-left.reviews-slider__btn <
-                  button.slider__btn-right.reviews-slider__btn >
-            .reviews__container
-              .reviews__slider.reviews-slider
-                ul.slider__list.reviews-slider__list
+          .skills__container.container
+            h2.title.skills__title What can I do for you
+            .skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
+            ul.skills__content
+              li.skills__content-line
+                h3.skills__content-title Front-End
+                ul.skills__visual
                   -
-                    var reviews= [
-                      {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                      {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                      {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                      {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                    var visualContent = [
+                      {title: "HTML5", level: "80"},
+                      {title: "CSS3", level: "75"},
+                      {title: "Javascript", level: "30"},
+                      {title: "JQuery and Vue.js", level: "15"}
                     ]
-                  each item in reviews
-                    li.slider__item.review
-                      .review__text #{item.review}
-                      .review__author
-                        .review__avatar
-                          .avatar
-                            +image(`${item.image}`, 'avatar__photo')
-                        .review__author-desc
-                          .review__author-name #{item.name}
-                          .review__author-occupation #{item.occupation}
-                 
-        section.contacts-section
-          .container.contacts
-            h2.title.contacts__title Send a query
-            form.form
-              .form__column
-                .form__row
-                  label.form-block.form-block--name
-                    .form-block__title Write your name here
-                    input(type="text" name="name" placeholder="Evgenii Konkov" required).form-block__input
-                  label.form-block.form-block--mail
-                    .form-block__title Write your email
-                    input(type="text" name="name" placeholder="Evgeniikonkov1@gmail.com" required).form-block__input
-                .form__row
-                  label.form-block.form-block--message
-                    .form-block__title Your message
-                    textarea(name="comment" placeholder="Write your query here, please" required).form-block__input.form-block__input--comment
-                .form__row
-                  button(type="submit").btn Send
+                  each item in visualContent
+                      li.skills__visual-item
+                        h4.skills__visual-name #{item.title}
+                        svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
+                          circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
+                             defs
+                              linearGradient(id="gradient")
+                                stop(offset="0%" stop-color="#d47e1e")
+                                stop(offset="100%" stop-color="#dc9322")
+              li.skills__content-line
+                h3.skills__content-title Workflow
+                ul.skills__visual
+                  -
+                    var visualContent = [
+                      {title: "GIT", level: "50"},
+                      {title: "Terminal", level: "60"},
+                      {title: "Gulp", level: "30"},
+                      {title: "Webpack", level: "45"},
+                    ]
+                  each item in visualContent
+                      li.skills__visual-item
+                        h4.skills__visual-name #{item.title}
+                        svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
+                          circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
+                            defs
+                              linearGradient(id="gradient")
+                                stop(offset="0%" stop-color="#d47e1e")
+                                stop(offset="100%" stop-color="#dc9322")
+          .skills__image
+            +image('content/hands_skills_page.png', 'skills__image-pic')
+        
+      section.fullscreen-section.portfolio-section
+          .container.portfolio
+            h2.title.portfolio__title Portfolio
+            .portfolio__content
+              .portfolio__slider.portfolio-slider
+                .portfolio-slider__container
+                  +image('content/preview_1.jpg', 'portfolio-slider__preview')
+                  ul.slider__list.portfolio-slider__list
+                    - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
+                    each item in sliderContent
+                      li.slider__item.portfolio-slider__item
+                        +image(item, 'slider__item-photo')
+                  .slider__control.portfolio-slider__control
+                    button.slider__btn-right.portfolio-slider__btn >
+                      //+icon('arrow-right-new', 'arrow')
+                    button.slider__btn-left.portfolio-slider__btn <
+                      //+icon('arrow-left-new', 'arrow')
+                  .portfolio-slider__number 2
+              .portfolio__description
+                ul.portfolio__description-tags.tags
+                   - var tagsContent = ["HTML", "CSS", "Lavasript"]
+                    each item in tagsContent
+                      li.tags__item= item
+                h3.portfolio__description-title Website of Lostschool Academy
+                .portfolio__description-text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                .portfolio__description-link
+                  a(href="#") Visit the website
+  
+      .testimonials-box
+          .testimonials-box__decor
+          section.reviews-section
+            .container.reviews
+              .reviews__title-box
+                h2.title.reviews__title Reviews
+                .reviews__title-btn
+                  .reviews__title-controls.slider__control.reviews-slider__control
+                    button.slider__btn-left.reviews-slider__btn <
+                    button.slider__btn-right.reviews-slider__btn >
+              .reviews__container
+                .reviews__slider.reviews-slider
+                  ul.slider__list.reviews-slider__list
+                    -
+                      var reviews= [
+                        {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                        {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                        {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                        {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
+                      ]
+                    each item in reviews
+                      li.slider__item.review
+                        .review__text #{item.review}
+                        .review__author
+                          .review__avatar
+                            .avatar
+                              +image(`${item.image}`, 'avatar__photo')
+                          .review__author-desc
+                            .review__author-name #{item.name}
+                            .review__author-occupation #{item.occupation}
+                   
+          section.contacts-section
+            .container.contacts
+              h2.title.contacts__title Send a query
+              form.form
+                .form__column
+                  .form__row
+                    label.form-block.form-block--name
+                      .form-block__title Write your name here
+                      input(type="text" name="name" placeholder="Evgenii Konkov" required).form-block__input
+                    label.form-block.form-block--mail
+                      .form-block__title Write your email
+                      input(type="text" name="name" placeholder="Evgeniikonkov1@gmail.com" required).form-block__input
+                  .form__row
+                    label.form-block.form-block--message
+                      .form-block__title Your message
+                      textarea(name="comment" placeholder="Write your query here, please" required).form-block__input.form-block__input--comment
+                  .form__row
+                    button(type="submit").btn Send
 
       footer.footer
         .container.footer-container

@@ -9,12 +9,24 @@
 }
 .aboutme__content {
     color: #939393;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template: 
+        "aboutme__profile aboutme__intro" 1fr
+        /1fr 1.3fr;
+    grid-gap: 0px 10px;
+    @include phones {
+        grid-template: 
+        "aboutme__profile" 1fr
+        "aboutme__intro" 1fr
+        /1fr;
+    }
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
 }
 .aboutme__profile {
-    width: 40%;
+    grid-area: aboutme__profile;
+    //width: 40%;
 }
 .profile {
     display: flex;
@@ -28,13 +40,20 @@
     margin: auto;
     margin-bottom: 70px;
     flex-shrink: 0;
+    @include tablets {
+        width: 180px;
+        height: 180px;
+    }
 }
 .profile__info {
-    padding-left: 25%;
+    padding-left: 20%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    @include tablets {
+        padding-left: 5%;
+    }
 }
 .profile__line {
     display: flex;
@@ -53,7 +72,8 @@
     }
 }
 .aboutme__intro {
-    width: 60%;
+    grid-area: aboutme__intro;
+    //width: 60%;
     max-width: 535px;
 }
 .intro {
@@ -61,7 +81,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: left;
-    padding-left: 60px;
+    padding-left: 5%;
     font-weight: 700;
     &__greeting {
         margin-bottom: 30px
