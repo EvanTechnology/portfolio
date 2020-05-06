@@ -51,8 +51,14 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    @include desktop {
+        padding-left: 15%;
+    }
     @include tablets {
-        padding-left: 5%;
+        padding-left: 0%;
+    }
+    @include phones {
+        margin-bottom: 20px;
     }
 }
 .profile__line {
@@ -69,6 +75,9 @@
         text-align: left;
         width: 65%;
         color: #ffffff;
+        @include tablets {
+            padding-left: 10px;
+        }
     }
 }
 .aboutme__intro {
@@ -88,6 +97,9 @@
     }
     &__text {
         margin-bottom: 100px
+    }
+    @include phones {
+        padding-left: 0;
     }
 }
 
