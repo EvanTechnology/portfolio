@@ -106,11 +106,12 @@ html(lang="en")
               .portfolio__slider.portfolio-slider
                 .portfolio-slider__container
                   +image('content/preview_1.jpg', 'portfolio-slider__preview')
-                  ul.slider__list.portfolio-slider__list
-                    - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
-                    each item in sliderContent
-                      li.slider__item.portfolio-slider__item
-                        +image(item, 'slider__item-photo')
+                  .portfolio-slider__box
+                    ul.slider__list.portfolio-slider__list
+                      - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
+                      each item in sliderContent
+                        li.slider__item.portfolio-slider__item
+                          +image(item, 'slider__item-photo')
                   .slider__control.portfolio-slider__control
                     button.slider__btn-right.portfolio-slider__btn >
                       //+icon('arrow-right-new', 'arrow')
