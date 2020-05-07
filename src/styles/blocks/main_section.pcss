@@ -1,3 +1,7 @@
+.main-section {
+    min-height: 650px;
+    height: 100%;
+}
 .main-section__container {
     display: flex;
     flex-direction: column;
@@ -12,6 +16,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
+    padding-bottom: 15%;
     @include tablets {
         flex-direction: column;
         justify-content: center;
@@ -47,6 +53,7 @@
     &:hover {
         font-weight: bolder;
     }
+    z-index: 1;
 }
 
 .scroll__icon {

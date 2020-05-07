@@ -14,22 +14,59 @@ html(lang="en")
             span.hamburger__item
   
       .parallax
-          section.fullscreen-section.main-section
-            .container.main-section__container
-              header.header
-                div.logo
+        .parallax__layer(data-speed="0.05")
+          picture.parallax__image
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer7_3660.jpg")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer7_1830.jpg")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer7_1200.jpg")
+            img.parallax__disabled-image(src='/src/images/content/bg_main_page.jpg')
+        .parallax__layer(data-speed="0.16")
+          picture.parallax__image
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer6_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer6_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer6_1200.png")
+            img.parallax__disabled-image(src='')
+        .parallax__layer(data-speed="0.25")
+          picture.parallax__image
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer4_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer4_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer4_1200.png")
+            img.parallax__disabled-image(src='')
+        .parallax__layer(data-speed="0.28")
+          picture.parallax__image
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer3_2300.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer3_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer3_1200.png")
+            img(src='')
+        .parallax__layer(data-speed="0.1")
+          picture.parallax__image
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer2_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer2_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer2_1200.png")
+            img(src='')
+        .parallax__layer(data-speed="0")
+          picture.parallax__image
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer1_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer1_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer1_1200.png")
+            img(src='')
+        section.main-section
+          .container.main-section__container
+            header.header
+              div.logo
                   //.logo EK
-                .header__menu
-                  include ./sections/menu.pug
-                include ./sections/socials.pug         
-              .main-section__content.welcome
-                .welcome__text This is the personal website of the developer
-                h1.welcome__title Evgenii Konkov
-              .scroll 
-                .scroll__name scroll
-                +icon('scroll', 'scroll__icon') 
-          section.fullscreen-section.aboutme
-            .container.aboutme-container
+              .header__menu
+                include ./sections/menu.pug
+              include ./sections/socials.pug
+            .main-section__content.welcome
+              .welcome__text This is the personal website of the developer
+              h1.welcome__title Evgenii Konkov
+            .scroll 
+              .scroll__name scroll
+              +icon('scroll', 'scroll__icon') 
+      section.aboutme
+        +image('content/parallax_layer1_1200.png', 'aboutme__bg')
+        .container.aboutme-container
               .aboutme__content
                 .aboutme__profile.profile
                   .profile__image
