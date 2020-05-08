@@ -4,12 +4,13 @@ function openmainmenu() {
     const socialsList = document.querySelector('.socials__list')
     const socials = document.querySelector('.socials');
     const socialblock = document.createElement('li');
-
+    const scroll = document.querySelector('.scroll');
     
 
     menubtn.addEventListener('click', function() {
 
         menubtn.classList.toggle('closed');
+        scroll.classList.toggle('closed');
         menublock.classList.toggle('active');
         socials.classList.toggle('onmenu');
         if (menubtn.classList.contains('closed')) {
@@ -27,6 +28,7 @@ function openmainmenu() {
         if (menublock.classList.contains('active') && event.target.classList.contains('header-menu__link')) {
         
         menubtn.classList.toggle('closed');
+        scroll.classList.toggle('closed');
         menublock.classList.toggle('active');
         socials.classList.toggle('onmenu');
         if (menubtn.classList.contains('closed')) {

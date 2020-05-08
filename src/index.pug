@@ -65,7 +65,6 @@ html(lang="en")
               .scroll__name scroll
               +icon('scroll', 'scroll__icon') 
       section.aboutme
-        +image('content/parallax_layer1_1200.png', 'aboutme__bg')
         .container.aboutme-container
               .aboutme__content
                 .aboutme__profile.profile
@@ -217,17 +216,29 @@ html(lang="en")
 
       footer.footer
         .container.footer-container
-          .footer__year
-            .year 2020
-          .footer__name
-            .footer__name-owner Evgenii Konkov
-            .footer__name-info This is the personal website of the developer
+          .footer__sideinfo
+            .footer__year
+              .year 2020
+            .footer__name
+              .footer__name-owner Evgenii Konkov
+              .footer__name-info This is the personal website of the developer
           .footer__main
-            include ./sections/menu.pug
+            nav.menu
+                ul.menu__list--footer
+                  - var menuContent = ["Main", "About Me", "My Skills", "Portfolio", "Reviews", "Contacts"]
+                  each item in menuContent
+                    li.menu__item
+                      a(href="#").menu__link #{item}
             .footer__content
               .footer__content-column
                 .footer__content-text I created this web-site as a graduation project in a Loftschool.
-                include ./sections/socials.pug
+                div.socials.socials--footer
+                ul.socials__list
+                  - var socialsListContent = ["insta", "vk", "github"]
+                  each item in socialsListContent
+                    li.socials__item
+                      a(href="#").socials__link
+                        +icon(`${item}`, 'socials__icon')   
               .footer__content-column
                 .footer__quote-text Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
                 .footer__quote-author Martin Golding

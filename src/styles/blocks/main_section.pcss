@@ -34,7 +34,8 @@
     font-size: 18px;
     font-weight: semibold;
     line-height: 30px;
-    color:#817c75;
+    color:#ffffff;
+    opacity: 0.5;
     padding-right: 50px;
     text-align: right;
     @include tablets {
@@ -54,6 +55,9 @@
         font-weight: bolder;
     }
     z-index: 1;
+    &.closed {
+        display: none;
+    }
 }
 
 .scroll__icon {

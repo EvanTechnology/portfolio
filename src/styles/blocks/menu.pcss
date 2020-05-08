@@ -14,13 +14,26 @@
         bottom: 0rem;
         right: 0;
         justify-content: center;
-        z-index: 1000;
+        z-index: 1100;
         &.active {
             display: flex;
-        }
-    }
+        };
+    };
     @include phones {
         width: 100%;
+    }
+}
+.menu__list--footer {
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    @include tablets {
+        width: 75%;
+    }
+    .menu__item {
+        padding: 0px 10px;
     }
 }
 .menu__item {

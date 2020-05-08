@@ -1,10 +1,29 @@
+.contacts {
+    display: flex;
+    flex-direction: column;
+    @include tablets {
+        align-items: center;
+    }
+}
 .contacts__title {
     color: #ffffff;
     margin-bottom: 80px;
+    @include tablets {
+        margin-top: 25px;
+    }
 }
 .form {
     color: #ffffff;
     width: 870px;
+    @include desktop {
+        width: 700px;
+    };
+    @include tablets {
+        width: 75%;
+    };
+    @include phones {
+        width: 95%;
+    };
 }
 .form__column {
     display: flex;
@@ -21,6 +40,10 @@
     &:last-child {
         margin-top: 20px;
     }
+    @include tablets {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
 }
 .form-block {
     width: 50%;
@@ -30,6 +53,13 @@
     position: relative;
     &:nth-child(2n) {
         margin-left: 90px;
+    }
+    @include tablets {
+        width: 95%;
+        margin-bottom: 30px;
+        &:nth-child(2n) {
+            margin-left: 0px;
+        }
     }
     &:before {
         content: "";
@@ -58,6 +88,9 @@
 }
 .form-block__title {
     margin-bottom: 10px;
+    @include tablets {
+        text-align: center;
+    }
 }
 .form-block__input {
     background-color: transparent;
