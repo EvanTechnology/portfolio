@@ -97,45 +97,9 @@ html(lang="en")
           .skills__container.container
             h2.title.skills__title What can I do for you
             p.skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
-            ul.skills__content
-              li.skills__content-line
-                h3.skills__content-title Front-End
-                ul.skills__visual
-                  -
-                    var visualContent = [
-                      {title: "HTML5", level: "80"},
-                      {title: "CSS3", level: "75"},
-                      {title: "Javascript", level: "30"},
-                      {title: "JQuery and Vue.js", level: "15"}
-                    ]
-                  each item in visualContent
-                      li.skills__visual-item
-                        h4.skills__visual-name #{item.title}
-                        svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
-                          circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
-                             defs
-                              linearGradient(id="gradient")
-                                stop(offset="0%" stop-color="#d47e1e")
-                                stop(offset="100%" stop-color="#dc9322")
-              li.skills__content-line
-                h3.skills__content-title Workflow
-                ul.skills__visual
-                  -
-                    var visualContent = [
-                      {title: "GIT", level: "50"},
-                      {title: "Terminal", level: "60"},
-                      {title: "Gulp", level: "30"},
-                      {title: "Webpack", level: "45"},
-                    ]
-                  each item in visualContent
-                      li.skills__visual-item
-                        h4.skills__visual-name #{item.title}
-                        svg.skills__visual-line(width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="none")
-                          circle(cx="50" cy="50" r="45" stroke-dashoffset=`${item.level}%`)
-                            defs
-                              linearGradient(id="gradient")
-                                stop(offset="0%" stop-color="#d47e1e")
-                                stop(offset="100%" stop-color="#dc9322")
+            .skills-widget
+              #skills-component
+            
           .skills__image
             +image('content/hands_skills_page.png', 'skills__image-pic')
         
@@ -247,7 +211,7 @@ html(lang="en")
                 .footer__quote-text Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
                 .footer__quote-author Martin Golding
 
-
+    include ./templates/entry.pug
       //
         +image('content/user.jpg', 'user-pic')
         .text Just a line of text
