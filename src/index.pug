@@ -38,7 +38,7 @@ html(lang="en")
             h1.parallax__text-name Evgenii Konkov
         .parallax__layer(data-speed="0.28")
           picture.parallax__image
-            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer3_2300.png")
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer3_2560.png")
             source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer3_1830.png")
             source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer3_1200.png")
             img(src='')
@@ -54,14 +54,14 @@ html(lang="en")
             source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer1_1830.png")
             source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer1_1200.png")
             img(src='')
+        
         section.main-section
           .container.main-section__container
             header.header
               div.logo
-                  //.logo EK
               .header__menu
-                include ./sections/menu.pug
-              include ./sections/socials.pug
+                +menu('menu__list')
+              +socials('socials')
             .main-section__content.welcome
               .welcome__text This is the personal website of the developer
               h1.welcome__title Evgenii Konkov
@@ -192,21 +192,11 @@ html(lang="en")
               .footer__name-info This is the personal website of the developer
           .footer__main
             nav.menu
-                ul.menu__list--footer
-                  - var menuContent = ["Main", "About Me", "My Skills", "Portfolio", "Reviews", "Contacts"]
-                  each item in menuContent
-                    li.menu__item
-                      a(href="#").menu__link #{item}
+              +menu('menu__list--footer')
             .footer__content
               .footer__content-column
                 .footer__content-text I created this web-site as a graduation project in a Loftschool.
-                div.socials.socials--footer
-                ul.socials__list
-                  - var socialsListContent = ["insta", "vk", "github"]
-                  each item in socialsListContent
-                    li.socials__item
-                      a(href="#").socials__link
-                        +icon(`${item}`, 'socials__icon')   
+                +socials('socials--footer')
               .footer__content-column
                 .footer__quote-text Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
                 .footer__quote-author Martin Golding
