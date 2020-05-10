@@ -6,4 +6,5 @@ if (process.env.NODE_ENV === "development") {
 import "./scripts/skills";
 import "./scripts/hamburger_menu";
 import "./scripts/parallax";
-import "./scripts/works"
+import "./scripts/works";
+import "./scripts/reviews"

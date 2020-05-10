@@ -108,61 +108,12 @@ html(lang="en")
             h2.title.portfolio__title Portfolio
             .portfolio__content
               #slider-component
-              //.slider
-                .slider-pics
-                  .slider-pics__container
-                    .slider-pics__box
-                      +image('content/preview_1.jpg', 'slider__preview')
-                      ul.slider-pics__list.slider__list
-                        - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
-                        each item in sliderContent
-                          li.slider-pics__item.slider__item
-                            +image(item, 'slider__item-photo')
-                    .slider-pics__btn
-                      button.slider-pics__btn-right >
-                      button.slider-pics__btn-left <
-                    .slider-pics__number 2
-                .slider-info
-                  ul.slider-info__tags.tags
-                    - var tagsContent = ["HTML", "CSS", "Lavasript"]
-                      each item in tagsContent
-                        li.tags__item= item
-                  h3.slider-info__title Website of Lostschool Academy
-                  .slider-info__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                  .slider-info__link
-                    a(href="#") Visit the website
   
       .testimonials-box
           .testimonials-box__decor
           section.reviews-section
             .container.reviews
-              .reviews__title-box
-                h2.title.reviews__title Reviews
-                .reviews__title-btn
-                  .reviews__title-controls.slider__control.reviews-slider__control
-                    button.slider__btn-left.reviews-slider__btn <
-                    button.slider__btn-right.reviews-slider__btn >
-              .reviews__container
-                .reviews__slider.reviews-slider
-                  ul.slider__list.reviews-slider__list
-                    -
-                      var reviews= [
-                        {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                        {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                        {name: "Dmitrii Kovalchuk", occupation: "Founder of Academy", image: "content/review_dmitrii.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                        {name: "Vladimir Sabantsev", occupation: "Founder of Academy", image: "content/review_vladimir.jpg", review: "Lorem  ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatum dignissimos numquam similique tempore quibusdam magnam! Nulla eveniet, vel ipsum possimus minima, quae similique ea molestias mollitia"},
-                      ]
-                    each item in reviews
-                      li.slider__item.review
-                        .review__text #{item.review}
-                        .review__author
-                          .review__avatar
-                            .avatar
-                              +image(`${item.image}`, 'avatar__photo')
-                          .review__author-desc
-                            .review__author-name #{item.name}
-                            .review__author-occupation #{item.occupation}
-                   
+              #reviews-box
           section.contacts-section
             .container.contacts
               h2.title.contacts__title Send a query

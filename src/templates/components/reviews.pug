@@ -1,0 +1,47 @@
+script(type="text/x-template")#reviews-main
+    .reviews-block
+        .reviews__title-box
+            h2.title.reviews__title Reviews
+            btns(
+                @slide = "handleSlide"
+                :slidesIndex = "slidesIndex"
+                :lastScreen = "lastScreen"
+            )
+        .reviews__container(ref="sliderBlock")
+            slider(
+                :reviews = "reviews"
+                @slide = "handleSlide"
+            )
+
+script(type="text/x-template")#control-btns
+    .reviews__btns
+        button(
+            v-on:click.prevent="$emit('slide', 'prev')"
+            :class="{closed: slidesIndex === 0}"
+            ).reviews-slider__btn &lt
+        button(
+            v-on:click.prevent="$emit('slide', 'next')"
+            :class="{closed: slidesIndex === lastScreen}"
+            ).reviews-slider__btn &gt
+
+script(type="text/x-template")#review-slider
+    .reviews__slider.reviews-slider
+        ul.slider__list.reviews-slider__list(ref="moveSlider")
+            li.slider__item(
+                v-for="review in reviews" :key="reviews.id" ref="isslide"
+            )
+                review(
+                    :slideInfo = "review"
+                )
+
+
+script(type="text/x-template")#review-window
+    .review-block
+        .review__text {{slideInfo.text}}
+        .review__author
+            .review__avatar
+                .avatar
+                    img(:src="slideInfo.pic" alt="photo").avatar__photo
+            .review__author-desc
+                .review__author-name {{slideInfo.name}}
+                .review__author-occupation {{slideInfo.occ}}
