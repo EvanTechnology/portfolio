@@ -22,7 +22,7 @@
         text-align: center;
     }
 }
-.portfolio__content {
+.slider {
     display: flex;
     align-items: flex-start;
     width: 100%;
@@ -34,7 +34,11 @@
     }
     
 }
-.portfolio__slider {
+.portfolio__content {
+    width: 100%;
+   
+}
+.slider-pics {
     width:65%;
     @include desktop {
         width: 85%;
@@ -44,7 +48,7 @@
         width: 100%;
     }
 }
-.portfolio__description {
+.slider-info {
     width: 25%;
     @include desktop {
         width: 65%;
@@ -74,14 +78,20 @@
         margin-left: 0px;
     }
 }
-.portfolio__description-title {
+.slider-info__title {
     font-size: 30px;
     font-weight: bold;
     text-align: left;
     color: #353e4f;
     margin-bottom: 50px;
+    @include tablets {
+        text-align: center;
+    };
+    @include phones {
+        text-align: left;
+    }
 }
-.portfolio__description-text {
+.slider-info__text {
     font-weight: 600;
     color: rgba(51, 60, 73, 0.7);
     text-align: left;
@@ -93,7 +103,7 @@
         text-align: left;
     }
 }
-.portfolio__description-link {
+.slider-info__link {
     color: $links-color;
     position: relative;
     text-decoration: none;

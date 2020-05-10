@@ -107,30 +107,30 @@ html(lang="en")
           .container.portfolio
             h2.title.portfolio__title Portfolio
             .portfolio__content
-              .portfolio__slider.portfolio-slider
-                .portfolio-slider__container
-                  +image('content/preview_1.jpg', 'portfolio-slider__preview')
-                  .portfolio-slider__box
-                    ul.slider__list.portfolio-slider__list
-                      - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
-                      each item in sliderContent
-                        li.slider__item.portfolio-slider__item
-                          +image(item, 'slider__item-photo')
-                  .slider__control.portfolio-slider__control
-                    button.slider__btn-right.portfolio-slider__btn >
-                      //+icon('arrow-right-new', 'arrow')
-                    button.slider__btn-left.portfolio-slider__btn <
-                      //+icon('arrow-left-new', 'arrow')
-                  .portfolio-slider__number 2
-              .portfolio__description
-                ul.portfolio__description-tags.tags
-                   - var tagsContent = ["HTML", "CSS", "Lavasript"]
-                    each item in tagsContent
-                      li.tags__item= item
-                h3.portfolio__description-title Website of Lostschool Academy
-                .portfolio__description-text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                .portfolio__description-link
-                  a(href="#") Visit the website
+              #slider-component
+              //.slider
+                .slider-pics
+                  .slider-pics__container
+                    .slider-pics__box
+                      +image('content/preview_1.jpg', 'slider__preview')
+                      ul.slider-pics__list.slider__list
+                        - var sliderContent = ["content/preview_1.jpg", "content/preview_2.jpg", "content/preview_3.jpg", "content/preview_4.jpg"]
+                        each item in sliderContent
+                          li.slider-pics__item.slider__item
+                            +image(item, 'slider__item-photo')
+                    .slider-pics__btn
+                      button.slider-pics__btn-right >
+                      button.slider-pics__btn-left <
+                    .slider-pics__number 2
+                .slider-info
+                  ul.slider-info__tags.tags
+                    - var tagsContent = ["HTML", "CSS", "Lavasript"]
+                      each item in tagsContent
+                        li.tags__item= item
+                  h3.slider-info__title Website of Lostschool Academy
+                  .slider-info__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .slider-info__link
+                    a(href="#") Visit the website
   
       .testimonials-box
           .testimonials-box__decor
