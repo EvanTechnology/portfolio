@@ -15,9 +15,9 @@ mixin menu(className)
 
 mixin socials(className)
   div(class=className)
-  ul.socials__list
-    - var socialsListContent = ["insta", "vk", "github"]
-    each item in socialsListContent
-      li.socials__item
-        a(href="#").socials__link
-          +icon(`${item}`, 'socials__icon') 
+    ul.socials__list
+      - var socialsListContent = ["insta", "vk", "github"]
+      each item in socialsListContent
+        li.socials__item
+          a(href="#").socials__link
+            +icon(`${item}`, 'socials__icon') 

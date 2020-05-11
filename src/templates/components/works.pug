@@ -31,11 +31,11 @@ script(type='text/x-template')#slider-btns
         button(
             @click="$emit('slide', 'next')"
             :class="{closed: currentIndex === lastIndex}"
-            ).slider-pics__btn-right.slider-pics__btn >
+            ).slider-pics__btn-right.slider-pics__btn &gt
         button(
             @click="$emit('slide', 'prev')"
             :class="{closed: currentIndex === 0}"
-            ).slider-pics__btn-left.slider-pics__btn <
+            ).slider-pics__btn-left.slider-pics__btn &lt
 
 script(type='text/x-template')#slider-thumbs
     ul.slider__list.slider-pics__list

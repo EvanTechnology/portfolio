@@ -26,6 +26,7 @@
     color: #ffffff;
     @include tablets {
         margin-bottom: 30px;
+        text-align: center;
     }
 }
 .reviews__title-controls {
@@ -49,6 +50,9 @@
     &.closed {
         color: transparent;
         border-color: transparent;
+    }
+    @include desktopHd {
+        margin-right: 60px;
     }
 }
 .reviews__container {

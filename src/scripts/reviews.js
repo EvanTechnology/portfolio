@@ -43,11 +43,11 @@ new Vue({
 
             const defineSlider = this.$children[1].$refs.moveSlider;
             const sliderBlock = this.$refs.sliderBlock;
-            let slidesArr = this.$children[1].$refs.moveSlider.children;
+            let allSlides = this.$children[1].$refs.moveSlider.children;
 
             let sliderBlockWidth = parseInt(window.getComputedStyle(sliderBlock).width);
 
-            for(let slide of slidesArr) {
+            for(let slide of allSlides) {
                 let slideWidth = parseInt(window.getComputedStyle(slide).width);
                 sumSlidesWidth += slideWidth;
             };
@@ -96,6 +96,7 @@ new Vue({
             return array.map(item => {
                 const requirePic = require(`../images/content/${item.photo}`);
                 item.photo = requirePic;
+                console.log(requirePic+ "requirePic");
                 return item;
             })
         }
@@ -103,6 +104,7 @@ new Vue({
     created() {
         const data = require("../data/reviews.json");
         this.reviews = this.makeArrayWithRequiredImages(data);
+        console.log("this.reviews"+ this.reviews[0].photo);
         this.lastIndex = this.reviews.length - 1;
     },
 });

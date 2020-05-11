@@ -108,14 +108,21 @@
     height: 166px;
   
     @include tablets {
-      width: 135px;
-      height: 135px;
+      width: 145px;
+      height: 145px;
     }
+    @include tablets {
+        width: 135px;
+        height: 135px;
+      }
   }
 .skills-widget {
     width: 100%;
     @include tablets {
         width: 80%;
+    }
+    @include phones {
+        width: 95%;
     }
 }
 .skill__circle {
@@ -125,7 +132,7 @@
       stroke-width: 5px;
     }
     &_above {
-      stroke-width: 12px;
+      stroke-width: 10px;
       stroke-dasharray: 251;
       stroke-dashoffset: 100;
     }
