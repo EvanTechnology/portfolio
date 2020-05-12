@@ -98,7 +98,7 @@
     min-height: 50px;
     position: relative;
     &:focus {
-        outline-color: transparent;
+        outline-color: $orange;
         border-bottom: $orange;
     }
     &--comment {
@@ -106,15 +106,19 @@
         width: 100%;
     }
 }
-.btn {
+.form__btn {
     color: #ffffff;
     background-color: $orange;
     text-transform: uppercase;
     padding: 30px 115px;
     font-weight: bold;
     font-size: 18px;
+    border: solid 3px $orange;
     &:hover {
         background:  linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+    }
+    &:focus {
+        border-color: rgba(255, 102, 0, 0.326);
     }
 }
 

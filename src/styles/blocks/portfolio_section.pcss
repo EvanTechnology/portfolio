@@ -5,7 +5,6 @@
     background-color: #ffffff;
 }
 .portfolio {
-    height: 70%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -18,6 +17,7 @@
     line-height: 48px;
     color: #333c49;
     margin-bottom: 90px;
+    margin-top: 50px;
     @include phones {
         text-align: center;
     }
@@ -55,6 +55,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 50px;
 
     }
     @include phones {
@@ -111,6 +112,9 @@
     font-size: 18px;
     font-weight: bold;
     &:hover {
+        text-decoration: underline;
+    }
+    &:focus {
         text-decoration: underline;
     }
     &:before {

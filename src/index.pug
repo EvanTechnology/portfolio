@@ -65,9 +65,10 @@ html(lang="en")
             .main-section__content.welcome
               .welcome__text This is the personal website of the developer
               h1.welcome__title Evgenii Konkov
-            .scroll 
-              .scroll__name scroll
-              +icon('scroll', 'scroll__icon') 
+            .scroll
+              a(href="#").scroll__link
+                .scroll__name scroll
+                +icon('scroll', 'scroll__icon') 
       section.aboutme
         .container.aboutme-container
               .aboutme__content
@@ -93,15 +94,15 @@ html(lang="en")
                   .intro__text I do like to create an up-to-date web-sites and apps. It's a huge joy for me to work with something new.
                     
                   .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
-      section.fullscreen-section.skills
+      section.skills
           .skills__container.container
             h2.title.skills__title What can I do for you
             p.skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
             .skills-widget
               #skills-component
             
-          .skills__image
-            +image('content/hands_skills_page.png', 'skills__image-pic')
+            .skills__image
+              +image('content/hands_skills_page.png', 'skills__image-pic')
         
       section.fullscreen-section.portfolio-section
           .container.portfolio
@@ -131,7 +132,7 @@ html(lang="en")
                       .form-block__title Your message
                       textarea(name="comment" placeholder="Write your query here, please" required).form-block__input.form-block__input--comment
                   .form__row
-                    button(type="submit").btn Send
+                    button(type="submit").btn.form__btn Send
 
       footer.footer
         .container.footer-container

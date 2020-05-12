@@ -5,11 +5,15 @@
     background-color: #353e4e;
     font-size: 20px;
     font-weight: 900;
+    border: solid 1px transparent;
     &:hover {
         color: #ffffff;
     }
     &.closed {
         color: #353e4e;
+    }
+    &:focus {
+        border-color: $orange;
     }
 }
 .slider__list {
