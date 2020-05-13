@@ -1,30 +1,27 @@
 .skills {
-    position: relative;
     min-height: 100vh;
     background: url('../images/content/bg_skills_page.jpg') center center /cover no-repeat;
-    @include tablets {
-        min-height: 130vh;
-    }
 }
 .skills__container {
-    position: relative;
     justify-content: center;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     color: #949494;
-    width: 50%;
-    margin-left: 20%;
+    width: 75%;
+    margin-left: 0;
     @include desktopHd {
-        width: 75%;
+        width: 100%;
     }
     @include tablets {
+        width: 85%;
         padding-left: 0;
         align-items: center;
         justify-content: flex-start;
         padding-top: 100px;
         margin: 0 auto;
+        min-height: 100vh;
     }
     @include phones {
         width: 95%;
@@ -32,22 +29,18 @@
 }
 
 .skills__image {
-    position: absolute;
-    bottom: -10%;
-    width: 40%;
+    width: 35%;
     height: 100%;
-    right: 100%;
+    align-self: flex-end;
     @include desktop {
         //height: 60%;
     }
     @include tablets {
         transform: rotate(-90deg);
-        width: 30%;
-        left: 0;
-        bottom: -65%;
-    }
-    @include phones {
-        bottom: -65%;
+        margin-top: auto;
+        width: 300px;
+        height: 300px;
+        align-self: center;
     }
 }
 .skills__title {
@@ -56,6 +49,8 @@
     margin-bottom: 50px;
 }
 .skills__text {
+    width: 100%;
+    text-align: center;
     @include tablets {
         text-align: center;
         width: 75%;
@@ -66,10 +61,14 @@
     }
 }
 .skills__image-pic {
-    object-fit: contain;
-    object-position: left;
+    object-fit: cover;
+    object-position: right;
     width: 100%;
     height: 100%;
+    @include tablets {
+        object-fit: contain;
+        object-position: left;
+    }
 }
 .skills__text {
     font-size: 16px;
@@ -80,11 +79,11 @@
 }
 .skills__content {
     width: 100%;
-    padding-left: 9%;
     @include desktop {
         padding-left: 8%;
     }
     @include tablets {
+        width: 100%;
         padding-left: 0;
     }
 }
@@ -111,8 +110,12 @@
 .skills-row__item {
     margin-left: 4%;
   }
-.skills_box {
+.skills-box {
     display: flex;
+    width: 65%;
+    @include tablets {
+        width: 100%;
+    }
 }
 .skill {
     position: relative;
@@ -130,11 +133,10 @@
   }
 .skills-widget {
     width: 100%;
+    display: flex;
     @include tablets {
-        width: 80%;
-    }
-    @include phones {
-        width: 95%;
+        flex-direction: column-reverse;
+        margin-top: auto;
     }
 }
 .skill__circle {
