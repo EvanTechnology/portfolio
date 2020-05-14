@@ -3,9 +3,9 @@
     .group__title-line 
         h2.group__title Workflow
         .group__cell
-            button.btn-done &#10004
+            button(type="button").btn-done &#10004
         .group__cell
-            button.btn-del &#10008
+            button(type="button").btn-del &#10008
     .group__main-line
         ul.skills__list
             li.skills__item
@@ -21,11 +21,11 @@
         .new-skill__number 100
         .new-skill__percent %
         .new-skill__add
-            button.btn-add.btn-add--large +
+            button(type="button").btn-add.btn-add--large +
 </template>
 
 <script>
-  import skill from './skill'
+  import skill from './aboutSkillsSkill'
   export default {
     components: {
       skill,

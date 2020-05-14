@@ -1,4 +1,4 @@
-<template lang="pug">#headerComponent
+<template lang="pug">
     header.header
       .header__container.container
         .header__user.user
@@ -6,7 +6,7 @@
             img(src="../../images/content/user.jpg").user__photo
           .user__name Evgenii Konkov
         .header__title Admin panel
-        .header__login logout
+        .header__login Log out
   
 </template>
 
@@ -50,5 +50,6 @@ export default {
   }
   .header__login {
     margin-left: auto;
+    cursor: pointer;
   }
 </style>

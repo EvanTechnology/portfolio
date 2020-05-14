@@ -4,9 +4,9 @@
     .skill__number 54
     .skill__percent %
     .skill__edit
-        button.btn-edit
+        button(type= "button").btn-edit
     .skill-remove
-        button.btn-remove
+        button(type= "button").btn-remove
 </template>
 
 <script>
@@ -32,7 +32,10 @@ export default {
     .btn-edit {
     width: 25px;
     height: 25px;
-    border-color: transparent;
+    display: inline-block;
+    border: solid 1px transparent;
+    border-radius: 10px;
+    margin-left: 10px;
     background: svg-load('pencil.svg', fill=#636363, width=100%, height=100%);
     }    
 

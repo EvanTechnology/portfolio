@@ -35,5 +35,6 @@ export default {
     &.active {
       color: #383bcf;
     }
+    cursor: pointer;
     }
 </style>

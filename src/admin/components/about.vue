@@ -4,7 +4,7 @@
       .main__title-block
         h1.main__title "About me" section
         .main__controls.control
-          button.control__btn.btn-add.btn-add--small +
+          button(type="button").control__btn.btn-add.btn-add--small +
           .control__title Add a new group
       .main__admin-block
         .groups
@@ -23,7 +23,7 @@
 
 <script>
 
-import skillsComponent from './skills'
+import skillsComponent from './aboutSkills'
 export default {
   components: {
     skillsComponent,
@@ -32,32 +32,7 @@ export default {
 </script>
 
 <style lang="postcss">
-  body {
-    margin: 0;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .container {
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 25px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .about {
-    color: #a0a0b2;
-    background: rgb(246,249,254);
-    background: linear-gradient(180deg, rgba(246,249,254,1) 0%, rgba(255,255,255,1) 100%);
-  }
- 
-   // MENU--------------------------------------------
 
-  // MAIN- (TITLE LINE)-----------------------------------------
   .main__container {
     display: flex;
     flex-direction: column;
@@ -65,6 +40,7 @@ export default {
     align-items: flex-start;
   }
   .main__title-block {
+    width: 100%;
     display: flex;
     align-items: center;
   }
@@ -83,7 +59,7 @@ export default {
   .btn-add {
     color: #fff;
     background: rgb(33,78,219);
-background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+    background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
     font-size: 18px;
     font-weight: bold;
     border: solid 1px #383bcf;
