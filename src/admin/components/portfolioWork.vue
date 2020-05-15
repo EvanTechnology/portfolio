@@ -59,9 +59,12 @@ export default {
         padding: 5px 15px;
         font-size: 18px;
         color: #a0a0b2;
-        &:hover {
-            font-weight: bold;
-        }
+    }
+    .btn__edit-work:hover {
+        font-weight: bold;
+    }
+    .btn__delete-work:hover {
+        font-weight: bold;
     }
     .btn__edit-work:after {
         content: "";

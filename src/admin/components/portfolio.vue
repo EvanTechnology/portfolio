@@ -2,7 +2,7 @@
     main.works
         .works__container.container
             .works__title-block
-                h1.work__title
+                h1.works__title "Works" Section
             .works__edit-block
                 newworkComponent
             .works__admin-block
@@ -38,11 +38,11 @@
     .works__container {
         flex-direction: column;
     }
-    .work__title-block {
+    .works__title-block {
        display: flex;
         align-items: center; 
     }
-    .work__title {
+    .works__title {
         font-size: 24px;
         font-weight: bolder;
         color: #414c63;
@@ -64,10 +64,10 @@
     .works__item {
         width: 30%;
         margin-right: 5%;
-        &:nth-child(3n) {
-        margin-right: 0;
-        }
         margin-bottom: 5%;
+    }
+    .works__item:nth-child(3n) {
+        margin-right: 0;
     }
     .works__new-item {
         display: flex;

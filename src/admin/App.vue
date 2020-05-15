@@ -8,6 +8,10 @@
       headerComponent
       menuComponent
       worksComponent
+    section.reviews
+      headerComponent
+      menuComponent
+      reviewsComponent
 
 </template>
 
@@ -16,12 +20,14 @@
   import menuComponent from './components/menu'
   import aboutComponent from './components/about'
   import worksComponent from './components/portfolio'
+  import reviewsComponent from './components/reviews'
   export default {
     components: {
       headerComponent,
       menuComponent,
       aboutComponent,
       worksComponent,
+      reviewsComponent,
     }
 
   }

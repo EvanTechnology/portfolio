@@ -29,12 +29,12 @@ export default {
     font-size: 18px;
     padding: 25px;
     border-bottom: solid 2px transparent;
-    &:hover {
-      border-bottom: solid 2px #383bcf;
-    }
-    &.active {
-      color: #383bcf;
-    }
     cursor: pointer;
+    }
+    .menu__item:hover {
+      border-bottom: 2px solid #383bcf;
+    }
+    .menu__item.active {
+      color: #383bcf;
     }
 </style>

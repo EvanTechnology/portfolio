@@ -1,0 +1,98 @@
+<template lang="pug">
+  main.reviews
+        .reviews__container.container
+            .reviews__title-block
+                h1.reviews__title "Reviews" Section
+            .reviews__edit-block
+                newComponent
+            .reviews__admin-block
+                .reviews__container
+                    ul.reviews__list
+                        li.reviews__item
+                            .reviews__new-item
+                                .reviews__new-item-title Add New Review
+                                button(type="button").btn-add-new-review +
+                        li.reviews__item
+                            reviewComponent
+                        li.reviews__item
+                            reviewComponent
+                        li.reviews__item
+                            reviewComponent
+                        li.reviews__item
+                            reviewComponent
+</template>
+
+<script>
+    import reviewComponent from './reviewsReview'
+    import newComponent from './reviewsNew'
+    export default {
+        components: {
+            reviewComponent,
+            newComponent,
+        }
+    }
+</script>
+
+<style>
+    .reviews__container {
+        flex-direction: column;
+    }
+    .reviews__title-block {
+        display: flex;
+        align-items: center; 
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .reviews__title {
+        font-size: 24px;
+        font-weight: bolder;
+        color: #414c63;
+    }
+    .reviews__edit-block {
+        width: 100%;
+        margin-bottom: 60px;
+    }
+    .reviews__admin-block {
+        width: 100%;
+    }
+    .reviews__container {
+        width: 100%;
+    }
+    .reviews__list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .reviews__item {
+        width: 30%;
+        margin-right: 5%;
+        margin-bottom: 5%;
+    }
+    .reviews__item:nth-child(3n) {
+        margin-right: 0;
+    }
+    .reviews__new-item {
+        display: flex;
+        height: 100%;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        background: rgb(33,78,219);
+        background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+        font-size: 18px;
+        font-weight: bold;
+        border: solid 1px #383bcf;
+    }
+    .btn-add-new-review {
+        font-size: 80px;
+        font-weight: light;
+        width: 125px;
+        height: 125px;
+        border: solid 1px #fff;
+        border-radius: 50%;
+        color: #fff;
+        background-color: transparent;
+        margin-bottom: 30px;
+    }
+
+</style>

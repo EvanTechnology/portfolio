@@ -1,32 +1,23 @@
 <template lang="pug">
-    .new-work
-        h2.new-work__title Edit work
-        .new-work__block
-            .new-work__preview
-                .new-work__instruction Upload image or drop it here
-                button(type="button").btn-upload Upload
-            form.new-work__info
+    .new-review
+        h2.new-review__title New Review
+        .new-review__block
+            .new-review__preview
+                .new-review__image
+                    img(src="../../images/content/man-user_admin.png").new-review__photo
+                button(type="button").btn-upload-photo Add photo
+            form.new-review__info
                 .form-row
                     .form-column
                         .form-row__title Name
                         input(type="text" name="name" placeholder="Web-Site of Porsche dealer" required).form-row__text.form-row__name
-                .form-row
                     .form-column
-                        .form-row__title Link
+                        .form-row__title Occupation
                         input(type="web" name="web-address" placeholder="https://www.porshe-pulkovo.ru" required).form-row__text.form-row__website
                 .form-row
                     .form-column
-                        .form-row__title Description
+                        .form-row__title Review
                         textarea(name="description" placeholder="jkvb;djbv;ds bjbc bcibn casb cn;asbcas obcoabscoasbco'abn'oaUJ" required).form-row__text.form-row__desc
-                .form-row
-                    .form-column
-                        .form-row__title Add a tag
-                        input(type="text" name="tag" placeholder="JQuery, Vue.js" required).form-row__text.form-row__tags
-                        ul.form-row__tags-btns
-                            li.form-row__tag
-                                button(type="button").btn-delete-tag JQuery
-                            li.form-row__tag
-                                button(type="button").btn-delete-tag Vue.js
                 .form-row.form-row__btns
                     button(type="Reset").btn-reset Cancel
                     button(type="Submit").btn-submit Submit
@@ -41,7 +32,7 @@ export default {
 </script>
 
 <style>
-    .new-work {
+    .new-review {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -50,7 +41,7 @@ export default {
         border: solid 1px #f4f4f5;
         background-color: #fff;
     }
-    .new-work__title {
+    .new-review__title {
         width: 90%;
         margin-left: 5%;
         margin-bottom: 30px;
@@ -58,27 +49,37 @@ export default {
         border-bottom: solid 1px #a0a0b2;
 
     }
-    .new-work__block {
+    .new-review__block {
         display: flex;
         align-items: flex-start;
         width: 100%;
     }
-    .new-work__preview {
-        width: 42.5%;
+    .new-review__preview {
+        width: 30%;
         margin-left: 5%;
-        height: 250px;
-        border: dashed 5px #a0a0b2;
-        background-color: #dee4ed;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .new-work__instruction {
-        width: 50%;
+    .new-review__image {
+        height: 175px;
+        width: 175px;
+        border: solid 1px #dee4ed;
+        background-color: #dee4ed;
         margin-bottom: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .btn-upload, .btn-submit {
+    .new-review__photo {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+    }
+    .btn-submit {
         width: 180px;
         color: #fff;
         background: rgb(33,78,219);
@@ -90,7 +91,7 @@ export default {
         border: solid 1px #383bcf;
         border-radius: 24px;
     }
-    .new-work__info {
+    .new-review__info {
         width: 42.5%;
         margin: 0 5%;
         display: flex;
@@ -110,6 +111,9 @@ export default {
         display: flex;
         flex-direction: column;
     }
+    .form-column:nth-child(2n) {
+        margin-left: 5%;
+    }
     .form-row__text {
         width: 100%;
         color: #636363;
@@ -122,36 +126,11 @@ export default {
         padding: 15px 5%;
         width: 90%;
     }
-    .form-row__tags {
-        margin-bottom: 30px;
-    }
-    .form-row__tags-btns {
-        display: flex;
-    }
-    .form-row__tag {
-        margin-right: 25px;
-    }
-    .btn-delete-tag {
-        font-size: 20px;
-        color: #a0a0b2;
-        padding: 5px 15px;
-        border: solid 1px #a0a0b2;
-        border-radius: 18px;
-        background-color: #dee4ed;
-    }
-    .btn-delete-tag:after {
-        content: "\2716";
-        display: inline;
-        padding-left: 15px;
-    }
-    .btn-delete-tag:hover {
-        font-weight: bold;
-    }
     .form-row__btns {
         flex-direction: row;
         justify-content: flex-end;
     }
-    .btn-reset {
+    .btn-reset, .btn-upload-photo {
         color: #214edb;
         background-color: transparent;
         width: 180px;
