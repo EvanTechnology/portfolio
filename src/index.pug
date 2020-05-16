@@ -16,59 +16,55 @@ html(lang="en")
       .parallax
         .parallax__layer(data-speed="0.05")
           picture.parallax__image
-            source(media="(min-width: 1800px)", src=require(`images/content/parallax_layer7_3660.jpg`))
-            source(media="(min-width: 1200px)", src=require(`images/content/parallax_layer7_1830.jpg`))
-            source(media="(min-width: 768px)", src=require(`images/content/parallax_layer7_1200.jpg`))
-            img.parallax__disabled-image(src=require(`images/content/bg_main_page.jpg`))
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer7_3660.jpg")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer7_1830.jpg")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer7_1200.jpg")
+            img.parallax__disabled-image(src="/src/images/content/bg_main_page.jpg")
         .parallax__layer(data-speed="0.16")
           picture.parallax__image
-            source(media="(min-width: 1800px)", src=require(`images/content/parallax_layer6_3660.png`))
-            source(media="(min-width: 1200px)", src=require(`images/content/parallax_layer6_1830.png`))
-            source(media="(min-width: 768px)", src=require(`images/content/parallax_layer6_1200.png`))
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer6_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer6_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer6_1200.png")
             img.parallax__disabled-image(src='')
         .parallax__layer(data-speed="0.25")
           picture.parallax__image
-            source(media="(min-width: 1800px)", src=require(`images/content/parallax_layer4_3660.png`))
-            source(media="(min-width: 1200px)", src=require(`images/content/parallax_layer4_1830.png`))
-            source(media="(min-width: 768px)", src=require(`images/content/parallax_layer4_1200.png`))
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer4_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer4_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer4_1200.png")
             img.parallax__disabled-image(src='')
-        .parallax__layer(data-speed="0.26")
-          .parallax__text
-            .parallax__text-intro This is the personal website of the developer
-            h1.parallax__text-name Evgenii Konkov
         .parallax__layer(data-speed="0.28")
           picture.parallax__image
-            source(media="(min-width: 1800px)", src=require(`images/content/parallax_layer3_2560.png`))
-            source(media="(min-width: 1200px)", src=require(`images/content/parallax_layer3_1830.png`))
-            source(media="(min-width: 768px)", src=require(`images/content/parallax_layer3_1200.png`))
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer3_2560.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer3_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer3_1200.png")
             img(src='')
         .parallax__layer(data-speed="0.1")
           picture.parallax__image
-            source(media="(min-width: 1800px)", src=require(`images/content/parallax_layer2_3660.png`))
-            source(media="(min-width: 1200px)", src=require(`images/content/parallax_layer2_1830.png`))
-            source(media="(min-width: 768px)", src=require(`images/content/parallax_layer2_1200.png`))
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer2_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer2_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer2_1200.png")
             img(src='')
         .parallax__layer(data-speed="0")
           picture.parallax__image
-            source(media="(min-width: 1800px)", src=require(`images/content/parallax_layer1_3660.png`))
-            source(media="(min-width: 1200px)", src=require(`images/content/parallax_layer1_1830.png`))
-            source(media="(min-width: 768px)", src=require(`images/content/parallax_layer1_1200.png`))
+            source(media="(min-width: 1800px)", srcset="/src/images/content/parallax_layer1_3660.png")
+            source(media="(min-width: 1200px)", srcset="/src/images/content/parallax_layer1_1830.png")
+            source(media="(min-width: 768px)", srcset="/src/images/content/parallax_layer1_1200.png")
             img(src='')
         
-        section.main-section
-          .container.main-section__container
-            header.header
-              div.logo
-              .header__menu
-                +menu('menu__list')
-              +socials('socials')
-            .main-section__content.welcome
-              .welcome__text This is the personal website of the developer
-              h1.welcome__title Evgenii Konkov
-            .scroll
-              a(href="#").scroll__link
-                .scroll__name scroll
-                +icon('scroll', 'scroll__icon') 
+      section.main-section
+        .container.main-section__container
+          header.header
+            div.logo
+            nav.header__menu
+              +menu('menu__list')
+            +socials('socials')
+          .main-section__content.welcome
+            .welcome__text This is the personal website of the developer
+            h1.welcome__title Evgenii Konkov
+          .scroll
+            a(href="#").scroll__link
+              .scroll__name scroll
+              +icon('scroll', 'scroll__icon') 
       section.aboutme
         .container.aboutme-container
               .aboutme__content
@@ -119,19 +115,22 @@ html(lang="en")
           section.contacts-section
             .container.contacts
               h2.title.contacts__title Send a query
-              form.form
+              form(novalidate).form
                 .form__column
                   .form__row
                     label.form-block.form-block--name
                       .form-block__title Write your name here
-                      input(type="text" name="name" placeholder="Evgenii Konkov" required).form-block__input
-                    label.form-block.form-block--mail
+                      input(type="text" name="name" placeholder="Evgenii Konkov" required).form-block__input.form-block__input--name
+                      .error.error-name Enter your name, please
+                    label.form-block.form-block--email
                       .form-block__title Write your email
-                      input(type="text" name="name" placeholder="Evgeniikonkov1@gmail.com" required).form-block__input
+                      input(type="email" name="email" placeholder="Evgeniikonkov1@gmail.com" required).form-block__input.form-block__input--email
+                      .error.error-email Enter your email, please
                   .form__row
                     label.form-block.form-block--message
                       .form-block__title Your message
-                      textarea(name="comment" placeholder="Write your query here, please" required).form-block__input.form-block__input--comment
+                      textarea(name="comment" placeholder="Write your query here, please" required).form-block__input.form-block__input--message
+                      .error.error-message Write the message, please
                   .form__row
                     button(type="submit").btn.form__btn Send
 

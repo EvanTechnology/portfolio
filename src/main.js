@@ -7,4 +7,5 @@ import "./scripts/skills";
 import "./scripts/hamburger_menu";
 import "./scripts/parallax";
 import "./scripts/works";
-import "./scripts/reviews"
+import "./scripts/reviews";
+import "./scripts/form";

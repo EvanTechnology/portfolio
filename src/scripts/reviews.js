@@ -39,7 +39,6 @@ new Vue({
             let toMove = 0;
             let lastWindow = this.lastScreen;
             
-            console.log("lastWindow"+lastWindow);
 
             const defineSlider = this.$children[1].$refs.moveSlider;
             const sliderBlock = this.$refs.sliderBlock;
@@ -54,24 +53,17 @@ new Vue({
             screenSlides = Math.ceil(sumSlidesWidth/sliderBlockWidth);
             lastWindow = screenSlides-1;
 
-            console.log("lastWindow"+lastWindow);
-            console.log(sumSlidesWidth);
-            console.log(sliderBlockWidth);
-
             
             switch(direction) {
                 case "next": {
                     currentIndex += 1;
-                    console.log('next'+currentIndex)
                     indexTest();
                     this.slidesIndex = currentIndex;
                     this.lastScreen = lastWindow;
-                    console.log('this.lastScreen'+this.lastScreen);
                     break;
                 }
                 case "prev": {
                     currentIndex -= 1;
-                    console.log('prev'+currentIndex);
                     indexTest();
                     this.slidesIndex = currentIndex;
                     this.lastScreen = lastWindow;
@@ -86,7 +78,6 @@ new Vue({
                     currentIndex = 0
                 }
                 toMove = 100 * currentIndex + '%';
-                console.log(toMove);
                 defineSlider.style.transform = `translateX(-${toMove})`;
             };
  
@@ -96,7 +87,6 @@ new Vue({
             return array.map(item => {
                 const requirePic = require(`../images/content/${item.photo}`);
                 item.photo = requirePic;
-                console.log(requirePic+ "requirePic");
                 return item;
             })
         }
