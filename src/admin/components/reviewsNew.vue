@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss" scoped>
     .new-review {
         display: flex;
         flex-direction: column;

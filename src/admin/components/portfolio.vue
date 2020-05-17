@@ -30,11 +30,16 @@
         components: {
             newworkComponent,
             workComponent,
+        },
+        data() {
+            return {
+                
+            }
         }
     }
 </script>
 
-<style>
+<style lang="postcss" scoped>
     .works__container {
         flex-direction: column;
     }

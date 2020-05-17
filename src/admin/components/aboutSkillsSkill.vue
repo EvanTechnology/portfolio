@@ -1,21 +1,33 @@
 <template lang="pug">
-  .skill
-    .skill__title GIT
-    .skill__number 54
-    .skill__percent %
-    .skill__edit
-        button(type= "button").btn-edit
-    .skill-remove
-        button(type= "button").btn-remove
+    .skill(v-if="editMode")
+        input(type="text" placeholder="skill").skill__title
+        input(placeholder="0").skill__number
+        .skill__percent %
+        .skill__edit
+            button(type= "button").btn-done &#10004
+        .skill-remove
+            button(type= "button" @click="editMode=false").btn-del &#10008
+    .skill(v-else)
+        input(type="text" placeholder="skill" disabled).skill__title
+        input(placeholder="0" disabled).skill__number
+        .skill__percent %
+        .skill__edit
+            button(type= "button" @click="editMode=true").btn-edit
+        .skill-remove
+            button(type= "button" @click="editMode=false").btn-remove
 </template>
 
 <script>
-export default {
-
-}
+    export default {
+        data() {
+            return {
+                editMode: false
+            }
+        }
+    }
 </script>
 
-<style>
+<style lang="postcss" scoped>
     .skill {
     padding-left: 25px;
     padding-bottom: 10px;
@@ -38,5 +50,16 @@ export default {
     margin-left: 10px;
     background: svg-load('pencil.svg', fill=#636363, width=100%, height=100%);
     }    
-
+    .btn-done {
+    font-size: 25px;
+    color: teal;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .btn-del {
+    font-size: 25px;
+    color: crimson;
+    background-color: transparent;
+    border-color: transparent;
+  }
 </style>

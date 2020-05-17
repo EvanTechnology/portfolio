@@ -2,9 +2,10 @@
     .new-work
         h2.new-work__title Edit work
         .new-work__block
-            .new-work__preview
-                .new-work__instruction Upload image or drop it here
-                button(type="button").btn-upload Upload
+            form.new-work__preview
+                label(for="file").new-work__instruction Upload image or drop it here
+                input(type="file" name="file").choose-btn
+                button(type='button').btn-upload Upload
             form.new-work__info
                 .form-row
                     .form-column
@@ -40,7 +41,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang= "postcss" scoped>
     .new-work {
         display: flex;
         flex-direction: column;
@@ -76,7 +77,14 @@ export default {
     }
     .new-work__instruction {
         width: 50%;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .choose-btn {
+        padding: 15px 15px;
+        background-color: transparent;
+        color: inherit;
+        width: 40%;
     }
     .btn-upload, .btn-submit {
         width: 180px;

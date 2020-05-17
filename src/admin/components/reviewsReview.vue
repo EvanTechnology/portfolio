@@ -22,7 +22,7 @@ export default {
 </script>
 
 
-<style>
+<style lang="postcss" scoped>
     .review__box {
         box-shadow: #f4f4f5 1px 1px 10px 5px;
         border: solid 1px #f4f4f5;

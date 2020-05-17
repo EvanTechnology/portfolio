@@ -1,24 +1,35 @@
 <template lang="pug">
   .group
-    .group__title-line 
-        h2.group__title Workflow
+    .group__title-line(v-if="groupEditMode")
+        input(type="text" placeholder="Name of the new group").group__title
         .group__cell
             button(type="button").btn-done &#10004
         .group__cell
-            button(type="button").btn-del &#10008
+            button(type="button" @click.prevent ="groupEditMode = false").btn-del &#10008
+    .group__title-line(v-else)
+        input(type="text" disabled placeholder="Group title").group__title
+        .group__cell
+            //button(type="button").btn-done &#10004
+        .group__cell
+            button(type="button" @click.prevent ="groupEditMode = true").btn-edit
     .group__main-line
         ul.skills__list
-            li.skills__item
+            li.skills__item(v-if="groupEditMode")
               skill
-            li.skills__item
+            li.skills__item(v-else)
               skill
-            li.skills__item
               skill
-            li.skills__item
               skill
-    .group__last-line.new-skill
-        .new-skill__title New skill
-        .new-skill__number 100
+
+    .group__last-line.new-skill(v-if="newSkillBtn")
+        input(type="text" placeholder="New Skill").new-skill__title
+        input(placeholder="100" min="0" max="100").new-skill__number
+        .new-skill__percent %
+        .new-skill__add
+            button(type="button" disabled).btn-add.btn-add--large +
+    .group__last-line.new-skill(v-else)
+        input(type="text" placeholder="New Skill").new-skill__title
+        input(placeholder="100" min="0" max="100").new-skill__number
         .new-skill__percent %
         .new-skill__add
             button(type="button").btn-add.btn-add--large +
@@ -29,11 +40,17 @@
   export default {
     components: {
       skill,
+    },
+    data() {
+      return {
+        groupEditMode: false,
+        newSkillBtn: true,
+      }
     }
   }
   </script>
 
-<style>
+<style lang="postcss" scoped>
     .group {
     box-shadow: #f4f4f5 1px 1px 10px 5px;
     border: solid 1px #f4f4f5;
@@ -56,6 +73,8 @@
     margin-left: 25px;
     padding-bottom: 25px;
     width: 75%;
+    color: inherit;
+    font-size: 20px;
     border-bottom: solid 1px #000;
   }
   .group__main-line {
@@ -77,7 +96,7 @@
   }
   .new-skill__number, .new-skill__percent {
     padding-bottom: 15px;
-    border-bottom: solid 1px black;
+    //border-bottom: solid 1px black;
     text-align: center;
   }
   .new-skill__add {
@@ -95,6 +114,28 @@
     background-color: transparent;
     border-color: transparent;
   }
-
+  .btn-edit {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border: solid 1px transparent;
+    border-radius: 10px;
+    margin-left: 10px;
+    background: svg-load('pencil.svg', fill=#636363, width=100%, height=100%);
+  } 
+  .btn-add {
+    color: #fff;
+    background: rgb(33,78,219);
+    background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+    font-size: 18px;
+    font-weight: bold;
+    border: solid 1px #383bcf;
+    border-radius: 50%;
+    &--large {
+      font-size: 26px;
+      width: 40px;
+      height: 40px;
+    }
+  }
 
 </style>

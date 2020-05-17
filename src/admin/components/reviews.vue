@@ -33,7 +33,7 @@
     }
 </script>
 
-<style>
+<style lang="postcss" scoped>
     .reviews__container {
         flex-direction: column;
     }

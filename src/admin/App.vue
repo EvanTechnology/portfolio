@@ -1,33 +1,23 @@
 <template lang="pug">
   .wrapper-admin
-    section.about
-      headerComponent
-      menuComponent
-      aboutComponent
-    section.works
-      headerComponent
-      menuComponent
-      worksComponent
-    section.reviews
-      headerComponent
-      menuComponent
-      reviewsComponent
+    headerComponent
+    mainComponent
+      
 
 </template>
 
 <script>
   import headerComponent from './components/header'
-  import menuComponent from './components/menu'
-  import aboutComponent from './components/about'
-  import worksComponent from './components/portfolio'
-  import reviewsComponent from './components/reviews'
+  import mainComponent from './components/main'
   export default {
     components: {
       headerComponent,
-      menuComponent,
-      aboutComponent,
-      worksComponent,
-      reviewsComponent,
+      mainComponent,
+    },
+    data() {
+      return {
+
+      }
     }
 
   }
@@ -46,8 +36,17 @@
   }
   a, button {
     cursor: pointer;
+    color: inherit;
+    text-decoration: none;
   }
-  .about, .works {
+  input, textarea {
+  border-color: transparent;
+  color: inherit;
+  }
+  input:disabled {
+    background-color: transparent;
+  }
+  .wrapper-admin {
     background: rgb(246,249,254);
     background: linear-gradient(180deg, rgba(246,249,254,1) 0%, rgba(255,255,255,1) 100%);
   }
@@ -57,8 +56,10 @@
     margin: 0 auto;
     padding: 25px 0px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
+    
   }
 
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
     header.header
-      .header__container.container
+      .header__container
         .header__user.user
           .user__avatar
             img(src="../../images/content/user.jpg").user__photo
@@ -16,13 +16,19 @@ export default {
 }
 </script>
   
-<style>
+<style lang="postcss" scoped>
    .header {
     background: rgb(62,62,89);
     background: linear-gradient(90deg, rgba(62,62,89,1) 0%, rgba(69,69,115,1) 100%);
-  }
-  .menu {
-    background-color: #fff;
+   }
+  .header__container {
+    margin: 0 auto;
+    padding: 25px 0px;
+    width: 95%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .user {
     display: flex;
