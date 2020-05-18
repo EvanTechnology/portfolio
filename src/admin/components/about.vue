@@ -90,7 +90,8 @@ export default {
   }
   .groups__item {
     width: 45%;
-    margin-right: 10%;
+    min-width: 400px;
+    margin-right: 5%;
     &:nth-child(2n) {
       margin-right: 0;
     }
