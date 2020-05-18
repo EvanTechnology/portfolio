@@ -87,14 +87,12 @@ export default {
   .groups__list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
   .groups__item {
     width: 45%;
-    min-width: 400px;
+    min-width: 300px;
     margin-right: 5%;
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
   }
   
 </style>

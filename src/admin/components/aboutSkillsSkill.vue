@@ -33,7 +33,7 @@
     padding-bottom: 10px;
     font-size: 18px;
     display: grid;
-    grid-template-columns: 1fr 50px 100px 50px 50px;
+    grid-template-columns: 1fr 30px 20px 40px 40px;
     }
     .btn-remove {
     width: 25px;

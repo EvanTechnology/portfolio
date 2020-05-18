@@ -7,7 +7,7 @@
                     img(src="../../images/content/man-user_admin.png").new-review__photo
                 button(type="button").btn-upload-photo Add photo
             form.new-review__info
-                .form-row
+                .form-row.form-row__introduction
                     .form-column
                         .form-row__title Name
                         input(type="text" name="name" placeholder="Web-Site of Porsche dealer" required).form-row__text.form-row__name
@@ -32,6 +32,11 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+    @mixin phones() {
+        @media screen and (max-width: 480px) {
+            @content;
+        }
+    }
     .new-review {
         display: flex;
         flex-direction: column;
@@ -53,6 +58,10 @@ export default {
         display: flex;
         align-items: flex-start;
         width: 100%;
+        @include phones {
+            flex-direction: column;
+            align-items: center
+        }
     }
     .new-review__preview {
         width: 30%;
@@ -61,6 +70,10 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @include phones {
+            margin-left: 0;
+            width: 95%;
+        }
     }
     .new-review__image {
         height: 175px;
@@ -98,6 +111,10 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        @include phones {
+            margin: 50px 0 0 0;
+            width: 95%;
+        }
     }
     .form-row {
         width: 100%;
@@ -106,13 +123,25 @@ export default {
         align-items: flex-start;
         margin-bottom: 30px;
     }
+    .form-row__introduction {
+        @include phones {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
     .form-column {
         flex: 1;
         display: flex;
         flex-direction: column;
+        @include phones {
+            width: 95%;
+        }
     }
     .form-column:nth-child(2n) {
         margin-left: 5%;
+        @include phones {
+            margin-left: 0;
+        }
     }
     .form-row__text {
         width: 100%;

@@ -33,7 +33,7 @@
         },
         data() {
             return {
-                
+
             }
         }
     }
@@ -65,18 +65,17 @@
     .works__list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-around;
     }
     .works__item {
         width: 30%;
-        margin-right: 5%;
+        min-width: 300px;
         margin-bottom: 5%;
-    }
-    .works__item:nth-child(3n) {
-        margin-right: 0;
     }
     .works__new-item {
         display: flex;
         height: 100%;
+        min-height: 350px;
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;

@@ -34,6 +34,11 @@
 </script>
 
 <style lang="postcss" scoped>
+    @mixin phones() {
+        @media screen and (max-width: 480px) {
+        @content;
+        }
+    }
     .reviews__container {
         flex-direction: column;
     }
@@ -61,18 +66,17 @@
     .reviews__list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-around;
     }
     .reviews__item {
         width: 30%;
-        margin-right: 5%;
+        min-width: 300px;
         margin-bottom: 5%;
-    }
-    .reviews__item:nth-child(3n) {
-        margin-right: 0;
     }
     .reviews__new-item {
         display: flex;
         height: 100%;
+        min-height: 350px;
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;

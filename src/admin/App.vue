@@ -46,6 +46,9 @@
   input:disabled {
     background-color: transparent;
   }
+  .wrapper {
+    overflow: hidden;
+  }
   .wrapper-admin {
     background: rgb(246,249,254);
     background: linear-gradient(180deg, rgba(246,249,254,1) 0%, rgba(255,255,255,1) 100%);

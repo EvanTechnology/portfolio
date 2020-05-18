@@ -9,9 +9,9 @@
     .group__title-line(v-else)
         input(type="text" disabled placeholder="Group title").group__title
         .group__cell
-            //button(type="button").btn-done &#10004
+          button(type="button" @click.prevent ="groupEditMode = true").btn-edit
         .group__cell
-            button(type="button" @click.prevent ="groupEditMode = true").btn-edit
+          button(type= "button" @click="groupEditMode=false").btn-remove
     .group__main-line
         ul.skills__list
             li.skills__item(v-if="groupEditMode")
@@ -66,7 +66,7 @@
     width: 100%;
     align-items: center;
     font-weight: bolder;
-    grid-template-columns: 1fr 50px 50px;
+    grid-template-columns: 1fr 40px 40px;
   }
   .group__title {
     margin: 0;
@@ -85,7 +85,7 @@
     grid-area: new;
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 50px 50px 100px;
+    grid-template-columns: 1fr 50px 30px 100px;
   }
   .new-skill__title {
     width: 75%;
@@ -137,5 +137,11 @@
       height: 40px;
     }
   }
+  .btn-remove {
+    width: 25px;
+    height: 25px;
+    border-color: transparent;
+    background: svg-load('trash.svg', fill=#636363, width=100%, height=100%) no-repeat;
+    }
 
 </style>

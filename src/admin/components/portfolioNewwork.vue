@@ -42,6 +42,17 @@ export default {
 </script>
 
 <style lang= "postcss" scoped>
+      @mixin tablets() {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  }
+
+  @mixin phones() {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  }
     .new-work {
         display: flex;
         flex-direction: column;
@@ -63,6 +74,14 @@ export default {
         display: flex;
         align-items: flex-start;
         width: 100%;
+        @include tablets {
+            flex-direction: column;
+            align-items: center;
+            width: 85%;
+        }
+        @include phones {
+            width: 95%;
+        }
     }
     .new-work__preview {
         width: 42.5%;
@@ -74,11 +93,19 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @include tablets {
+            width: 75%;
+            margin-bottom: 50px;
+        }
+        @include phones {
+            width: 95%;
+        }
     }
     .new-work__instruction {
         width: 50%;
         margin-bottom: 20px;
         text-align: center;
+        
     }
     .choose-btn {
         padding: 15px 15px;
@@ -105,6 +132,13 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        @include tablets {
+            width: 75%;
+            margin-bottom: 50px;
+        }
+        @include phones {
+            width: 95%;
+        }
     }
     .form-row {
         width: 100%;
