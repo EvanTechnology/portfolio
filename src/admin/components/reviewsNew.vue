@@ -2,20 +2,23 @@
     .new-review
         h2.new-review__title New Review
         .new-review__block
-            .new-review__preview
+            label.new-review__preview
                 .new-review__image
-                    img(src="../../images/content/man-user_admin.png").new-review__photo
-                button(type="button").btn-upload-photo Add photo
+                    .new-review__stub
+                    
+                    input(type="file").new-review__photo
+                    //img(src="../../images/content/man-user_admin.png").new-review__photo
+                span.btn-upload-photo Add photo
             form.new-review__info
                 .form-row.form-row__introduction
-                    .form-column
+                    label.form-column
                         .form-row__title Name
                         input(type="text" name="name" placeholder="Web-Site of Porsche dealer" required).form-row__text.form-row__name
-                    .form-column
+                    label.form-column
                         .form-row__title Occupation
                         input(type="web" name="web-address" placeholder="https://www.porshe-pulkovo.ru" required).form-row__text.form-row__website
                 .form-row
-                    .form-column
+                    label.form-column
                         .form-row__title Review
                         textarea(name="description" placeholder="jkvb;djbv;ds bjbc bcibn casb cn;asbcas obcoabscoasbco'abn'oaUJ" required).form-row__text.form-row__desc
                 .form-row.form-row__btns
@@ -79,6 +82,7 @@ export default {
         height: 175px;
         width: 175px;
         border: solid 1px #dee4ed;
+      
         background-color: #dee4ed;
         margin-bottom: 30px;
         border-radius: 50%;
@@ -87,10 +91,16 @@ export default {
         align-items: center;
         justify-content: center;
     }
+    .new-review__stub {
+        width: 75%;
+        height: 75%;
+        background: svg-load('user.svg', fill=#ffffff, stroke=  #ffffff, width=150%, height=150%)center center no-repeat;
+    }
     .new-review__photo {
-        width: 60%;
-        height: 60%;
-        object-fit: contain;
+        display: none;
+        width: 100%;
+        height:100%;
+        background: url("../../images/content/man-user_admin.png") center center no-repeat;
     }
     .btn-submit {
         width: 180px;
@@ -168,6 +178,7 @@ export default {
         padding: 15px 0px;
         border: solid 1px transparent;
         border-radius: 24px;
+        text-align: center;
     }
 
 

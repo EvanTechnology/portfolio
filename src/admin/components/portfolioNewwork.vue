@@ -2,32 +2,34 @@
     .new-work
         h2.new-work__title Edit work
         .new-work__block
-            form.new-work__preview
-                label(for="file").new-work__instruction Upload image or drop it here
+            label.new-work__preview
+                .new-work__instruction Upload image or drop it here
                 input(type="file" name="file").choose-btn
-                button(type='button').btn-upload Upload
+                .btn-upload Upload
             form.new-work__info
                 .form-row
-                    .form-column
+                    label.form-column
                         .form-row__title Name
                         input(type="text" name="name" placeholder="Web-Site of Porsche dealer" required).form-row__text.form-row__name
                 .form-row
-                    .form-column
+                    label.form-column
                         .form-row__title Link
                         input(type="web" name="web-address" placeholder="https://www.porshe-pulkovo.ru" required).form-row__text.form-row__website
                 .form-row
-                    .form-column
+                    label.form-column
                         .form-row__title Description
                         textarea(name="description" placeholder="jkvb;djbv;ds bjbc bcibn casb cn;asbcas obcoabscoasbco'abn'oaUJ" required).form-row__text.form-row__desc
                 .form-row
-                    .form-column
+                    label.form-column
                         .form-row__title Add a tag
                         input(type="text" name="tag" placeholder="JQuery, Vue.js" required).form-row__text.form-row__tags
                         ul.form-row__tags-btns
                             li.form-row__tag
-                                button(type="button").btn-delete-tag JQuery
+                                span.tag-name  JQuery
+                                button(type="button").btn-delete-tag &#10006
                             li.form-row__tag
-                                button(type="button").btn-delete-tag Vue.js
+                                span.tag-name Vue.js
+                                button(type="button").btn-delete-tag &#10006
                 .form-row.form-row__btns
                     button(type="Reset").btn-reset Cancel
                     button(type="Submit").btn-submit Submit
@@ -112,6 +114,7 @@ export default {
         background-color: transparent;
         color: inherit;
         width: 40%;
+        display: none;
     }
     .btn-upload, .btn-submit {
         width: 180px;
@@ -124,6 +127,7 @@ export default {
         padding: 15px 0px;
         border: solid 1px #383bcf;
         border-radius: 24px;
+        text-align: center;
     }
     .new-work__info {
         width: 42.5%;
@@ -171,23 +175,21 @@ export default {
         display: flex;
     }
     .form-row__tag {
-        margin-right: 25px;
-    }
-    .btn-delete-tag {
         font-size: 20px;
         color: #a0a0b2;
         padding: 5px 15px;
         border: solid 1px #a0a0b2;
         border-radius: 18px;
         background-color: #dee4ed;
+        margin-right: 25px;
+        &:hover {
+            color: #636363;
+        }
     }
-    .btn-delete-tag:after {
-        content: "\2716";
-        display: inline;
-        padding-left: 15px;
-    }
-    .btn-delete-tag:hover {
-        font-weight: bold;
+    .btn-delete-tag {
+        border: none;
+        display: inline-block;
+        background-color: transparent;
     }
     .form-row__btns {
         flex-direction: row;

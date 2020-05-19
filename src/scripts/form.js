@@ -20,13 +20,13 @@ function orderform() {
     modalBtn.appendChild(modalBtnElement);
 
     let formData = new FormData(form);
-    const url = 'https://webdev-api.loftschool.com/sendmail/fail';
+    const url = 'https://webdev-api.loftschool.com/sendmail';
     
        
         
         formData.set('name', form.elements.name.value );
-        formData.set('email', form.elements.email.value );
-        formData.set('message', form.elements.message.value );
+        formData.set('phone', form.elements.email.value );
+        formData.set('comment', form.elements.message.value );
         formData.set('to', 'evgeniikonkov1@gmail.com');
 
 

@@ -152,7 +152,21 @@ html(lang="en")
               .footer__content-column
                 .footer__quote-text Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
                 .footer__quote-author Martin Golding
-
+      .entry
+        +image('content/bg_main_page.jpg', "entry__bg")
+        .entry__window
+          button(type="button").entry__btn-close
+            span.entry__btn-element
+          .entry__title Authorization
+          form.entry__form
+            .entry__form-row.entry__form-row--name
+              .entry__form-row-title Name
+              input(type="text" placeholder= "Terminator" required).entry__form-input
+            .entry__form-row.entry__form-row--password
+              .entry__form-row-title Password
+              input(type="password" placeholder="*******" required).entry__form-input
+            .entry__form-row--btn
+              button(type='submit').entry__submit-btn Login
     include ./templates/entry.pug
       //
         +image('content/user.jpg', 'user-pic')

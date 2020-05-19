@@ -6,7 +6,7 @@
             img(src="../../images/content/user.jpg").user__photo
           .user__name Evgenii Konkov
         .header__title Admin panel
-        .header__login Log out
+        button.header__login Log out
   
 </template>
 
@@ -57,5 +57,7 @@ export default {
   .header__login {
     margin-left: auto;
     cursor: pointer;
+    background-color: transparent;
+    border: solid 1px transparent;
   }
 </style>

@@ -93,6 +93,7 @@ export default {
     width: 45%;
     min-width: 300px;
     margin-right: 5%;
+    margin-bottom: 30px;
   }
   
 </style>
