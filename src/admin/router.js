@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 import aboutComponent from './components/about'
 import worksComponent from './components/portfolio'
 import reviewsComponent from './components/reviews'
-import mainComponent from './components/main'
+import loginComponent from './components/login'
 
 const routes = [
     {
@@ -21,6 +21,10 @@ const routes = [
     {
         component: reviewsComponent,
         path: '/admin/reviews'
+    },
+    {
+        component: loginComponent,
+        path: '/admin/login'
     },
 ];
 

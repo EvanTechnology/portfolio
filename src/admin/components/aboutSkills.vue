@@ -1,51 +1,81 @@
 <template lang="pug">
   .group
+    pre {{categoryId}}
+    pre {{category.category}}
+    pre {{skills}}
     .group__title-line(v-if="groupEditMode")
-        input(type="text" placeholder="Name of the new group").group__title
+        input(type="text" placeholder="Name of the new group" v-model="title").group__title
         .group__cell
-            button(type="button").btn-done &#10004
+            button(type="button" @click.prevent = "addCategory").btn-done &#10004
         .group__cell
             button(type="button" @click.prevent ="groupEditMode = false").btn-del &#10008
     .group__title-line(v-else)
-        input(type="text" disabled placeholder="Group title").group__title
+        input(type="text" disabled :placeholder="category.category").group__title
         .group__cell
           button(type="button" @click.prevent ="groupEditMode = true").btn-edit
         .group__cell
           button(type= "button" @click="groupEditMode=false").btn-remove
     .group__main-line
         ul.skills__list
-            li.skills__item(v-if="groupEditMode")
+            //li.skills__item(v-if="groupEditMode")
               skill
-            li.skills__item(v-else)
-              skill
-              skill
-              skill
+            li.skills__item(v-for="skill in skills" :key="skill.id")
+              skill(
+                :skill = "skill"
+              )
 
     .group__last-line.new-skill(v-if="newSkillBtn")
-        input(type="text" placeholder="New Skill").new-skill__title
-        input(placeholder="100" min="0" max="100").new-skill__number
+        input(type="text" placeholder="New Skill" v-model="skill.title").new-skill__title
+        input(placeholder="100" min="0" max="100" v-model="skill.percent").new-skill__number
         .new-skill__percent %
         .new-skill__add
-            button(type="button" disabled).btn-add.btn-add--large +
+            button(type="button" @click.prevent="addNewSkill").btn-add.btn-add--large +
     .group__last-line.new-skill(v-else)
         input(type="text" placeholder="New Skill").new-skill__title
         input(placeholder="100" min="0" max="100").new-skill__number
         .new-skill__percent %
         .new-skill__add
-            button(type="button").btn-add.btn-add--large +
+            button(type="button" disabled).btn-add.btn-add--large +
 </template>
 
 <script>
   import skill from './aboutSkillsSkill'
+  import axios from 'axios'
   export default {
     components: {
       skill,
     },
+    props: ["categoryId", "category", "skills"],
     data() {
       return {
         groupEditMode: false,
         newSkillBtn: true,
+        categories: [],
+        skill: {
+          title: "",
+          percent: 0,
+          category: this.categoryId,
+        },
+        user: {},
+        works: {},
+        title: "",
+     
       }
+    },
+    methods: {
+      addCategory() {
+        this.$emit('addCategory', this.title);
+        //this.categories.push(this.title);
+        //console.log(this.categories);
+      },
+      addNewSkill() {
+        axios.post('/skills', this.skill).then(response => {
+          this.$emit('addNewSkill', response.data);
+        })
+        //this.skill.newSkillTitle = this.skill.newSkillTitle;
+        
+        console.log(this.skill);
+      },
     }
   }
   </script>

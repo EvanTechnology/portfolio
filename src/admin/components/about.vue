@@ -1,19 +1,32 @@
 <template lang="pug">
   main.main
+    
     .main__container.container
       .main__title-block
         h1.main__title "About me" section
         .main__controls.control
-          button(type="button").control__btn.btn-add.btn-add--small +
+          button(type="button" @click.prevent = "removeCat").control__btn.btn-add.btn-add--small +
           .control__title Add a new group
       .main__admin-block
+        pre {{categories}}
+        //pre {{categories.id}}
         .groups
           ul.groups__list
-            li.groups__item
-              skillsComponent
-            li.groups__item
-              skillsComponent
-            li.groups__item
+            li.groups__item(v-for="category in categories" :key="category.id" )
+              skillsComponent(
+                @addCategory = "addCategory",
+                @addNewSkill = "addNewSkill",
+                :category-id = "category.id",
+                :category = "category",
+                :skills = "category.skills",
+              )
+            //li.groups__item
+              skillsComponent(
+                @addCategory = "addCategory",
+                @addNewSkill = "addNewSkill",
+                :category-id = "categories.id",
+              )
+            //li.groups__item
               skillsComponent
               
 
@@ -24,10 +37,59 @@
 <script>
 
 import skillsComponent from './aboutSkills'
+import axios from 'axios'
 export default {
   components: {
     skillsComponent,
-  }
+  },
+  data() {
+    return {
+      categories: [],
+    }
+  },
+  created() {
+    this.fetchCategories();
+  },
+  methods: {
+    addCategory(categoryTitle) {
+      axios
+        .post("categories", {
+          title: categoryTitle
+        })
+        .then(response => {
+          this.categories.unshift(categoryTitle);
+        })
+
+      
+      console.log(this.categories);
+    },
+    fetchCategories() {
+      axios
+        .get("/categories/318").then(response => {
+          this.categories = response.data;
+        });
+    },
+    removeCat() {
+      axios
+        .delete("categories/5377", {
+        })
+        .then(response => {
+        })
+
+      
+      console.log(this.categories.id);
+    },
+    addNewSkill(skill) {
+        this.categories = this.categories.map(category => {
+          if (category.id === skill.category) {
+            category.skills.push(skill);
+          }
+        })
+        console.log(skill);
+        console.log(this.categories);
+
+    },
+  },
 }
 </script>
 

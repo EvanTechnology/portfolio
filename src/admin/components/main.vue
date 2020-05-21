@@ -1,5 +1,6 @@
 <template lang="pug">
   .content
+    
     nav.menu
       .menu__container.container
         ul.menu__list
@@ -22,21 +23,28 @@
               to = "/admin/reviews"
             ) Reviews
     .main-block
-      router-view
 
+      router-view
    
   
 </template>
 
 <script>
+import aboutComponent from './about'
   export default {
     components: {
+      aboutComponent,
     },
     data() {
       return {
 
       }
-    }
+    },
+    methods: {
+      addCategory(category) {
+        this.skills.push(category);
+      }
+    },
   }
 </script>
 

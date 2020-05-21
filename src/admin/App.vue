@@ -1,22 +1,23 @@
 <template lang="pug">
-  .wrapper-admin
-    headerComponent
-    mainComponent
-      
+    .wrapper-admin
+      headerComponent
+      mainComponent
+      loginComponent
 
 </template>
 
 <script>
   import headerComponent from './components/header'
   import mainComponent from './components/main'
+  import loginComponent from './components/login'
   export default {
     components: {
       headerComponent,
       mainComponent,
+      loginComponent,
     },
     data() {
       return {
-
       }
     }
 

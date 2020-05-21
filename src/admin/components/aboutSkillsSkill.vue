@@ -8,8 +8,8 @@
         .skill-remove
             button(type= "button" @click="editMode=false").btn-del &#10008
     .skill(v-else)
-        input(type="text" placeholder="skill" disabled).skill__title
-        input(placeholder="0" disabled).skill__number
+        input(type="text" placeholder="skill" disabled :placeholder="skill.title").skill__title
+        input(placeholder="0" disabled :placeholder="skill.percent").skill__number
         .skill__percent %
         .skill__edit
             button(type= "button" @click="editMode=true").btn-edit
@@ -19,10 +19,13 @@
 
 <script>
     export default {
+        props: ["skill"],
         data() {
             return {
-                editMode: false
+                editMode: false,
             }
+        },
+        methods: {
         }
     }
 </script>

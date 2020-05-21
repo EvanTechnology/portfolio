@@ -1,0 +1,16 @@
+script(type='text/x-template')#loginComponent
+    .entry
+        //+image('content/bg_main_page.jpg', "entry__bg")
+        .entry__window
+          button(type="button").entry__btn-close
+            span.entry__btn-element
+          .entry__title Authorization
+          form.entry__form
+            .entry__form-row.entry__form-row--name
+              .entry__form-row-title Name
+              input(type="text" placeholder= "Terminator" required).entry__form-input
+            .entry__form-row.entry__form-row--password
+              .entry__form-row-title Password
+              input(type="password" placeholder="*******" required).entry__form-input
+            .entry__form-row--btn
+              button(type='submit').entry__submit-btn Login
