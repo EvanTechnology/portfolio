@@ -5,24 +5,31 @@
           button(type="button").entry__btn-close
             span.entry__btn-element
           .entry__title Authorization
-          form.entry__form(@submit.prevent="login")
+          form.entry__form(@submit.prevent="loginUser")
             .entry__form-row.entry__form-row--name
               .entry__form-row-title Name
-              input(type="text" placeholder= "Terminator" v-model="user.name").entry__form-input
+              input(
+                type="text" 
+                placeholder= "Terminator" 
+                v-model="user.name"
+                ).entry__form-input
             .entry__form-row.entry__form-row--password
               .entry__form-row-title Password
-              input(type="password" placeholder="*******" v-model="user.password").entry__form-input
+              input(
+                type="password" 
+                placeholder="*******" 
+                v-model="user.password"
+                ).entry__form-input
             .entry__form-row--btn
               button(type='submit').entry__submit-btn Login
             .error {{errorMessage}}
 </template>
 
 <script>
-    import axios from 'axios';
+    import $axios from "../requests";
     const baseUrl = "https://webdev-api.loftschool.com";
-    const token = localStorage.getItem('token') || "";
-    axios.defaults.baseURL = baseUrl;
-    axios.defaults.headers['Authorization'] =`Bearer ${token}`;
+    const regeneratorRuntime = require("regenerator-runtime");
+    const token = localStorage.getItem('token');
     export default {
         name: 'login',
         data() {
@@ -36,19 +43,19 @@
             }
         },
         methods: {
-            login() {
-                this.errorMessage = "";
-                axios.post('/login', this.user).then(response => {
+            async loginUser() {
+                try {
+                    const response = await $axios.post('/login', this.user);
                     const token = response.data.token;
-                    axios.defaults.headers['Authorization'] =`Bearer ${token}`;
                     localStorage.setItem('token', token);
-                        console.log(response.data)
-                }).catch(error => {
+                    $axios.defaults.headers['Authorization'] =`Bearer ${token}`;
+                    this.$router.replace("/admin");
+                } catch(error) {
                     console.log(error.response.data.error);
                     this.errorMessage = error.response.data.error;
                     console.log(this.errorMessage);
                 }
-                )
+                this.errorMessage = "";
                 
             }
         }

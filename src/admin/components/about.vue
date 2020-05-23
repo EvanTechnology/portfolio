@@ -5,29 +5,35 @@
       .main__title-block
         h1.main__title "About me" section
         .main__controls.control
-          button(type="button" @click.prevent = "removeCat").control__btn.btn-add.btn-add--small +
+          button(type="button" @click.prevent ="createNewCategory").control__btn.btn-add.btn-add--small +
           .control__title Add a new group
+          input(type="text" v-model="category.title")
       .main__admin-block
-        pre {{categories}}
-        //pre {{categories.id}}
         .groups
           ul.groups__list
-            li.groups__item(v-for="category in categories" :key="category.id" )
-              skillsComponent(
-                @addCategory = "addCategory",
-                @addNewSkill = "addNewSkill",
-                :category-id = "category.id",
-                :category = "category",
-                :skills = "category.skills",
+            li.groups__item(v-for="category in categories" :key="category.id" ).group
+              categoryComponent(
+                :category = "category"
               )
-            //li.groups__item
-              skillsComponent(
-                @addCategory = "addCategory",
-                @addNewSkill = "addNewSkill",
-                :category-id = "categories.id",
-              )
-            //li.groups__item
-              skillsComponent
+              .group__main-line
+                skills-group(
+                  :category = "category"
+                )
+                  
+
+              .group__last-line
+                newSkillComponent(
+                  :category = "category"
+                )
+                  //pre {{category}}
+                  //pre {{skill}}
+              //.group__last-line.new-skill(v-else)
+                  input(type="text" placeholder="New Skill").new-skill__title
+                  input(placeholder="100" min="0" max="100").new-skill__number
+                  .new-skill__percent %
+                  .new-skill__add
+                      button(type="button" disabled).btn-add.btn-add--large +
+                      
               
 
 
@@ -35,62 +41,64 @@
 </template>
 
 <script>
-
-import skillsComponent from './aboutSkills'
-import axios from 'axios'
+const regeneratorRuntime = require("regenerator-runtime");
+import skillsGroup from "./aboutSkillsList";
+import categoryComponent from "./aboutCategory";
+import newSkillComponent from "./aboutSkillNew";
+import { mapActions, mapState } from "vuex";
 export default {
   components: {
-    skillsComponent,
+    skillsGroup,
+    newSkillComponent,
+    categoryComponent
   },
   data() {
     return {
-      categories: [],
+      groupEditMode: false,
+      //newSkillBtn: true,
+      category: {
+        title: "",
+      },
+      skill: {
+        title: "",
+        percent: "0",
+        category: ""
+      }
+      
     }
+  },
+  computed: {
+    ...mapState("categories", {
+      categories: state => state.categories
+    })
   },
   created() {
     this.fetchCategories();
   },
   methods: {
-    addCategory(categoryTitle) {
-      axios
-        .post("categories", {
-          title: categoryTitle
-        })
-        .then(response => {
-          this.categories.unshift(categoryTitle);
-        })
-
-      
-      console.log(this.categories);
+    ...mapActions("categories", ["addCategory", "fetchCategories", "removeCategory"]),
+    async createNewCategory() {
+      try {
+        console.log(this.category.title);
+        await this.addCategory(this.category.title);
+        
+        this.category.title = "";
+      } catch(error) {
+        alert(error.message)
+      }
     },
-    fetchCategories() {
-      axios
-        .get("/categories/318").then(response => {
-          this.categories = response.data;
-        });
-    },
-    removeCat() {
-      axios
-        .delete("categories/5377", {
-        })
-        .then(response => {
-        })
-
-      
-      console.log(this.categories.id);
-    },
-    addNewSkill(skill) {
-        this.categories = this.categories.map(category => {
-          if (category.id === skill.category) {
-            category.skills.push(skill);
-          }
-        })
-        console.log(skill);
-        console.log(this.categories);
-
-    },
+    async removeCurrentCategory() {
+        console.log(category);
+                try {
+                    await this.removeCategory(this.category.id);
+                } catch (error) {
+                    console.log(error);
+                }
+            },
   },
 }
+
+
 </script>
 
 <style lang="postcss" scoped>
@@ -152,10 +160,80 @@ export default {
     justify-content: space-around;
   }
   .groups__item {
-    width: 45%;
+    width: 44%;
     min-width: 300px;
     margin-right: 5%;
     margin-bottom: 30px;
   }
-  
+  //- GROUP-----------------------------------------
+  .group {
+    box-shadow: #f4f4f5 1px 1px 10px 5px;
+    border: solid 1px #f4f4f5;
+    display: grid;
+    grid-template-areas: "title"
+                          "skills"
+                          "new";
+    grid-template-rows: 100px 1fr 100px;
+  }
+  .group__title-line {
+    grid-area: title;
+    //display: grid;
+    width: 100%;
+    //align-items: center;
+    font-weight: bolder;
+    //grid-template-columns: 1fr 40px 40px;
+  }
+
+  .group__main-line {
+    grid-area: skills;
+  }
+ 
+  .group__last-line {
+    grid-area: new;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .btn-done {
+    font-size: 25px;
+    color: teal;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .btn-del {
+    font-size: 25px;
+    color: crimson;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .btn-edit {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border: solid 1px transparent;
+    border-radius: 10px;
+    margin-left: 10px;
+    background: svg-load('pencil.svg', fill=#636363, width=100%, height=100%);
+  } 
+  .btn-add {
+    color: #fff;
+    background: rgb(33,78,219);
+    background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+    font-size: 18px;
+    font-weight: bold;
+    border: solid 1px #383bcf;
+    border-radius: 50%;
+    &--large {
+      font-size: 26px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+  .btn-remove {
+    width: 25px;
+    height: 25px;
+    border-color: transparent;
+    background: svg-load('trash.svg', fill=#636363, width=100%, height=100%) no-repeat;
+    }
 </style>
