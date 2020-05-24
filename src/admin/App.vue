@@ -51,8 +51,8 @@
     overflow: hidden;
   }
   .wrapper-admin {
-    background: rgb(246,249,254);
-    background: linear-gradient(180deg, rgba(246,249,254,1) 0%, rgba(255,255,255,1) 100%);
+    
+    background: linear-gradient(180deg, rgba(230,232,239,1) 0%, rgba(244,232,200,1) 100%);
   }
   .container {
     width: 95%;

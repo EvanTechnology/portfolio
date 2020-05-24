@@ -53,7 +53,8 @@
         color: #414c63;
     }
     .works__edit-block {
-        width: 100%;
+        width: 95%;
+        margin: 0 auto;
         margin-bottom: 60px;
     }
     .works__admin-block {
@@ -80,11 +81,12 @@
         justify-content: center;
         align-items: center;
         color: #fff;
-        background: rgb(33,78,219);
-        background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+        background: linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+        //background: rgb(33,78,219);
+        //background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
         font-size: 18px;
         font-weight: bold;
-        border: solid 1px #383bcf;
+        border: solid 1px #ff9a00;
     }
     .btn-add-new-work {
         font-size: 80px;

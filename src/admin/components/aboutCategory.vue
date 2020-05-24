@@ -1,8 +1,8 @@
 <template lang="pug">
     .group__title-box(v-if="groupEditMode")
-        input(type="text" :placeholder="category.category").group__title
+        input(type="text" :placeholder="category.category" v-model="category.category").group__title
         .group__cell
-            button(type="button" @click.prevent ="").btn-done &#10004
+            button(type="submit" @click.prevent ="editCurrentCategory").btn-done &#10004
         .group__cell
             button(type="button" @click.prevent ="groupEditMode = false").btn-del &#10008
     .group__title-box(v-else)
@@ -28,7 +28,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("categories", ["removeCategory"]),
+    ...mapActions("categories", ["removeCategory", "editCategory"]),
     async removeCurrentCategory() {
         console.log(this.category);
             try {
@@ -37,7 +37,15 @@ export default {
                 console.log(error);
             }
         },
-  },
+    async editCurrentCategory() {
+        console.log(this.category);
+            try {
+                await this.editCategory(this.category);
+            } catch (error) {
+                    console.log(error);
+            }
+    }
+  }  
 }
 </script>
 

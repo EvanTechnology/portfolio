@@ -3,7 +3,7 @@
         input(type="text" placeholder="New Skill" v-model="skill.title").new-skill__title
         input(placeholder="100" min="0" max="100" v-model="skill.percent").new-skill__number
         .new-skill__percent %
-        .new-skill__add
+        .new-skill__add(v-if="addMode")
             button(type="submit" @click.prevent="addNewSkill").btn-add.btn-add--large +
 </template>
 
@@ -16,6 +16,7 @@ export default {
     },
     data() {
         return {
+            addMode: true,
             skill: {
                 title: "",
                 percent: "0",
@@ -25,15 +26,20 @@ export default {
     methods: {
         ...mapActions("skills", ["addSkill"]),
         async addNewSkill() {
+            this.addMode = false;
             const skillData = {
                 ...this.skill,
                 category: this.category.id
             };
             try {
                 await this.addSkill(skillData);
+                this.skill.title = "";
+                this.skill.percent = "0";
             } catch (error) {
                 console.log(error);
-      }
+            } finally {
+                this.addMode = true;
+            }
     }
     }
     
@@ -64,16 +70,17 @@ export default {
 }
 .btn-add {
     color: #fff;
-    background: rgb(33,78,219);
-    background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+    //background: rgb(33,78,219);
+    background: linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+    //background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
     font-size: 18px;
     font-weight: bold;
-    border: solid 1px #383bcf;
+    border: solid 1px #ff9a00;
     border-radius: 50%;
     &--large {
-        font-size: 26px;
-        width: 40px;
-        height: 40px;
+        font-size: 24px;
+        width: 30px;
+        height: 30px;
 }
 }
 </style>

@@ -1,8 +1,16 @@
 <template lang="pug">
     .entry
-        //+image('content/bg_main_page.jpg', "entry__bg")
-        .entry__window
-          button(type="button").entry__btn-close
+        img(src='../../images/content/bg_last_page.jpg').entry__bg
+        button(
+            v-if= "authorizationMode"
+            type="button"
+            @click.prevent ="authorizationMode = false"
+            ).authorization-btn Authorization
+        .entry__window(v-else)
+          button(
+              type="button" 
+              @click.prevent ="authorizationMode = true"
+              ).entry__btn-close
             span.entry__btn-element
           .entry__title Authorization
           form.entry__form(@submit.prevent="loginUser")
@@ -23,6 +31,7 @@
             .entry__form-row--btn
               button(type='submit').entry__submit-btn Login
             .error {{errorMessage}}
+                //pre {{errorMessage}}
 </template>
 
 <script>
@@ -39,23 +48,27 @@
                     password: "",
                 },
                 errorMessage: "",
+                authorizationMode: true,
                 
             }
         },
         methods: {
             async loginUser() {
                 try {
+                    this.errorMessage = "";
                     const response = await $axios.post('/login', this.user);
                     const token = response.data.token;
                     localStorage.setItem('token', token);
                     $axios.defaults.headers['Authorization'] =`Bearer ${token}`;
                     this.$router.replace("/admin");
                 } catch(error) {
+                    console.log(error.response.data.message);
                     console.log(error.response.data.error);
-                    this.errorMessage = error.response.data.error;
+                    console.log(error.response.data.errors);
+                    this.errorMessage = error.response.data.message || error.response.data.error;
                     console.log(this.errorMessage);
                 }
-                this.errorMessage = "";
+                //this.errorMessage = "";
                 
             }
         }
@@ -68,7 +81,7 @@
         @content;
         }
     }
-        .entry {
+    .entry {
         position: relative;
         background-color: #000000;
         height: 100vh;
@@ -78,6 +91,20 @@
         height: 100%;
         object-fit: cover;
         opacity: 0.5;
+    }
+    .authorization-btn {
+        position: absolute;
+        //width: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 15px 25px;
+        text-transform: uppercase;
+        font-size: 24px;
+        color: #ffffff;
+        border: solid 1px #ff9a00;
+        background: linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+        
     }
     .entry__window {
         position: absolute;
@@ -117,7 +144,7 @@
         }
         position: relative;
         &:focus-within {
-            border-bottom: 1px solid #383bcf;
+            border-bottom: 1px solid #ff9a00;
         }
         &:before {
             content: "";
@@ -140,10 +167,10 @@
         }
     }
     .entry__form-row--name:focus-within:before {
-        background: svg-load('user.svg', fill=#383bcf, width=100%, height=100%);
+        background: svg-load('user.svg', fill=#ff9a00, width=100%, height=100%);
     }
     .entry__form-row--password:focus-within:before {
-        background: svg-load('key.svg', fill=#383bcf, width=100%, height=100%);
+        background: svg-load('key.svg', fill=#ff9a00, width=100%, height=100%);
     }
     .entry__form-row-title {
         margin-bottom: 15px;
@@ -154,7 +181,8 @@
     }
     .entry__submit-btn {
         color: #ffffff;
-        background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+        background: linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+        //background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
         //background-color: $orange;
         text-transform: uppercase;
         padding: 20px 115px;
@@ -162,9 +190,10 @@
         font-size: 18px;
         margin: 0 auto;
         margin-bottom: 50px;
-        border: solid 3px #383bcf;
+        border: solid 3px #ff9a00;
         &:hover {
-            background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+            background: linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+            //background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
             //background:  linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
         }
         &:focus {
@@ -217,6 +246,8 @@
         color: red;
         font-size: 20px;
         text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
 </style>

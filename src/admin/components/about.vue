@@ -5,9 +5,9 @@
       .main__title-block
         h1.main__title "About me" section
         .main__controls.control
-          button(type="button" @click.prevent ="createNewCategory").control__btn.btn-add.btn-add--small +
-          .control__title Add a new group
           input(type="text" v-model="category.title")
+          .control__title Add a new group
+          button(type="button" @click.prevent ="createNewCategory").control__btn.btn-add.btn-add--small +
       .main__admin-block
         .groups
           ul.groups__list
@@ -128,11 +128,13 @@ export default {
   }
   .btn-add {
     color: #fff;
-    background: rgb(33,78,219);
-    background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+    margin-left: 15px;
+    //background: rgb(33,78,219);
+    background: linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
+    //background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
     font-size: 18px;
     font-weight: bold;
-    border: solid 1px #383bcf;
+    border: solid 1px #ff9a00;
     border-radius: 50%;
     &--small {
       width: 26px;
@@ -145,8 +147,8 @@ export default {
     }
   }
   .control__title {
-    margin-left: 25px;
-    color: #383bcf;
+    margin-left: 15px;
+    color: #636363;
     font-size: 18px;
     font-weight: bolder;
   }
@@ -216,20 +218,7 @@ export default {
     margin-left: 10px;
     background: svg-load('pencil.svg', fill=#636363, width=100%, height=100%);
   } 
-  .btn-add {
-    color: #fff;
-    background: rgb(33,78,219);
-    background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
-    font-size: 18px;
-    font-weight: bold;
-    border: solid 1px #383bcf;
-    border-radius: 50%;
-    &--large {
-      font-size: 26px;
-      width: 40px;
-      height: 40px;
-    }
-  }
+  
   .btn-remove {
     width: 25px;
     height: 25px;

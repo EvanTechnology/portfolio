@@ -119,13 +119,12 @@ export default {
     .btn-upload, .btn-submit {
         width: 180px;
         color: #fff;
-        background: rgb(33,78,219);
-        background: linear-gradient(90deg, rgba(33,78,219,1) 0%, rgba(63,53,203,1) 100%);
+        background: linear-gradient(90deg, rgba(255,138,0,1) 0%, rgba(255,157,0,1) 100%);
         font-size: 18px;
         text-transform: uppercase;
         font-weight: bold;
         padding: 15px 0px;
-        border: solid 1px #383bcf;
+        border: solid 1px #ff9a00;
         border-radius: 24px;
         text-align: center;
     }
@@ -196,7 +195,7 @@ export default {
         justify-content: flex-end;
     }
     .btn-reset {
-        color: #214edb;
+        color: #ff9a00;
         background-color: transparent;
         width: 180px;
         font-size: 18px;

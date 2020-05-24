@@ -61,7 +61,7 @@
     .skill {
     padding-left: 25px;
     padding-bottom: 10px;
-    font-size: 18px;
+    font-size: 20px;
     display: grid;
     grid-template-columns: 1fr 30px 20px 40px 40px;
     }
