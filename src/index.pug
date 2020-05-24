@@ -51,7 +51,7 @@ html(lang="en")
             source(media="(min-width: 768px)", src=require(`images/content/parallax_layer1_1200.png`))
             img(src='')
         
-      section.main-section
+      section(id="main").main-section
         .container.main-section__container
           header.header
             div.logo
@@ -65,7 +65,7 @@ html(lang="en")
             a(href="#").scroll__link
               .scroll__name scroll
               +icon('scroll', 'scroll__icon') 
-      section.aboutme
+      section(id="about").aboutme
         .container.aboutme-container
               .aboutme__content
                 .aboutme__profile.profile
@@ -90,7 +90,7 @@ html(lang="en")
                   .intro__text I do like to create an up-to-date web-sites and apps. It's a huge joy for me to work with something new.
                     
                   .aboutme__ps I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
-      section.skills
+      section(id="skills").skills
           .skills__container.container
             h2.title.skills__title What can I do for you
             p.skills__text I created this web-site as a graduation project in a Loftschool. I'll update my info and portfolio shortly, but it's already looks so good!
@@ -101,7 +101,7 @@ html(lang="en")
             
 
         
-      section.fullscreen-section.portfolio-section
+      section(id="portfolio").fullscreen-section.portfolio-section
           .container.portfolio
             h2.title.portfolio__title Portfolio
             .portfolio__content
@@ -109,10 +109,10 @@ html(lang="en")
   
       .testimonials-box
           .testimonials-box__decor
-          section.reviews-section
+          section(id="reviews").reviews-section
             .container.reviews
               #reviews-box
-          section.contacts-section
+          section(id="contact").contacts-section
             .container.contacts
               h2.title.contacts__title Send a query
               form(novalidate).form
