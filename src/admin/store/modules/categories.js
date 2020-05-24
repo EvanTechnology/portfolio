@@ -68,12 +68,13 @@ export default {
             try {
                const { data } = await this.$axios.post("/categories", {title});
                commit("ADD_CATEGORY", data);
-               } catch(error) {
+               } catch (error) {
+                   console.log(error.response.data.message);
                    throw new Error(
                        //generateCodeError(error)
-                       error.response.data.error || error.response.data.message
-                       );
-               }
+                       error.response.data.message
+                       )
+               };
         },
         async fetchCategories({ commit }) {
             try {

@@ -5,7 +5,7 @@
       .main__title-block
         h1.main__title "About me" section
         .main__controls.control
-          input(type="text" v-model="category.title")
+          input(type="text" v-model="category.title" required)
           .control__title Add a new group
           button(type="button" @click.prevent ="createNewCategory").control__btn.btn-add.btn-add--small +
       .main__admin-block
@@ -63,7 +63,7 @@ export default {
         title: "",
         percent: "0",
         category: ""
-      }
+      },
       
     }
   },
@@ -83,8 +83,8 @@ export default {
         await this.addCategory(this.category.title);
         
         this.category.title = "";
-      } catch(error) {
-        alert(error.message)
+      } catch (error) {
+        console.log(error);
       }
     },
     async removeCurrentCategory() {
@@ -93,6 +93,11 @@ export default {
                     await this.removeCategory(this.category.id);
                 } catch (error) {
                     console.log(error);
+                    console.log(error.response.data.message);
+                    console.log(error.response.data.error);
+                    console.log(error.response.data.errors);
+                    this.errorMessage = error.response.data.message || error.response.data.error;
+                    console.log(this.errorMessage);
                 }
             },
   },
