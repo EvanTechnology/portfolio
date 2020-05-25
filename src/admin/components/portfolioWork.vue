@@ -15,6 +15,9 @@
 
 <script>
 export default {
+    props: {
+            category: Object
+        },
 
 }
 </script>

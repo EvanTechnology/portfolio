@@ -85,6 +85,7 @@ export default {
         this.category.title = "";
       } catch (error) {
         console.log(error);
+        console.log(myError);
       }
     },
     async removeCurrentCategory() {

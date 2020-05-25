@@ -4,25 +4,30 @@
         .new-work__block
             label.new-work__preview
                 .new-work__instruction Upload image or drop it here
-                input(type="file" name="file").choose-btn
+                input(
+                    type="file" 
+                    name="work.photo" 
+                    ref="file"
+                    @change= "upLoadImage"
+                    ).choose-btn
                 .btn-upload Upload
             form.new-work__info
                 .form-row
                     label.form-column
                         .form-row__title Name
-                        input(type="text" name="name" placeholder="Web-Site of Porsche dealer" required).form-row__text.form-row__name
+                        input(type="text" name="name" placeholder="Web-Site of Porsche dealer" required v-model="work.title").form-row__text.form-row__name
                 .form-row
                     label.form-column
                         .form-row__title Link
-                        input(type="web" name="web-address" placeholder="https://www.porshe-pulkovo.ru" required).form-row__text.form-row__website
+                        input(type="web" name="web-address" placeholder="https://www.porshe-pulkovo.ru" required v-model="work.link").form-row__text.form-row__website
                 .form-row
                     label.form-column
                         .form-row__title Description
-                        textarea(name="description" placeholder="jkvb;djbv;ds bjbc bcibn casb cn;asbcas obcoabscoasbco'abn'oaUJ" required).form-row__text.form-row__desc
+                        textarea(name="description" placeholder="jkvb;djbv;ds bjbc bcibn casb cn;asbcas obcoabscoasbco'abn'oaUJ" required v-model="work.description").form-row__text.form-row__desc
                 .form-row
                     label.form-column
                         .form-row__title Add a tag
-                        input(type="text" name="tag" placeholder="JQuery, Vue.js" required).form-row__text.form-row__tags
+                        input(type="text" name="tag" placeholder="JQuery, Vue.js" required v-model="work.techs").form-row__text.form-row__tags
                         ul.form-row__tags-btns
                             li.form-row__tag
                                 span.tag-name  JQuery
@@ -32,14 +37,53 @@
                                 button(type="button").btn-delete-tag &#10006
                 .form-row.form-row__btns
                     button(type="Reset").btn-reset Cancel
-                    button(type="Submit").btn-submit Submit
+                    button(type="Submit" @click.prevent = "addNewWork").btn-submit Submit
 
   
 </template>
 
 <script>
+const regeneratorRuntime = require("regenerator-runtime");
+import { mapActions, mapState } from "vuex";
 export default {
-
+    data() {
+        return {
+            work: {
+                title: "",
+                techs: "",
+                photo: {},
+                link: "",
+                description: "",
+                renderedPhoto: ""
+            },
+        }
+    },
+    methods: {
+        ...mapActions("works", ["addWork"]),
+        async addNewWork() {
+            let formData =  new FormData();
+                formData.append('photo', this.work.photo);
+                formData.append('title', this.work.title );
+                formData.append('techs', this.work.techs);
+                formData.append('link', this.work.link);
+                formData.append('descrption', this.work.description);
+            try {
+                await this.addWork(formData);
+                this.work.title = "";
+                this.work.techs = "";
+                this.work.photo = "";
+                this.work.link = "";
+                this.work.description = ""
+            } catch (error) {
+                console.log(error);
+            } finally {
+            }
+        },
+        upLoadImage(event) {
+            this.work.photo = this.$refs.file.files[0];
+            console.log(this.work.photo)
+        }
+    }
 }
 </script>
 

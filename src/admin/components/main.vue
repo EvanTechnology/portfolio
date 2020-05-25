@@ -8,19 +8,19 @@
             router-link(
               tag= "a",
               class = "menu__link",
-              to = "/admin"
+              to = "/"
             ) About me
           li.menu__item
             router-link(
               tag= "a",
               class = "menu__link",
-              to = "/admin/works"
+              to = "/works"
             ) My work
           li.menu__item
             router-link(
               tag= "a",
               class = "menu__link",
-              to = "/admin/reviews"
+              to = "/reviews"
             ) Reviews
     .main-block
 

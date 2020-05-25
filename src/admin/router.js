@@ -10,22 +10,22 @@ import loginComponent from './components/login'
 
 const routes = [
     {
-        path: '/admin',
+        path: '',
         component: aboutComponent
         
     },
     {
         component: worksComponent,
-        path: '/admin/works'
+        path: '/works'
     },
     {
         component: reviewsComponent,
-        path: '/admin/reviews'
+        path: '/reviews'
     },
     {
         component: loginComponent,
-        path: '/admin/login'
+        path: '/login'
     },
 ];
 
-export default new VueRouter({routes, mode:'history'});
+export default new VueRouter({routes});

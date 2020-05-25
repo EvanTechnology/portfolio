@@ -3,29 +3,29 @@
         .works__container.container
             .works__title-block
                 h1.works__title "Works" Section
-            .works__edit-block
-                newworkComponent
+            .works__edit-block(v-if= "addMode")
+                newworkComponent(
+                    :work = "work"
+                )
             .works__admin-block
                 .works__container
                     ul.works__list
                         li.works__item
-                            .works__new-item
+                            .works__new-item(@click.prevent ="addMode = true")
                                 .works__new-item-title Add New Work
                                 button(type="button").btn-add-new-work +
-                        li.works__item
-                            workComponent
-                        li.works__item
-                            workComponent
-                        li.works__item
-                            workComponent
-                        li.works__item
-                            workComponent
+                        //li.works__item(v-for=" work in works" :key="work.id")
+                            workComponent(
+                                :work = "work"
+                            )
                         
 </template>
 
 <script>
+    const regeneratorRuntime = require("regenerator-runtime")
     import newworkComponent from './portfolioNewwork'
-    import workComponent from './portfolioWork'
+    import workComponent from './portfolioWork';
+    import { mapActions, mapState } from "vuex"
     export default {
         components: {
             newworkComponent,
@@ -33,8 +33,21 @@
         },
         data() {
             return {
+                addMode: false,
+                work: Object
 
             }
+        },
+        computed: {
+           /*  ...mapState("works", {
+            works: state => state.works
+            }) */
+        },
+        created() {
+            //this.fetchWorks();
+        },
+        methods: {
+            ...mapActions("works", ["fetchWorks"])
         }
     }
 </script>
