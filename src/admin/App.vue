@@ -26,6 +26,7 @@
   
 
 <style>
+@import "../styles/mixins.pcss";
     body {
     margin: 0;
     color: #a0a0b2;
@@ -65,30 +66,7 @@
     justify-content: flex-start;
     
   }
-  
-  @mixin desktopHd() {
-    @media screen and (max-width: 1800px) {
-      @content;
-    }
-  }
 
-  @mixin desktop() {
-    @media screen and (max-width: 1200px) {
-      @content;
-    }
-  }
-
-  @mixin tablets() {
-    @media screen and (max-width: 768px) {
-      @content;
-    }
-  }
-
-  @mixin phones() {
-    @media screen and (max-width: 480px) {
-      @content;
-    }
-  }
   .wrapper-admin {
     @include phones {
       width: 100%;

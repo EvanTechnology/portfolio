@@ -1,23 +1,41 @@
 <template lang="pug">
   .work__box
     .work__image
-        img(src="../../images/content/preview_1.jpg").work__image-pic
+        img(:src="work.absolutePath").work__image-pic
     .work__info
-        h3.work__title Some Website
+        h3.work__title {{work.title}}
         .work__desc
-            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, ipsum dolor aspernatur repellat optio voluptatibus dolores quisquam facere eum voluptate ut velit error nihil et voluptatem modi qui dolore soluta?
-        a(href="#").work__link http://loftschool.ru
+            p {{work.description}}
+        a(href="#").work__link {{work.link}}
         .work__btns
-            button(type="button").btn__edit-work Edit
-            button(type="button").btn__delete-work Delete
-
+            button(type="button" @click.prevent="editCurrentWork").btn__edit-work Edit
+            button(type="button" @click.prevent="removeCurrentWork").btn__delete-work Delete
+ 
 </template>
 
 <script>
+import {getAbsoluteImgPath} from '../store/helper';
+import { mapActions, mapState } from "vuex"
 export default {
     props: {
-            category: Object
+            work: Object
         },
+    created() {
+        this.work.absolutePath=getAbsoluteImgPath(this.work.photo);
+        },
+    methods: {
+        ...mapActions("works", ["removeWork"]),
+         async removeCurrentWork() {
+                try {
+                    await this.removeWork(this.work.id);
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            editCurrentWork() {
+                this.$emit('editWindow', this.work);
+            }
+        }
 
 }
 </script>

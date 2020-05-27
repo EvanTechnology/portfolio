@@ -2,21 +2,43 @@
   .review__box
     .review__image
         .review__avatar
-            img(src="../../images/content/preview_1.jpg").review__image-pic
+            img(:src="review.absolutePath").review__image-pic
         .review__title
-            h3.review__fullname Vladimir Sabantsev
-            h4.review__occupation Loftschool Founder
+            h3.review__fullname {{review.author}}
+            h4.review__occupation {{review.occ}}
     .review__info
         .review__desc
-            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, ipsum dolor aspernatur repellat optio voluptatibus dolores quisquam facere eum voluptate ut velit error nihil et voluptatem modi qui dolore soluta?
+            p {{review.text}}
         .review__btns
-            button(type="button").btn__edit-review Edit
-            button(type="button").btn__delete-review Delete
+            button(type="button" @click.prevent = "editCurrentReview").btn__edit-review Edit
+            button(type="button" @click.prevent = "removeCurrentReview").btn__delete-review Delete
 
 </template>
 
 <script>
+import {getAbsoluteImgPath} from '../store/helper';
+import { mapActions } from "vuex"
 export default {
+    props: {
+        review: Object
+    },
+    created() {
+        this.review.absolutePath=getAbsoluteImgPath(this.review.photo);
+    },
+    methods: {
+        ...mapActions("reviews", ["removeReview"]),
+         async removeCurrentReview() {
+                try {
+                    await this.removeReview(this.review.id);
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            editCurrentReview() {
+                this.$emit('editWindow', this.review);
+                console.log(this.review);
+            }
+    }
 
 }
 </script>

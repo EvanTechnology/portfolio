@@ -40,11 +40,6 @@ import aboutComponent from './about'
 
       }
     },
-    methods: {
-      addCategory(category) {
-        this.skills.push(category);
-      }
-    },
   }
 </script>
 

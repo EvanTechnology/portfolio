@@ -1,90 +1,102 @@
 <template lang="pug">
     .new-review
-        //pre {{review}}
-        h2.new-review__title New Review
+        h2.new-review__title Edit Review
         .new-review__block
             label.new-review__preview
                 .new-review__image(
-                    :style="{backgroundImage: `url(${renderedPhoto})`}"
+                    :style="{backgroundImage: `url(${newReview.renderedPhoto})`}"
                 )
                     .new-review__stub(v-if="stubMode")
+                    
                     input(
                         type="file"
-                        name="photo"
                         ref="file"
                         enctype="multipart/form-data"
                         @change= "upLoadImage"
                         ).new-review__photo
-                    //img(src="../../images/content/man-user_admin.png").new-review__photo
+                    //img(:src="editedReview.absolutePath")
                 span.btn-upload-photo Add photo
             form.new-review__info
                 .form-row.form-row__introduction
                     label.form-column
                         .form-row__title Name
-                        input(type="text" name="name" placeholder="Write your name here" v-model="author" required).form-row__text.form-row__name
+                        input(type="text" name="name" :placeholder="editedReview.author" v-model="newReview.author" required).form-row__text.form-row__name
                     label.form-column
                         .form-row__title Occupation
-                        input(type="web" name="occupation" placeholder="Write your occupation, please" v-model="occ" required).form-row__text.form-row__website
+                        input(type="web" name="occupation" :placeholder="editedReview.occ" v-model="newReview.occ" required).form-row__text.form-row__website
                 .form-row
                     label.form-column
                         .form-row__title Review
-                        textarea(name="review" placeholder="Your comments should be here" v-model="text" required).form-row__text.form-row__desc
+                        textarea(name="text" :placeholder="editedReview.text" v-model="newReview.text" required).form-row__text.form-row__desc
                 .form-row.form-row__btns(v-if="transferOff")
                     button(type="Reset" @click.prevent = "closeWindow").btn-reset Cancel
-                    button(type="Submit" @click.prevent = "addNewReview").btn-submit Submit
+                    button(type="Submit" @click.prevent = "editCurrentReview").btn-submit Submit
 
   
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import {renderer} from '../store/helper'
+import { mapActions, mapState } from "vuex";
+import {renderer} from '../store/helper';
 export default {
-    data() {
+    
+    props: {
+        editedReview: Object
+    },
+     data() {
         return {
-            photo: {},
-            author: "",
-            occ: "",
-            text: "",
-            renderedPhoto: "",
+            newReview: {
+                author: "",
+                occ: "",
+                photo: {},
+                text: "",
+                renderedPhoto: ""
+            },
             transferOff: true,
+            dataPack: {
+                data: {},
+                id: ""
+            },
             stubMode: true
-
         }
     },
-    methods:{
-        ...mapActions("reviews", ["addReview"]),
-        async addNewReview() {
+    methods: {
+        ...mapActions("reviews", ["addReview","editReview", "removeReview"]),
+        async editCurrentReview() {
             this.transferOff= false;
-            let formData = new FormData();
-            formData.append('author', this.author);
-            formData.append('photo', this.photo);
-            formData.append('occ', this.occ);
-            formData.append('text', this.text);
+            let formData =  new FormData();
+                formData.append('author', this.newReview.author );
+                formData.append('occ', this.newReview.occ);
+                formData.append('photo', this.newReview.photo);
+                formData.append('text', this.newReview.text);
+                console.log(this.editedReview.id);
+                this.dataPack = {
+                    data: formData,
+                    id: this.editedReview.id
+                };
+                console.log(this.dataPack);
             try {
-                await this.addReview(formData);
-                this.author = "";
-                this.photo = "";
-                this.occ = "";
-                this.text = "";
+                await this.editReview(this.dataPack);
+                //this.removeReview(this.editedReview.id);
                 this.$emit("addNewReview")
             } catch (error) {
-                console.log(error)
+                console.log(error);
             } finally {
                 this.transferOff = true;
             }
         },
         upLoadImage(event) {
-            this.photo = this.$refs.file.files[0];
+            this.newReview.photo = this.$refs.file.files[0];
             const userPhoto = this.$refs.file.files[0];
             renderer(userPhoto).then(pic => {
-                this.renderedPhoto = pic;
+                this.newReview.renderedPhoto = pic;
                 this.stubMode = false;
             })
         },
         closeWindow() {
-            this.$emit("closeCurrentWindow")
-        }
+            this.$emit("closeEditWindow")
+        },
+       
     }
 
 }

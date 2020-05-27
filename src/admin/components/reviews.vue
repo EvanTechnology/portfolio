@@ -3,32 +3,79 @@
         .reviews__container.container
             .reviews__title-block
                 h1.reviews__title "Reviews" Section
-            .reviews__edit-block
-                newComponent
+            .reviews__edit-block(v-if= "addMode")
+                newComponent(
+                    :review = "review"
+                    @addNewReview = "closeNewWindow"
+                    @closeCurrentWindow = "closeNewWindow"
+                )
+            .reviews__edit-block(v-if= "editMode")
+                editComponent(
+                    :editedReview = "editedReview"
+                    @closeEditWindow = "closeEditWindow"
+                )
             .reviews__admin-block
                 .reviews__container
-                    ul.reviews__list
+                    ul.reviews__list(v-if= "addMode")
+                        li.reviews__item(v-for="review in reviews" :key="review.id")
+                            reviewComponent(
+                                :review = "review"
+                                @editWindow = "openEditWindow"
+                            )
+                    ul.reviews__list(v-else)
                         li.reviews__item
-                            .reviews__new-item
+                            .reviews__new-item(@click.prevent="addMode = true")
                                 .reviews__new-item-title Add New Review
                                 button(type="button").btn-add-new-review +
-                        li.reviews__item
-                            reviewComponent
-                        li.reviews__item
-                            reviewComponent
-                        li.reviews__item
-                            reviewComponent
-                        li.reviews__item
-                            reviewComponent
+                        li.reviews__item(v-for="review in reviews" :key="review.id")
+                            reviewComponent(
+                                :review = "review"
+                                @editWindow = "openEditWindow"
+                            )
 </template>
 
 <script>
     import reviewComponent from './reviewsReview'
     import newComponent from './reviewsNew'
+    import editComponent from './reviewsEdit'
+    import {mapState, mapActions} from 'vuex'
     export default {
         components: {
             reviewComponent,
             newComponent,
+            editComponent
+        },
+        data() {
+            return {
+                addMode: false,
+                editMode: false,
+                review: Object,
+                editedReview: Object
+            }
+        },
+        computed: {
+            ...mapState("reviews", {
+            reviews: state => state.reviews
+            })
+        },
+        created() {
+            this.fetchReviews();
+        },
+        methods: {
+            ...mapActions("reviews", ["fetchReviews"]),
+
+            closeNewWindow() {
+                this.addMode = false
+            },
+            openEditWindow(review) {
+                this.addMode = false;
+                this.editMode = true;
+                this.editedReview = review;
+                console.log(review.id)
+            },
+            closeEditWindow() {
+                this.editMode = false
+            }
         }
     }
 </script>

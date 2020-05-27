@@ -108,7 +108,11 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-
+  @mixin tablets() {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  }
   .main__container {
     display: flex;
     flex-direction: column;
@@ -119,6 +123,10 @@ export default {
     width: 100%;
     display: flex;
     align-items: center;
+    @include tablets {
+      flex-direction: column;
+      justify-content: center;
+    }
   }
   .main__title {
     font-size: 24px;
@@ -127,6 +135,10 @@ export default {
   }
   .main__controls {
     margin-left: 50px;
+    @include tablets {
+      margin-left: 0;
+      margin-bottom: 25px;
+    }
   }
   .control {
     display: flex;
@@ -142,6 +154,7 @@ export default {
     font-weight: bold;
     border: solid 1px #ff9a00;
     border-radius: 50%;
+    padding:0;
     &--small {
       width: 26px;
       height: 26px;

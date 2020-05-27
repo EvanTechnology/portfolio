@@ -5,30 +5,36 @@ export default {
         works: [],
     },
     mutations: {
-       /*  SET_WORKS(state, works) {
+        SET_WORKS(state, works) {
             state.works = works;
-        }, */
-        ADD_CATEGORY(state, newWork) {
+        },
+        ADD_WORK(state, newWork) {
             state.works.push(newWork);
         }, 
-        /* REMOVE_CATEGORY(state, categoryToRemoveId) {
-            state.categories = state.categories.filter(
-                (category) => category.id!== categoryToRemoveId);
+        REMOVE_WORK(state, workToRemoveId) {
+            state.works = state.works.filter(
+                (work) => work.id!== workToRemoveId);
 
-        }, */
-        /* EDIT_CATEGORY(state, categoryToEdit) {
-            state.categories = state.categories.map((category) => {
-                if (category.id === categoryToEdit.id) {
-                    category.title = categoryToEdit.title
+        },
+        EDIT_WORK(state, workToEdit, workId) {
+            state.works = state.works.map((work) => {
+                if (work.id === workId) {
+                    work = workToEdit
                 }
-                return category;
+                return work;
             })
-        }, */
+        },
     },
     actions: {
           async addWork({ commit }, formData) {
+              console.log(formData);
+              let config = {
+                header: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              };
             try {
-               const { data } = await this.$axios.post("/works", formData);
+               const { data } = await this.$axios.post("/works", formData, config);
                commit("ADD_WORK", data);
                console.log(data);
                } catch (error) {
@@ -39,33 +45,34 @@ export default {
                        )
                };
         }, 
-       /*  async fetchWorks({ commit }) {
+        async fetchWorks({ commit }) {
             try {
-                const { data } = await this.$axios.get(`/works/318`);
+                const getUserId = await this.$axios.get('/user');
+                const userId = getUserId.data.user.id;
+                const { data } = await this.$axios.get(`/works/${userId}`);
                 commit("SET_WORKS", data);
             } catch (error) {
                 console.log(error);
             };
-        }, */
-        /* async removeCategory({ commit}, categoryToRemoveId) {
+        },
+        async removeWork({ commit}, workToRemoveId) {
             try {
-                console.log(categoryToRemoveId);
-                const {data} = await this.$axios.delete(`/categories/${categoryToRemoveId}`);
-                commit("REMOVE_CATEGORY", categoryToRemoveId)
+                console.log(workToRemoveId);
+                const {data} = await this.$axios.delete(`/works/${workToRemoveId}`);
+                commit("REMOVE_WORK", workToRemoveId)
             } catch (error) {
                 console.log(error);
             }
-        }, */
-       /*  async editCategory({ commit}, editedCategory) {
-            console.log(editedCategory.id);
-            console.log(editedCategory.title);
-            console.log(editedCategory.category);
+        },
+        async editWork({ commit}, dataPack) {
+            console.log(dataPack);
+            const workId = dataPack.id
             try {
-                const {data} = await this.$axios.post(`/categories/${editedCategory.id}`, {title: editedCategory.category});
-                commit("EDIT_CATEGORY", editedCategory)
+                const {data} = await this.$axios.post(`/works/${workId}`, dataPack.data);
+                commit("EDIT_WORK", data, workId)
             } catch (error) {
                 console.log(error);
             }
-        } */
+        }
     },
 }

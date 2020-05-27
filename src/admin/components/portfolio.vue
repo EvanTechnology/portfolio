@@ -6,48 +6,82 @@
             .works__edit-block(v-if= "addMode")
                 newworkComponent(
                     :work = "work"
+                    @addNewWork ="changeMode"
+                    @closeEditWindow ="changeMode"
+                )
+            .works__edit-block(v-if= "editMode")
+                editworkComponent(
+                    :editedWork = "editedWork"
+                    @addNewWork ="changeMode"
+                    @closeEditWindow ="changeMode"
                 )
             .works__admin-block
                 .works__container
-                    ul.works__list
-                        li.works__item
-                            .works__new-item(@click.prevent ="addMode = true")
-                                .works__new-item-title Add New Work
-                                button(type="button").btn-add-new-work +
-                        //li.works__item(v-for=" work in works" :key="work.id")
+                    ul.works__list(v-if= "addMode")
+                        li.works__item(v-for=" work in works" :key="work.id")
                             workComponent(
                                 :work = "work"
+                                @editWindow ="changeEditMode"
+                            )
+                    ul.works__list(v-else)
+                        li.works__item()
+                            .works__new-item(@click.prevent ="addMode =true")
+                                .works__new-item-title Add New Work
+                                button(type="button").btn-add-new-work +
+                        li.works__item(v-for=" work in works" :key="work.id")
+                            workComponent(
+                                :work = "work"
+                                @editWindow ="changeEditMode"
                             )
                         
 </template>
 
 <script>
     const regeneratorRuntime = require("regenerator-runtime")
-    import newworkComponent from './portfolioNewwork'
+    import newworkComponent from './portfolioNewwork';
+     import editworkComponent from './portfolioEditWork';
     import workComponent from './portfolioWork';
     import { mapActions, mapState } from "vuex"
     export default {
         components: {
             newworkComponent,
             workComponent,
+            editworkComponent
         },
         data() {
             return {
                 addMode: false,
-                work: Object
-
+                editMode: false,
+                work: Object,
+                editedWork: Object
             }
         },
         computed: {
-           /*  ...mapState("works", {
+            ...mapState("works", {
             works: state => state.works
-            }) */
+            })
         },
         created() {
-            //this.fetchWorks();
+            this.fetchWorks();
         },
         methods: {
-            ...mapActions("works", ["fetchWorks"])
+            ...mapActions("works", ["fetchWorks"]),
+
+            changeMode() {
+                this.addMode = false;
+                this.editMode = false;
+            },
+            /* editCurrentWork(currentWork) {
+                this.addMode = false;
+                this.editedWork = currentWork;
+            }, */
+            changeEditMode(work) {
+                this.addMode = false;
+                this.editMode = true;
+                this.editedWork = work;
+
+            },
+
         }
     }
 </script>

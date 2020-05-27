@@ -78,7 +78,9 @@ export default {
         },
         async fetchCategories({ commit }) {
             try {
-                const { data } = await this.$axios.get(`/categories/318`);
+                const getUserId = await this.$axios.get('/user');
+                const userId = getUserId.data.user.id;
+                const { data } = await this.$axios.get(`/categories/${userId}`);
                 commit("SET_CATEGORIES", data);
             } catch (error) {
                 console.log(error);

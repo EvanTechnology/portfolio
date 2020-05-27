@@ -1,13 +1,14 @@
 <template lang="pug">
     .new-work
-        h2.new-work__title New work
+        h2.new-work__title Edit work
         .new-work__block
             label.new-work__preview(
-                :style="{backgroundImage: `url(${work.renderedPhoto})`}"
+                :style="{backgroundImage: `url(${newWork.renderedPhoto})`}"
             )
                 .new-work__instruction Upload image or drop it here
                 input(
                     type="file" 
+                    :placeholder="editedWork.photo"
                     name="work.photo" 
                     ref="file"
                     enctype="multipart/form-data"
@@ -18,29 +19,26 @@
                 .form-row
                     label.form-column
                         .form-row__title Name
-                        input(type="text" name="name" placeholder="Web-Site of Porsche dealer" required v-model="work.title").form-row__text.form-row__name
+                        input(type="text" name="name" :placeholder="editedWork.title" required v-model="newWork.title").form-row__text.form-row__name
                 .form-row
                     label.form-column
                         .form-row__title Link
-                        input(type="web" name="web-address" placeholder="https://www.porshe-pulkovo.ru" required v-model="work.link").form-row__text.form-row__website
+                        input(type="web" name="web-address" :placeholder="editedWork.link" required v-model="newWork.link").form-row__text.form-row__website
                 .form-row
                     label.form-column
                         .form-row__title Description
-                        textarea(name="description" placeholder="jkvb;djbv;ds bjbc bcibn casb cn;asbcas obcoabscoasbco'abn'oaUJ" required v-model="work.description").form-row__text.form-row__desc
+                        textarea(name="description" :placeholder="editedWork.description" required v-model="newWork.description").form-row__text.form-row__desc
                 .form-row
                     label.form-column
                         .form-row__title Add a tag
-                        input(type="text" name="tag" placeholder="JQuery, Vue.js" required v-model="work.techs").form-row__text.form-row__tags
+                        input(type="text" name="tag" :placeholder="editedWork.techs" required v-model="newWork.techs").form-row__text.form-row__tags
                         ul.form-row__tags-btns
-                            li.form-row__tag
-                                span.tag-name  JQuery
-                                button(type="button").btn-delete-tag &#10006
-                            li.form-row__tag
-                                span.tag-name Vue.js
-                                button(type="button").btn-delete-tag &#10006
-                .form-row.form-row__btns
+                            li.form-row__tag(v-for="tag in tags" :key="tag.id")
+                                span.tag-name  {{tag}}
+                                button(type="button" @click.prevent="removeTech").btn-delete-tag &#10006
+                .form-row.form-row__btns(v-if="transferOff")
                     button(type="Reset" @click.prevent = "closeWindow").btn-reset Cancel
-                    button(type="Submit" @click.prevent = "addNewWork").btn-submit Submit
+                    button(type="Submit" @click.prevent = "editCurrentWork").btn-submit Submit
 
   
 </template>
@@ -48,13 +46,14 @@
 <script>
 const regeneratorRuntime = require("regenerator-runtime");
 import { mapActions, mapState } from "vuex";
-//import requests from '../requests';
 import {renderer} from '../store/helper';
 export default {
-    
+    props: {
+        editedWork: Object
+    },
     data() {
         return {
-            work: {
+            newWork: {
                 title: "",
                 techs: "",
                 photo: {},
@@ -62,40 +61,60 @@ export default {
                 description: "",
                 renderedPhoto: ""
             },
+            transferOff: true,
+            tags: [],
+            dataPack: {
+                data: {},
+                id: ""
+            }
         }
     },
+    created() {
+        this.tags = this.editedWork.techs.split(",");
+    },
     methods: {
-        ...mapActions("works", ["addWork"]),
-        async addNewWork() {
+        ...mapActions("works", ["addWork","editWork", "removeWork"]),
+        async editCurrentWork() {
+            this.transferOff= false;
             let formData =  new FormData();
-                formData.append('title', this.work.title );
-                formData.append('techs', this.work.techs);
-                formData.append('photo', this.work.photo);
-                formData.append('link', this.work.link);
-                formData.append('description', this.work.description);
+                formData.append('title', this.newWork.title );
+                formData.append('techs', this.newWork.techs);
+                formData.append('photo', this.newWork.photo);
+                formData.append('link', this.newWork.link);
+                formData.append('description', this.newWork.description);
+                console.log(this.editedWork.id);
+                console.log(formData);
+                this.dataPack = {
+                    data: formData,
+                    id: this.editedWork.id
+                };
+                console.log(this.dataPack);
             try {
-                await this.addWork(formData);
-                this.work.title = "";
-                this.work.techs = "";
-                this.work.photo = "";
-                this.work.link = "";
-                this.work.description = "";
+                await this.editWork(this.dataPack);
+                this.newWork.title = "";
+                this.newWork.techs = "";
+                this.newWork.photo = "";
+                this.newWork.link = "";
+                this.newWork.description = "";
                 this.$emit("addNewWork")
             } catch (error) {
                 console.log(error);
             } finally {
+                this.transferOff = true;
             }
         },
         upLoadImage(event) {
-            this.work.photo = this.$refs.file.files[0];
+            this.newWork.photo = this.$refs.file.files[0];
             const photo = this.$refs.file.files[0];
+            console.log(this.newWork.photo);
             renderer(photo).then(pic => {
                 this.renderedPhoto = pic;
+                console.log(this.renderedPhoto);
             })
         },
         closeWindow() {
             this.$emit("closeEditWindow")
-        }
+        },
        
     }
 }
