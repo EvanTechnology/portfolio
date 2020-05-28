@@ -97,10 +97,8 @@ new Vue({
             try {
                 const getUserId = await $axios.get('/user');
                 const userId = getUserId.data.user.id;
-                console.log(userId);
                 const {data} = await $axios.get(`/reviews/${userId}`);
                 this.reviews = data;
-                console.log(this.reviews)
             } catch (error) {
                 console.log(error);
             }

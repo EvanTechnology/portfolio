@@ -1,4 +1,5 @@
 import Vue from "vue";
+import $axios from '../admin/requests';
 
 const btns = {
     template: "#slider-btns",
@@ -7,25 +8,30 @@ const btns = {
 const thumbs = {
     template: "#slider-thumbs",
     props: ["works"],
+    data() {
+        return {
+            baseURL: "https://webdev-api.loftschool.com/",
+        }
+    }
 };
 const tags = {
     template: "#slider-tags",
-    props: ["tags"],
+    props: ["tagList"],
 };
 const display = {
     template: "#slider-display",
     components: { thumbs, btns },
     props: ["currentWork", "works", "currentIndex","lastIndex"],
+    data() {
+        return {
+            baseURL: "https://webdev-api.loftschool.com/",
+        }
+    }
 };
 const info = {
     template: "#slider-info",
     components: { tags },
-    props: ["currentWork"],
-    computed: {
-        tagsArray() {
-            return this.currentWork.skills.split(",")
-        }
-    }
+    props: ["currentWork", "tagList"],
 };
 
 
@@ -38,12 +44,10 @@ new Vue({
             works: [],
             currentIndex: 0,
             lastIndex: 1,
+            currentWork: {},
+            tagList: []
+
         };
-    },
-    computed: {
-        currentWork() {
-            return this.works[this.currentIndex];
-        },
     },
     watch: {
         currentIndex(value) {
@@ -59,9 +63,13 @@ new Vue({
             switch(direction) {
                 case "next":
                     this.currentIndex++;
+                    this.currentWork = this.works[this.currentIndex];
+                    this.tagList = this.currentWork.techs.split(',');
                     break;
                 case "prev":
                     this.currentIndex--;
+                    this.currentWork = this.works[this.currentIndex];
+                    this.tagList = this.currentWork.techs.split(',');
                     break;
             }
         },
@@ -71,11 +79,23 @@ new Vue({
                 item.photo = requirePic;
                 return item;
             })
-        }
+        },
+        async fetchWorks() {
+            try {
+                const getUserId = await $axios.get('/user');
+                const userId = getUserId.data.user.id;
+                const {data} = await $axios.get(`/works/${userId}`);
+                this.works = data;
+                this.currentWork = this.works[0];
+                this.tagList = this.currentWork.techs.split(',');
+            } catch (error) {
+                console.log(error);
+            }
+          }
     },
     created() {
-        const data = require("../data/works.json");
-        this.works = this.makeArrayWithRequiredImages(data);
+        this.fetchWorks();
         this.lastIndex = this.works.length - 1;
+        
     },
 });
