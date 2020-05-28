@@ -43,7 +43,6 @@ new Vue({
       };
     },
     created() {
-         //const data = require("../data/skills.json");
          this.fetchCategories();
      
     },
@@ -52,10 +51,8 @@ new Vue({
         try {
             const getUserId = await $axios.get('/user');
             const userId = getUserId.data.user.id;
-            console.log(userId);
             const {data} = await $axios.get(`/categories/${userId}`);
             this.skills = data;
-            console.log(this.skills)
         } catch (error) {
             console.log(error);
         }

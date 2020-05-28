@@ -1,4 +1,5 @@
 import Vue from "vue";
+import $axios from '../admin/requests';
 
 const btns = {
     template: "#control-btns",
@@ -6,7 +7,15 @@ const btns = {
 };
 const review = {
     template: "#review-window",
-    props: {slideInfo: Object},
+    props: {
+        slideInfo: Object,
+        
+    },
+    data() {
+        return {
+            baseURL: "https://webdev-api.loftschool.com/"
+        }
+    }
 };
 const slider = {
     template: "#review-slider",
@@ -23,6 +32,7 @@ new Vue({
             slidesIndex: 0,
             currentSlides: [],
             lastScreen: 1,
+            //reviewsArray: []
         };
     },
     computed: {
@@ -83,18 +93,21 @@ new Vue({
  
 
         },
-        makeArrayWithRequiredImages(array) {
-            return array.map(item => {
-                const requirePic = require(`../images/content/${item.photo}`);
-                item.photo = requirePic;
-                return item;
-            })
-        }
+        async fetchReviews() {
+            try {
+                const getUserId = await $axios.get('/user');
+                const userId = getUserId.data.user.id;
+                console.log(userId);
+                const {data} = await $axios.get(`/reviews/${userId}`);
+                this.reviews = data;
+                console.log(this.reviews)
+            } catch (error) {
+                console.log(error);
+            }
+          }
     },
     created() {
-        const data = require("../data/reviews.json");
-        this.reviews = this.makeArrayWithRequiredImages(data);
-        console.log("this.reviews"+ this.reviews[0].photo);
+        this.fetchReviews();
         this.lastIndex = this.reviews.length - 1;
     },
 });
