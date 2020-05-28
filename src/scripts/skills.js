@@ -1,4 +1,6 @@
 import Vue from "vue";
+import axios from 'axios';
+import $axios from '../admin/requests';
 
 const skill = {
     template: "#skill",
@@ -37,11 +39,27 @@ new Vue({
     data() {
       return {
         skills: [],
+        user: ""
       };
     },
     created() {
-      const data = require("../data/skills.json");
-      this.skills = data;
+         //const data = require("../data/skills.json");
+         this.fetchCategories();
+     
     },
+    methods: {
+      async fetchCategories() {
+        try {
+            const getUserId = await $axios.get('/user');
+            const userId = getUserId.data.user.id;
+            console.log(userId);
+            const {data} = await $axios.get(`/categories/${userId}`);
+            this.skills = data;
+            console.log(this.skills)
+        } catch (error) {
+            console.log(error);
+        }
+      }
+    }
   });
 
