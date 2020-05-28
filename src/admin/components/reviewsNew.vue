@@ -138,7 +138,7 @@ export default {
         height: 175px;
         width: 175px;
         border: solid 1px #dee4ed;
-      
+        background: center center /cover no-repeat;
         background-color: #dee4ed;
         margin-bottom: 30px;
         border-radius: 50%;
@@ -189,6 +189,7 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
         margin-bottom: 30px;
+        font-size: 18px;
     }
     .form-row__introduction {
         @include phones {

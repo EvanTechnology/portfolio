@@ -158,6 +158,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        background: center center /cover no-repeat;
     }
     .new-review__stub {
         width: 75%;
@@ -201,6 +202,7 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
         margin-bottom: 30px;
+        font-size: 18px;
     }
     .form-row__introduction {
         @include phones {

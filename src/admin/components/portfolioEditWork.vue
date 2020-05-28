@@ -8,8 +8,6 @@
                 .new-work__instruction Upload image or drop it here
                 input(
                     type="file" 
-                    :placeholder="editedWork.photo"
-                    name="work.photo" 
                     ref="file"
                     enctype="multipart/form-data"
                     @change= "upLoadImage"
@@ -91,11 +89,11 @@ export default {
                 console.log(this.dataPack);
             try {
                 await this.editWork(this.dataPack);
-                this.newWork.title = "";
-                this.newWork.techs = "";
-                this.newWork.photo = "";
-                this.newWork.link = "";
-                this.newWork.description = "";
+                //this.newWork.title = "";
+                //this.newWork.techs = "";
+                //this.newWork.photo = "";
+                //this.newWork.link = "";
+                //this.newWork.description = "";
                 this.$emit("addNewWork")
             } catch (error) {
                 console.log(error);
@@ -106,10 +104,8 @@ export default {
         upLoadImage(event) {
             this.newWork.photo = this.$refs.file.files[0];
             const photo = this.$refs.file.files[0];
-            console.log(this.newWork.photo);
             renderer(photo).then(pic => {
-                this.renderedPhoto = pic;
-                console.log(this.renderedPhoto);
+                this.newWork.renderedPhoto = pic;
             })
         },
         closeWindow() {
@@ -236,12 +232,14 @@ export default {
         width: 100%;
         color: #636363;
         padding: 15px 0px;
+        font-size: 18px;
         border-color: transparent;
         border-bottom: solid 1px #636363;
     }
     .form-row__desc {
         border: solid 1px #a0a0b2;
         padding: 15px 5%;
+        font-size: 18px;
         width: 90%;
     }
     .form-row__tags {

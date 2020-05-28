@@ -215,6 +215,7 @@ export default {
     }
     .form-row__text {
         width: 100%;
+        font-size: 18px;
         color: #636363;
         padding: 15px 0px;
         border-color: transparent;
@@ -224,6 +225,7 @@ export default {
         border: solid 1px #a0a0b2;
         padding: 15px 5%;
         width: 90%;
+        font-size: 18px;
     }
     .form-row__tags {
         margin-bottom: 30px;

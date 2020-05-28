@@ -13,6 +13,7 @@
                 editComponent(
                     :editedReview = "editedReview"
                     @closeEditWindow = "closeEditWindow"
+                    @addNewReview = "closeEditWindow"
                 )
             .reviews__admin-block
                 .reviews__container
@@ -74,7 +75,8 @@
                 console.log(review.id)
             },
             closeEditWindow() {
-                this.editMode = false
+                this.editMode = false;
+                this.fetchReviews()
             }
         }
     }
@@ -103,6 +105,7 @@
     .reviews__edit-block {
         width: 95%;
         margin: 0 auto;
+        font-size: 20px;
         margin-bottom: 60px;
     }
     .reviews__admin-block {

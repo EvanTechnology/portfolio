@@ -52,6 +52,8 @@ export default {
     .work__image {
         width: 100%;
         margin-bottom: 30px;
+        max-height: 250px;
+        overflow: hidden;
     }
     .work__image-pic {
         width: 100%;

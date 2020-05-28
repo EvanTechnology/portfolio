@@ -70,6 +70,7 @@
             changeMode() {
                 this.addMode = false;
                 this.editMode = false;
+                this.fetchWorks()
             },
             /* editCurrentWork(currentWork) {
                 this.addMode = false;
@@ -103,6 +104,7 @@
         width: 95%;
         margin: 0 auto;
         margin-bottom: 60px;
+        font-size: 20px;
     }
     .works__admin-block {
         width: 100%;
