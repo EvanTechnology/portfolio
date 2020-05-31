@@ -2,7 +2,7 @@
     .wrapper-admin
       headerComponent
       mainComponent
-      loginComponent
+      //loginComponent
 
 </template>
 

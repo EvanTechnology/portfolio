@@ -36,9 +36,9 @@
 
 <script>
     import $axios from "../requests";
-    const baseUrl = "https://webdev-api.loftschool.com";
-    const regeneratorRuntime = require("regenerator-runtime");
-    const token = localStorage.getItem('token');
+    //const baseUrl = "https://webdev-api.loftschool.com";
+    //const regeneratorRuntime = require("regenerator-runtime");
+    //const token = localStorage.getItem('token');
     export default {
         name: 'login',
         data() {
@@ -60,7 +60,7 @@
                     const token = response.data.token;
                     localStorage.setItem('token', token);
                     $axios.defaults.headers['Authorization'] =`Bearer ${token}`;
-                    this.$router.replace("/admin");
+                    this.$router.replace("/");
                 } catch(error) {
                     console.log(error.response.data.message);
                     console.log(error.response.data.error);

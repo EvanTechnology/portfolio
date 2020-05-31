@@ -6,12 +6,23 @@
             img(src="../../images/content/user.jpg").user__photo
           .user__name Evgenii Konkov
         .header__title Admin panel
-        button.header__login Log out
+        button(@click.prevent="logout").header__login Log out
   
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 export default {
+  methods: {
+    ...mapActions({
+      logoutUser: "user/logout"
+    }),
+    logout() {
+      this.logoutUser();
+      this.$router.replace("/login");
+    }
+  }
 
 }
 </script>

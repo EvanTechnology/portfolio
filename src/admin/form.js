@@ -1,4 +1,4 @@
-import Vue from 'vue';
+/* import Vue from 'vue';
 
 const login = {
   template: "#loginComponent",
@@ -19,4 +19,4 @@ new Vue({
   el: "#app-root",
   template: "#loginComponent",
   components: login
-});
+}); */

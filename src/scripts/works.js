@@ -82,8 +82,9 @@ new Vue({
         },
         async fetchWorks() {
             try {
-                const getUserId = await $axios.get('/user');
-                const userId = getUserId.data.user.id;
+                //const getUserId = await $axios.get('/user');
+                //const userId = getUserId.data.user.id;
+                const userId = 318;
                 const {data} = await $axios.get(`/works/${userId}`);
                 this.works = data;
                 this.currentWork = this.works[0];

@@ -49,8 +49,9 @@ new Vue({
     methods: {
       async fetchCategories() {
         try {
-            const getUserId = await $axios.get('/user');
-            const userId = getUserId.data.user.id;
+            //const getUserId = await $axios.get('/user');
+            //const userId = getUserId.data.user.id;
+            const userId = 318;
             const {data} = await $axios.get(`/categories/${userId}`);
             this.skills = data;
         } catch (error) {
