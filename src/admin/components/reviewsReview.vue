@@ -111,18 +111,19 @@ export default {
     .btn__edit-review:after {
         content: "";
         display: inline-block;
-        width: 15px;
-        height: 15px;
+        width: 25px;
+        height: 25px;
         margin-left: 15px;
         background: svg-load('pencil.svg', fill=#383bcf, width=100%, height=100%);
     }
     .btn__delete-review:after {
         content: "";
         display: inline-block;
-        width: 15px;
-        height: 15px;
         margin-left: 15px;
-        background: svg-load('remove.svg', fill=#c92e2e, width=100%, height=100%);
+        width: 25px;
+        height: 25px;
+        border-color: transparent;
+        background: svg-load('trash.svg', fill=#636363, width=100%, height=100%) no-repeat;
     }    
 
 

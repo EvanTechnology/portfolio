@@ -25,7 +25,7 @@
                             )
                     ul.works__list(v-else)
                         li.works__item()
-                            .works__new-item(@click.prevent ="addMode =true")
+                            .works__new-item(@click.prevent ="openWindow")
                                 .works__new-item-title Add New Work
                                 button(type="button").btn-add-new-work +
                         li.works__item(v-for=" work in works" :key="work.id")
@@ -72,16 +72,16 @@
                 this.editMode = false;
                 this.fetchWorks()
             },
-            /* editCurrentWork(currentWork) {
-                this.addMode = false;
-                this.editedWork = currentWork;
-            }, */
             changeEditMode(work) {
                 this.addMode = false;
                 this.editMode = true;
                 this.editedWork = work;
 
             },
+            openWindow() {
+                this.editMode = false;
+                this.addMode = true;
+            }
 
         }
     }

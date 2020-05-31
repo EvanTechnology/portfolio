@@ -81,7 +81,7 @@
     border: solid 1px transparent;
     border-radius: 10px;
     margin-left: 10px;
-    background: svg-load('pencil.svg', fill=#636363, width=100%, height=100%);
+    background: svg-load('pencil.svg', fill=#383bcf, width=100%, height=100%);
     }    
     .btn-done {
     font-size: 25px;

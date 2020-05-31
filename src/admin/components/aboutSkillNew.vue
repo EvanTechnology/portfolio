@@ -1,5 +1,6 @@
 <template lang="pug">
     .new-skill
+        .message {{errorMessage}}
         input(type="text" placeholder="New Skill" v-model="skill.title").new-skill__title
         input(placeholder="100" min="0" max="100" v-model="skill.percent").new-skill__number
         .new-skill__percent %
@@ -20,13 +21,15 @@ export default {
             skill: {
                 title: "",
                 percent: "0",
-            }
+            },
+            errorMessage: ""
         }
     },
     methods: {
         ...mapActions("skills", ["addSkill"]),
         async addNewSkill() {
             this.addMode = false;
+            this.errorMessage = "";
             const skillData = {
                 ...this.skill,
                 category: this.category.id
@@ -37,8 +40,11 @@ export default {
                 this.skill.percent = "0";
             } catch (error) {
                 console.log(error);
+                this.errorMessage = error.message || error.error;
+                console.log(this.errorMessage);
             } finally {
                 this.addMode = true;
+                
             }
     }
     }
@@ -48,10 +54,18 @@ export default {
 
 <style lang="postcss">
 .new-skill {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.message {
+    position: absolute;
+    top: -50px;
+    right: 10%;
+    color: red;
+    font-size: 20px;
 }
 .new-skill__title {
     width: 50%;

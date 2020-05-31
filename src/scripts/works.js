@@ -89,6 +89,7 @@ new Vue({
                 this.works = data;
                 this.currentWork = this.works[0];
                 this.tagList = this.currentWork.techs.split(',');
+                this.lastIndex = this.works.length - 1;
             } catch (error) {
                 console.log(error);
             }
@@ -96,7 +97,7 @@ new Vue({
     },
     created() {
         this.fetchWorks();
-        this.lastIndex = this.works.length - 1;
+        
         
     },
 });

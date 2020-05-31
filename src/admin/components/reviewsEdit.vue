@@ -1,5 +1,9 @@
 <template lang="pug">
     .new-review
+        .message(
+            v-if="message"
+            @click="closeMessage"
+            ) All fields are required
         h2.new-review__title Edit Review
         .new-review__block
             label.new-review__preview
@@ -57,13 +61,22 @@ export default {
                 data: {},
                 id: ""
             },
-            stubMode: true
+            stubMode: true,
+            message: false
         }
     },
     methods: {
         ...mapActions("reviews", ["addReview","editReview", "removeReview"]),
+        validationForm() {
+            for (let key in this.newReview) {
+                if (!this.newReview.key) 
+                return false
+            }
+            return true
+        },
         async editCurrentReview() {
-            this.transferOff= false;
+            if (this.validationForm()) {
+                this.transferOff= false;
             let formData =  new FormData();
                 formData.append('author', this.newReview.author );
                 formData.append('occ', this.newReview.occ);
@@ -84,6 +97,8 @@ export default {
             } finally {
                 this.transferOff = true;
             }
+            } else this.message = true
+            
         },
         upLoadImage(event) {
             this.newReview.photo = this.$refs.file.files[0];
@@ -96,6 +111,10 @@ export default {
         closeWindow() {
             this.$emit("closeEditWindow")
         },
+        closeMessage() {
+            this.message = false;
+            console.log(this.message)
+        }
        
     }
 
@@ -109,6 +128,7 @@ export default {
         }
     }
     .new-review {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -116,6 +136,24 @@ export default {
         box-shadow: #f4f4f5 1px 1px 10px 5px;
         border: solid 1px #f4f4f5;
         background-color: #fff;
+    }
+    .message {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        background-color: #dee4ed;
+        border-radius: 15px;
+        color: red;
+        font-size: 20px;
+        padding: 15px 50px;
+    }
+    .message:after {
+        content: "\2717";
+        display: inline-block;
+        margin-left: 15px;
+        width: 25px;
+        height: 25px;
+        border-color: transparent;
     }
     .new-review__title {
         width: 90%;

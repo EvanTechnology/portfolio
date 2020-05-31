@@ -25,7 +25,7 @@
                             )
                     ul.reviews__list(v-else)
                         li.reviews__item
-                            .reviews__new-item(@click.prevent="addMode = true")
+                            .reviews__new-item(@click.prevent="openWindow")
                                 .reviews__new-item-title Add New Review
                                 button(type="button").btn-add-new-review +
                         li.reviews__item(v-for="review in reviews" :key="review.id")
@@ -77,6 +77,11 @@
             closeEditWindow() {
                 this.editMode = false;
                 this.fetchReviews()
+            },
+            openWindow() {
+                this.editMode = false;
+                this.addMode = true;
+                console.log(this.addMode);
             }
         }
     }

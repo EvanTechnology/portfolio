@@ -1,5 +1,9 @@
 <template lang="pug">
     .new-work
+        .message(
+            v-if="message"
+            @click="closeMessage"
+            ) All fields are required
         h2.new-work__title Edit work
         .new-work__block
             label.new-work__preview(
@@ -29,11 +33,13 @@
                 .form-row
                     label.form-column
                         .form-row__title Add a tag
-                        input(type="text" name="tag" :placeholder="editedWork.techs" required v-model="newWork.techs").form-row__text.form-row__tags
+                        input(type="text" name="tag" :placeholder="editedWork.techs" required v-model="newWork.techs" @input="stringToArray").form-row__text.form-row__tags
                         ul.form-row__tags-btns
                             li.form-row__tag(v-for="tag in tags" :key="tag.id")
-                                span.tag-name  {{tag}}
-                                button(type="button" @click.prevent="removeTech").btn-delete-tag &#10006
+                                tagComponent(
+                                    :tag ="tag"
+                                    @removeTag = "removeTag"
+                                )
                 .form-row.form-row__btns(v-if="transferOff")
                     button(type="Reset" @click.prevent = "closeWindow").btn-reset Cancel
                     button(type="Submit" @click.prevent = "editCurrentWork").btn-submit Submit
@@ -44,8 +50,12 @@
 <script>
 const regeneratorRuntime = require("regenerator-runtime");
 import { mapActions, mapState } from "vuex";
+import tagComponent from './portfolioTag';
 import {renderer} from '../store/helper';
 export default {
+    components: {
+        tagComponent
+    },
     props: {
         editedWork: Object
     },
@@ -64,7 +74,8 @@ export default {
             dataPack: {
                 data: {},
                 id: ""
-            }
+            },
+            message: false
         }
     },
     created() {
@@ -72,8 +83,16 @@ export default {
     },
     methods: {
         ...mapActions("works", ["addWork","editWork", "removeWork"]),
+        validationForm() {
+            for (let key in this.newWork) {
+                if (!this.newWork.key) 
+                return false
+            }
+            return true
+        },
         async editCurrentWork() {
-            this.transferOff= false;
+             if (this.validationForm()) {
+                 this.transferOff= false;
             let formData =  new FormData();
                 formData.append('title', this.newWork.title );
                 formData.append('techs', this.newWork.techs);
@@ -89,17 +108,14 @@ export default {
                 console.log(this.dataPack);
             try {
                 await this.editWork(this.dataPack);
-                //this.newWork.title = "";
-                //this.newWork.techs = "";
-                //this.newWork.photo = "";
-                //this.newWork.link = "";
-                //this.newWork.description = "";
                 this.$emit("addNewWork")
             } catch (error) {
                 console.log(error);
             } finally {
                 this.transferOff = true;
             }
+            } else this.message = true
+            
         },
         upLoadImage(event) {
             this.newWork.photo = this.$refs.file.files[0];
@@ -111,6 +127,18 @@ export default {
         closeWindow() {
             this.$emit("closeEditWindow")
         },
+        stringToArray() {
+            this.tags = this.newWork.techs.split(', ');
+        },
+        removeTag(tag) {
+            let index = parseInt(this.tags.indexOf(tag));
+            this.tags.splice(index, 1);
+            this.newWork.techs = this.tags.join(', ')
+        },
+        closeMessage() {
+            this.message = false;
+            console.log(this.message)
+        }
        
     }
 }
@@ -129,6 +157,7 @@ export default {
     }
   }
     .new-work {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -136,6 +165,24 @@ export default {
         box-shadow: #f4f4f5 1px 1px 10px 5px;
         border: solid 1px #f4f4f5;
         background-color: #fff;
+    }
+    .message {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        background-color: #dee4ed;
+        border-radius: 15px;
+        color: red;
+        font-size: 20px;
+        padding: 15px 50px;
+    }
+    .message:after {
+        content: "\2717";
+        display: inline-block;
+        margin-left: 15px;
+        width: 25px;
+        height: 25px;
+        border-color: transparent;
     }
     .new-work__title {
         width: 90%;

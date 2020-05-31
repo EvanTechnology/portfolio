@@ -52,7 +52,8 @@
     overflow: hidden;
   }
   .wrapper-admin {
-    
+    position: relative;
+    min-height: 100vh;
     background: linear-gradient(180deg, rgba(230,232,239,1) 0%, rgba(244,232,200,1) 100%);
   }
   .container {

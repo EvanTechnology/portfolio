@@ -1,7 +1,11 @@
 <template lang="pug">
     .new-work
+        .message(
+            v-if="message"
+            @click="closeMessage"
+            ) All fields are required
         h2.new-work__title New work
-        .new-work__block
+        form.new-work__block
             label.new-work__preview(
                 :style="{backgroundImage: `url(${work.renderedPhoto})`}"
             )
@@ -14,7 +18,7 @@
                     @change= "upLoadImage"
                     ).choose-btn
                 .btn-upload Upload
-            form.new-work__info
+            .new-work__info
                 .form-row
                     label.form-column
                         .form-row__title Name
@@ -30,14 +34,13 @@
                 .form-row
                     label.form-column
                         .form-row__title Add a tag
-                        input(type="text" name="tag" placeholder="JQuery, Vue.js" required v-model="work.techs").form-row__text.form-row__tags
+                        input(type="text" name="tag" placeholder="JQuery, Vue.js" required v-model="work.techs" @input="stringToArray").form-row__text.form-row__tags
                         ul.form-row__tags-btns
-                            li.form-row__tag
-                                span.tag-name  JQuery
-                                button(type="button").btn-delete-tag &#10006
-                            li.form-row__tag
-                                span.tag-name Vue.js
-                                button(type="button").btn-delete-tag &#10006
+                            li.form-row__tag(v-for="tag in tags")
+                                tagComponent(
+                                    :tag ="tag"
+                                    @removeTag = "removeTag"
+                                )
                 .form-row.form-row__btns
                     button(type="Reset" @click.prevent = "closeWindow").btn-reset Cancel
                     button(type="Submit" @click.prevent = "addNewWork").btn-submit Submit
@@ -46,11 +49,14 @@
 </template>
 
 <script>
-const regeneratorRuntime = require("regenerator-runtime");
+//const regeneratorRuntime = require("regenerator-runtime");
 import { mapActions, mapState } from "vuex";
-//import requests from '../requests';
+import tagComponent from './portfolioTag';
 import {renderer} from '../store/helper';
 export default {
+    components: {
+        tagComponent
+    },
     
     data() {
         return {
@@ -62,12 +68,25 @@ export default {
                 description: "",
                 renderedPhoto: ""
             },
+            tags: [],
+            message: false
         }
     },
     methods: {
         ...mapActions("works", ["addWork"]),
+        validationForm() {
+            for (let key in this.work) {
+                if (!this.work.key) 
+                return false
+            }
+            if (!this.work.photo.name) {
+                return false
+            }
+            return true
+        },
         async addNewWork() {
-            let formData =  new FormData();
+            if (this.validationForm()) {
+                let formData =  new FormData();
                 formData.append('title', this.work.title );
                 formData.append('techs', this.work.techs);
                 formData.append('photo', this.work.photo);
@@ -85,16 +104,31 @@ export default {
                 console.log(error);
             } finally {
             }
+            } else this.message = true
+            
         },
         upLoadImage(event) {
             this.work.photo = this.$refs.file.files[0];
             const photo = this.$refs.file.files[0];
             renderer(photo).then(pic => {
-                this.renderedPhoto = pic;
+                this.work.renderedPhoto = pic;
+                console.log(this.work.renderedPhoto)
             })
         },
         closeWindow() {
             this.$emit("closeEditWindow")
+        },
+        stringToArray() {
+            this.tags = this.work.techs.split(', ');
+        },
+        removeTag(tag) {
+            let index = parseInt(this.tags.indexOf(tag));
+            this.tags.splice(index, 1);
+            this.work.techs = this.tags.join(', ')
+        },
+        closeMessage() {
+            this.message = false;
+            console.log(this.message)
         }
        
     }
@@ -114,6 +148,7 @@ export default {
     }
   }
     .new-work {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -121,6 +156,24 @@ export default {
         box-shadow: #f4f4f5 1px 1px 10px 5px;
         border: solid 1px #f4f4f5;
         background-color: #fff;
+    }
+    .message {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        background-color: #dee4ed;
+        border-radius: 15px;
+        color: red;
+        font-size: 20px;
+        padding: 15px 50px;
+    }
+    .message:after {
+        content: "\2717";
+        display: inline-block;
+        margin-left: 15px;
+        width: 25px;
+        height: 25px;
+        border-color: transparent;
     }
     .new-work__title {
         width: 90%;
@@ -212,6 +265,9 @@ export default {
         flex: 1;
         display: flex;
         flex-direction: column;
+    }
+    .form-row__text::placeholder {
+        color: rgba(255,157,0,1);
     }
     .form-row__text {
         width: 100%;

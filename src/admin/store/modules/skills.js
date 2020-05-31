@@ -6,7 +6,11 @@ export default {
                 const {data} = await this.$axios.post("/skills", skill);
                 commit("categories/ADD_SKILL", skill, {root:true})
             } catch (error) {
-                console.log(error);
+                console.log(error.response.data.message);
+                throw new Error(
+                    //generateCodeError(error)
+                    error.response.data.message
+                    )
             }
         },
         async removeSkill({ commit}, skillToRemove) {

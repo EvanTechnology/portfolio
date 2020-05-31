@@ -1,11 +1,14 @@
 <template lang="pug">
     .new-review
-        //pre {{review}}
+        .message(
+            v-if="message"
+            @click="closeMessage"
+            ) All fields are required
         h2.new-review__title New Review
         .new-review__block
             label.new-review__preview
                 .new-review__image(
-                    :style="{backgroundImage: `url(${renderedPhoto})`}"
+                    :style="{backgroundImage: `url(${review.renderedPhoto})`}"
                 )
                     .new-review__stub(v-if="stubMode")
                     input(
@@ -21,14 +24,14 @@
                 .form-row.form-row__introduction
                     label.form-column
                         .form-row__title Name
-                        input(type="text" name="name" placeholder="Write your name here" v-model="author" required).form-row__text.form-row__name
+                        input(type="text" name="name" placeholder="Write your name here" v-model="review.author" required).form-row__text.form-row__name
                     label.form-column
                         .form-row__title Occupation
-                        input(type="web" name="occupation" placeholder="Write your occupation, please" v-model="occ" required).form-row__text.form-row__website
+                        input(type="web" name="occupation" placeholder="Write your occupation, please" v-model="review.occ" required).form-row__text.form-row__website
                 .form-row
                     label.form-column
                         .form-row__title Review
-                        textarea(name="review" placeholder="Your comments should be here" v-model="text" required).form-row__text.form-row__desc
+                        textarea(name="review" placeholder="Your comments should be here" v-model="review.text" required).form-row__text.form-row__desc
                 .form-row.form-row__btns(v-if="transferOff")
                     button(type="Reset" @click.prevent = "closeWindow").btn-reset Cancel
                     button(type="Submit" @click.prevent = "addNewReview").btn-submit Submit
@@ -42,48 +45,69 @@ import {renderer} from '../store/helper'
 export default {
     data() {
         return {
-            photo: {},
-            author: "",
-            occ: "",
-            text: "",
-            renderedPhoto: "",
+            review: {
+                photo: {},
+                author: "",
+                occ: "",
+                text: "",
+                renderedPhoto: "",
+            },
             transferOff: true,
-            stubMode: true
+            stubMode: true,
+            message: false
 
         }
     },
     methods:{
         ...mapActions("reviews", ["addReview"]),
-        async addNewReview() {
-            this.transferOff= false;
-            let formData = new FormData();
-            formData.append('author', this.author);
-            formData.append('photo', this.photo);
-            formData.append('occ', this.occ);
-            formData.append('text', this.text);
-            try {
-                await this.addReview(formData);
-                this.author = "";
-                this.photo = "";
-                this.occ = "";
-                this.text = "";
-                this.$emit("addNewReview")
-            } catch (error) {
-                console.log(error)
-            } finally {
-                this.transferOff = true;
+        validationForm() {
+            for (let key in this.review) {
+                if (!this.review.key) 
+                return false
             }
+            if (!this.review.photo.name) {
+                return false
+            }
+            return true
+        },
+        async addNewReview() {
+            if (this.validationForm()) {
+                this.transferOff= false;
+                let formData = new FormData();
+                formData.append('author', this.review.author);
+                formData.append('photo', this.review.photo);
+                formData.append('occ', this.review.occ);
+                formData.append('text', this.review.text);
+                try {
+                    await this.addReview(formData);
+                    this.review.author = "";
+                    this.review.photo = "";
+                    this.review.occ = "";
+                    this.review.text = "";
+                    this.$emit("addNewReview")
+                } catch (error) {
+                    console.log(error)
+                } finally {
+                    this.transferOff = true;
+                }
+            } else this.message = true
+
+            
         },
         upLoadImage(event) {
-            this.photo = this.$refs.file.files[0];
+            this.review.photo = this.$refs.file.files[0];
             const userPhoto = this.$refs.file.files[0];
             renderer(userPhoto).then(pic => {
-                this.renderedPhoto = pic;
+                this.review.renderedPhoto = pic;
                 this.stubMode = false;
             })
         },
         closeWindow() {
             this.$emit("closeCurrentWindow")
+        },
+        closeMessage() {
+            this.message = false;
+            console.log(this.message)
         }
     }
 
@@ -97,6 +121,7 @@ export default {
         }
     }
     .new-review {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -104,6 +129,24 @@ export default {
         box-shadow: #f4f4f5 1px 1px 10px 5px;
         border: solid 1px #f4f4f5;
         background-color: #fff;
+    }
+    .message {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        background-color: #dee4ed;
+        border-radius: 15px;
+        color: red;
+        font-size: 20px;
+        padding: 15px 50px;
+    }
+    .message:after {
+        content: "\2717";
+        display: inline-block;
+        margin-left: 15px;
+        width: 25px;
+        height: 25px;
+        border-color: transparent;
     }
     .new-review__title {
         width: 90%;
