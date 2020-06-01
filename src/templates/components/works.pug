@@ -24,6 +24,7 @@ script(type='text/x-template')#slider-display
                 )
                 thumbs(
                     :works = "works"
+                    :currentIndex = "currentIndex"
                 )
                 .slider-pics__number {{currentIndex +1}}
 
@@ -45,7 +46,10 @@ script(type='text/x-template')#slider-thumbs
                 v-for="work in works" :key="work.id"
                 )
                 .slider-pics__link
-                    img(:src="baseURL+work.photo").slider__item-photo
+                    img(
+                        :src="baseURL+work.photo"
+                        :class="{active: currentIndex === works.indexOf(work)}"
+                        ).slider__item-photo
 
 script(type='text/x-template')#slider-info
     .slider-info

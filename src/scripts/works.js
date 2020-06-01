@@ -7,7 +7,7 @@ const btns = {
 };
 const thumbs = {
     template: "#slider-thumbs",
-    props: ["works"],
+    props: ["works", "currentIndex"],
     data() {
         return {
             baseURL: "https://webdev-api.loftschool.com/",

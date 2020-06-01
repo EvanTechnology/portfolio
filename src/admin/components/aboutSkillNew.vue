@@ -39,9 +39,7 @@ export default {
                 this.skill.title = "";
                 this.skill.percent = "0";
             } catch (error) {
-                console.log(error);
                 this.errorMessage = error.message || error.error;
-                console.log(this.errorMessage);
             } finally {
                 this.addMode = true;
                 

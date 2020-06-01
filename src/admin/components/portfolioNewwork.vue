@@ -41,7 +41,7 @@
                                     :tag ="tag"
                                     @removeTag = "removeTag"
                                 )
-                .form-row.form-row__btns
+                .form-row.form-row__btns(v-if="transferOff")
                     button(type="Reset" @click.prevent = "closeWindow").btn-reset Cancel
                     button(type="Submit" @click.prevent = "addNewWork").btn-submit Submit
 
@@ -69,6 +69,7 @@ export default {
                 renderedPhoto: ""
             },
             tags: [],
+            transferOff: true,
             message: false
         }
     },
@@ -76,7 +77,7 @@ export default {
         ...mapActions("works", ["addWork"]),
         validationForm() {
             for (let key in this.work) {
-                if (!this.work.key) 
+                if (!this.work[key]) 
                 return false
             }
             if (!this.work.photo.name) {
@@ -86,6 +87,7 @@ export default {
         },
         async addNewWork() {
             if (this.validationForm()) {
+                this.transferOff= false;
                 let formData =  new FormData();
                 formData.append('title', this.work.title );
                 formData.append('techs', this.work.techs);
@@ -103,6 +105,7 @@ export default {
             } catch (error) {
                 console.log(error);
             } finally {
+                this.transferOff = true;
             }
             } else this.message = true
             

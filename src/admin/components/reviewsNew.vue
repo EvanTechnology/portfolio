@@ -62,7 +62,7 @@ export default {
         ...mapActions("reviews", ["addReview"]),
         validationForm() {
             for (let key in this.review) {
-                if (!this.review.key) 
+                if (!this.review[key]) 
                 return false
             }
             if (!this.review.photo.name) {

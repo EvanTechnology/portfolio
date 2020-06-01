@@ -85,8 +85,10 @@ export default {
         ...mapActions("works", ["addWork","editWork", "removeWork"]),
         validationForm() {
             for (let key in this.newWork) {
-                if (!this.newWork.key) 
-                return false
+                if (!this.newWork[key]) {
+                    console.log(this.newWork);
+                    return false
+                }
             }
             return true
         },

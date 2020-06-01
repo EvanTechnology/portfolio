@@ -69,7 +69,7 @@ export default {
         ...mapActions("reviews", ["addReview","editReview", "removeReview"]),
         validationForm() {
             for (let key in this.newReview) {
-                if (!this.newReview.key) 
+                if (!this.newReview[key]) 
                 return false
             }
             return true

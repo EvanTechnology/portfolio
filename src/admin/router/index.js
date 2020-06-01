@@ -13,7 +13,6 @@ Vue.use(VueRouter);
 const router = new VueRouter({ routes });
 
 router.beforeEach(async (to, from, next) => {
-    console.log(to);
   const isPublicRoute = to.matched.some(route => route.meta.public);
   const isUserLoggedIn = store.getters["user/userIsLoggedIn"];
 

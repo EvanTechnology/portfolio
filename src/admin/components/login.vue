@@ -31,14 +31,10 @@
             .entry__form-row--btn
               button(type='submit').entry__submit-btn Login
             .error {{errorMessage}}
-                //pre {{errorMessage}}
 </template>
 
 <script>
     import $axios from "../requests";
-    //const baseUrl = "https://webdev-api.loftschool.com";
-    //const regeneratorRuntime = require("regenerator-runtime");
-    //const token = localStorage.getItem('token');
     export default {
         name: 'login',
         data() {
@@ -62,13 +58,8 @@
                     $axios.defaults.headers['Authorization'] =`Bearer ${token}`;
                     this.$router.replace("/");
                 } catch(error) {
-                    console.log(error.response.data.message);
-                    console.log(error.response.data.error);
-                    console.log(error.response.data.errors);
                     this.errorMessage = error.response.data.message || error.response.data.error;
-                    console.log(this.errorMessage);
                 }
-                //this.errorMessage = "";
                 
             }
         }
