@@ -101,13 +101,10 @@ export default {
                 formData.append('photo', this.newWork.photo);
                 formData.append('link', this.newWork.link);
                 formData.append('description', this.newWork.description);
-                console.log(this.editedWork.id);
-                console.log(formData);
                 this.dataPack = {
                     data: formData,
                     id: this.editedWork.id
                 };
-                console.log(this.dataPack);
             try {
                 await this.editWork(this.dataPack);
                 this.$emit("addNewWork")

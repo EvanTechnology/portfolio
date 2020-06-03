@@ -76,6 +76,7 @@
                 this.addMode = false;
                 this.editMode = true;
                 this.editedWork = work;
+                this.fetchWorks()
 
             },
             openWindow() {

@@ -9,7 +9,7 @@ export default {
             state.categories = categories;
         },
         ADD_CATEGORY(state, newCategory) {
-            state.categories.push(newCategory);
+            state.categories.unshift(newCategory);
         },
         REMOVE_CATEGORY(state, categoryToRemoveId) {
             state.categories = state.categories.filter(

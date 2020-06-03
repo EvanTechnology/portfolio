@@ -26,6 +26,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions("categories", ["fetchCategories"]),
         ...mapActions("skills", ["addSkill"]),
         async addNewSkill() {
             this.addMode = false;
@@ -38,6 +39,7 @@ export default {
                 await this.addSkill(skillData);
                 this.skill.title = "";
                 this.skill.percent = "0";
+                this.fetchCategories();
             } catch (error) {
                 this.errorMessage = error.message || error.error;
             } finally {

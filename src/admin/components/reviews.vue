@@ -72,7 +72,6 @@
                 this.addMode = false;
                 this.editMode = true;
                 this.editedReview = review;
-                console.log(review.id)
             },
             closeEditWindow() {
                 this.editMode = false;
@@ -81,7 +80,6 @@
             openWindow() {
                 this.editMode = false;
                 this.addMode = true;
-                console.log(this.addMode);
             }
         }
     }

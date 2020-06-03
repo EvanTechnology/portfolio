@@ -27,7 +27,6 @@ export default {
     },
     actions: {
           async addWork({ commit }, formData) {
-              console.log(formData);
               let config = {
                 header: {
                     'Content-Type': 'multipart/form-data'
@@ -36,7 +35,6 @@ export default {
             try {
                const { data } = await this.$axios.post("/works", formData, config);
                commit("ADD_WORK", data);
-               console.log(data);
                } catch (error) {
                    console.log(error.response.data.message);
                    throw new Error(
@@ -57,7 +55,6 @@ export default {
         },
         async removeWork({ commit}, workToRemoveId) {
             try {
-                console.log(workToRemoveId);
                 const {data} = await this.$axios.delete(`/works/${workToRemoveId}`);
                 commit("REMOVE_WORK", workToRemoveId)
             } catch (error) {
@@ -65,7 +62,6 @@ export default {
             }
         },
         async editWork({ commit}, dataPack) {
-            console.log(dataPack);
             const workId = dataPack.id
             try {
                 const {data} = await this.$axios.post(`/works/${workId}`, dataPack.data);

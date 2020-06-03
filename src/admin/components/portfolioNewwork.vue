@@ -115,7 +115,6 @@ export default {
             const photo = this.$refs.file.files[0];
             renderer(photo).then(pic => {
                 this.work.renderedPhoto = pic;
-                console.log(this.work.renderedPhoto)
             })
         },
         closeWindow() {

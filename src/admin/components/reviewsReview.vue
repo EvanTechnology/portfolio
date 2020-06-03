@@ -2,7 +2,7 @@
   .review__box
     .review__image
         .review__avatar
-            img(:src="review.absolutePath").review__image-pic
+            img(:src="absolutePath").review__image-pic
         .review__title
             h3.review__fullname {{review.author}}
             h4.review__occupation {{review.occ}}
@@ -22,9 +22,14 @@ export default {
     props: {
         review: Object
     },
-    created() {
-        this.review.absolutePath=getAbsoluteImgPath(this.review.photo);
+    data() {
+        return {
+            absolutePath: getAbsoluteImgPath(this.review.photo)
+        }
     },
+    /* created() {
+        this.review.absolutePath=getAbsoluteImgPath(this.review.photo);
+    }, */
     methods: {
         ...mapActions("reviews", ["removeReview"]),
          async removeCurrentReview() {
@@ -36,7 +41,6 @@ export default {
             },
             editCurrentReview() {
                 this.$emit('editWindow', this.review);
-                console.log(this.review);
             }
     }
 

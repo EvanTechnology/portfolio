@@ -82,12 +82,10 @@ export default {
                 formData.append('occ', this.newReview.occ);
                 formData.append('photo', this.newReview.photo);
                 formData.append('text', this.newReview.text);
-                console.log(this.editedReview.id);
                 this.dataPack = {
                     data: formData,
                     id: this.editedReview.id
                 };
-                console.log(this.dataPack);
             try {
                 await this.editReview(this.dataPack);
                 //this.removeReview(this.editedReview.id);

@@ -54,9 +54,7 @@ export default {
             }
         },
         async editReview({ commit}, dataPack) {
-            console.log(dataPack);
             const reviewId = dataPack.id;
-            console.log(dataPack.data);
             try {
                 const {data} = await this.$axios.post(`/reviews/${reviewId}`, dataPack.data);
                 commit("EDIT_REVIEW", data, reviewId)

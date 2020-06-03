@@ -81,7 +81,7 @@ export default {
       try {
         console.log(this.category.title);
         await this.addCategory(this.category.title);
-        
+        this.fetchCategories();
         this.category.title = "";
       } catch (error) {
         console.log(error);

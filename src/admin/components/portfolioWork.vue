@@ -1,7 +1,7 @@
 <template lang="pug">
   .work__box
     .work__image
-        img(:src="work.absolutePath").work__image-pic
+        img(:src="absolutePath").work__image-pic
     .work__info
         h3.work__title {{work.title}}
         .work__desc
@@ -15,14 +15,19 @@
 
 <script>
 import {getAbsoluteImgPath} from '../store/helper';
-import { mapActions, mapState } from "vuex"
+import { mapActions } from "vuex"
 export default {
     props: {
             work: Object
         },
-    created() {
+    data() {
+        return {
+            absolutePath: getAbsoluteImgPath(this.work.photo)
+        }
+    },
+   /* created() {
         this.work.absolutePath=getAbsoluteImgPath(this.work.photo);
-        },
+        }, */
     methods: {
         ...mapActions("works", ["removeWork"]),
          async removeCurrentWork() {
